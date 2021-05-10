@@ -1,7 +1,7 @@
 import React from 'react';
 const { kakao } = window;
 
-export default function CurrentLocation({map}) {
+export default function GetCurrentLocation(map) {
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
     if (navigator.geolocation) {
 
@@ -22,7 +22,7 @@ export default function CurrentLocation({map}) {
     } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
         var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-            message = 'geolocation을 사용할수 없어요..'
+            message = '현재 위치를 가져 올 수가 없습니다.'
 
         displayMarker(locPosition, message);
     }
