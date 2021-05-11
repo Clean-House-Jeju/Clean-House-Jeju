@@ -16,13 +16,11 @@ export const getInfo = () => async dispatch => {
             type: GET_DATAS_SUCCESS,
             payload: response.data
         })
-        console.log(response.data);
-        KakaoMapScript();
+        KakaoMapScript(response.data);
     } catch (e) {
         // 실패했을 떄
         dispatch({
             type: GET_DATAS_FAILURE,
-            payload: e,
             error: true
         })
     }
