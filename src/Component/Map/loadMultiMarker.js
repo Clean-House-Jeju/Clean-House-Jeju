@@ -1,4 +1,3 @@
-import {useSelector} from "react-redux";
 const { kakao } = window;
 
 export default function LoadMultiMarker(map, data) {
@@ -19,6 +18,5 @@ export default function LoadMultiMarker(map, data) {
             image : markerImage // 마커 이미지
         });
     }
-
 
 }
