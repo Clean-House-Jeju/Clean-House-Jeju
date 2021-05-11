@@ -1,4 +1,5 @@
-import * as api from "./api";
+import * as api from "../lib/api";
+import KakaoMapScript from "../Component/Map/KakaoMapScript";
 
 const GET_DATAS = 'handleData/GET_DATA';
 const GET_DATAS_SUCCESS = 'handleData/GET_DATA_SUCCESS';
@@ -15,6 +16,8 @@ export const getInfo = () => async dispatch => {
             type: GET_DATAS_SUCCESS,
             payload: response.data
         })
+        console.log(response.data);
+        KakaoMapScript();
     } catch (e) {
         // 실패했을 떄
         dispatch({
@@ -33,7 +36,7 @@ const initialState = {
     }
 }
 
-export default function handleDatas(state = initialState, action) {
+export default function getDatas(state = initialState, action) {
 
     switch (action.type) {
         case GET_DATAS:
