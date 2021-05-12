@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import KakaoMapScript from "./KakaoMapScript";
+import React, {useEffect, useState} from 'react';
+import Hamburger from "hamburger-react";
 import './Map.css';
 import {useDispatch, useSelector} from "react-redux";
 import {getInfo} from "../../Modules/getDatas";
 
 export default function Map() {
-
+    const [isOpen, setOpen] = useState(false);
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
     const dispatch = useDispatch();
 
@@ -18,7 +18,12 @@ export default function Map() {
     if (!data) return <div>데이터가 없어요</div>;
 
     return (
-        <div id='myMap'/>
+        <div>
+            <div style={{position: 'absolute', zIndex: '999'}}>
+                <Hamburger toggled={isOpen} toggle={setOpen}/>
+            </div>
+            <div id='myMap'/>
+        </div>
     );
 }
 

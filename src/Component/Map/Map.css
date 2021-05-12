@@ -1,4 +1,13 @@
 #myMap {
+    position: relative;
     width: 100vw;
     height: 100vh;
+}
+
+.hamburger-bar {
+    width: 1px;
+    height: 1px;
+    display: inline-flex;
+    background: transparent;
+    z-index: 9999;
 }
