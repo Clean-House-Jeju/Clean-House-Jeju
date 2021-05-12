@@ -68,5 +68,4 @@ export default function getDatas(state = initialState, action) {
             return state;
 
     }
-
 }
