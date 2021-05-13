@@ -3,6 +3,7 @@ import Hamburger from "hamburger-react";
 import './Map.css';
 import {useDispatch, useSelector} from "react-redux";
 import {getInfo} from "../../Modules/getDatas";
+import NavBar from "../NavigationBar/NavBar";
 
 export default function Map() {
     const [isOpen, setOpen] = useState(false);
@@ -19,9 +20,7 @@ export default function Map() {
 
     return (
         <div>
-            <div style={{position: 'absolute', zIndex: '999'}}>
-                <Hamburger toggled={isOpen} toggle={setOpen}/>
-            </div>
+            <NavBar/>
             <div id='myMap'/>
         </div>
     );

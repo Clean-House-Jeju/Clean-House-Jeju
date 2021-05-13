@@ -4,10 +4,7 @@
     height: 100vh;
 }
 
-.hamburger-bar {
-    width: 1px;
-    height: 1px;
-    display: inline-flex;
-    background: transparent;
+.Hamburger-Container {
+    position: absolute;
     z-index: 9999;
 }
