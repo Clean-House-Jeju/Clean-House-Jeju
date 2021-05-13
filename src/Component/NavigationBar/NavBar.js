@@ -7,6 +7,9 @@ export default function NavBar() {
     return (
         <div className='NavBar'>
             <FaIcons.FaBars/>
+            <ul>
+                <li>안녕</li>
+            </ul>
         </div>
     );
 }
