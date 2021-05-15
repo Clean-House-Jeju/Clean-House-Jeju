@@ -42,6 +42,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .input-text {
@@ -57,4 +58,11 @@
 
 .input-text:focus {
     border-color: #51a7e8;
+}
+
+.divider {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #dcdcdc;
 }

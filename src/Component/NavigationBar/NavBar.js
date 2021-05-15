@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './NavBar.css';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import SideBar from "./SideBar";
 
 export default function NavBar() {

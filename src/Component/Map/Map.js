@@ -5,7 +5,6 @@ import {getInfo} from "../../Modules/getDatas";
 import NavBar from "../NavigationBar/NavBar";
 
 export default function Map() {
-    const [isOpen, setOpen] = useState(false);
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
     const dispatch = useDispatch();
 
