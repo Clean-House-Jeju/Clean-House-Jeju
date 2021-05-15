@@ -1,8 +1,8 @@
 .location-card-container {
-    width: 75%;
+    width: 280px;
     padding: 10px 0;
     margin: 10px 0;
-    font-size: 5px;
+    font-size: 10px;
 
     display: flex;
     justify-content: center;

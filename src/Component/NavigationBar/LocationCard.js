@@ -5,7 +5,7 @@ export default function LocationCard({data}) {
     return (
         <div className='location-card-container'>
             <p>
-                {data.address}
+                {data.location}
             </p>
         </div>
     );

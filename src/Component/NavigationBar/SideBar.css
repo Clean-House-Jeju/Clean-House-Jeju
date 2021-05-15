@@ -9,6 +9,8 @@
     left: -100%;
     transition: 850ms;
     border-right: 15px;
+    overflow: auto;
+
 }
 
 .nav-menu.active {
