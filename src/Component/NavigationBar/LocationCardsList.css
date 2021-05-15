@@ -1,11 +1,12 @@
 .card-list {
-    width: 100%;
-    background: white;
 
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 5px;
+
+    padding: 0 10px;
+    overflow-y: scroll;
 
 }

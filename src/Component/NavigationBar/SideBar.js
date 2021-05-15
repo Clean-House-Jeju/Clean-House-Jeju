@@ -26,7 +26,7 @@ export default function SideBar({open, onClick}) {
                     <div className='divider'/>
 
                     <LocationCardsList
-                        data={data}
+                        data={data.filter(d => d.address.toLowerCase().includes(keyword))}
                     />
 
                 </div>

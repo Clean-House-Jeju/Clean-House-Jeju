@@ -1,5 +1,15 @@
 .location-card-container {
-    width: 100%;
-    margin: 5px 0;
+    width: 75%;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-size: 5px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
 }
+
