@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Hamburger from "hamburger-react";
 import './Map.css';
 import {useDispatch, useSelector} from "react-redux";
 import {getInfo} from "../../Modules/getDatas";

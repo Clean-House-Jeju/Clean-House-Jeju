@@ -5,11 +5,19 @@ import './SideBar.css';
 export default function SideBar({open, onClick}) {
     return (
         <div className={open ? 'nav-menu active': 'nav-menu'}>
-            <ul className='nav-menu-items'>
-                <li className='navbar-toggle'>
+            <div className='nav-menu-items'>
+                <div className='navbar-toggle'>
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
-                </li>
-            </ul>
+                </div>
+                <div className='content-box'>
+                    <input
+                        className='input-text'
+                        placeholder='키워드를 입력 해주세요'
+                        type="text"
+                    />
+
+                </div>
+            </div>
         </div>
     )
 }
