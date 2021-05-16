@@ -1,16 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
 import LocationCard from "./LocationCardsList";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import LocationCardsList from "./LocationCardsList";
+import filterKeyword from "../Map/filterKeyword";
+import LoadMultiMarker from "../Map/loadMultiMarker";
 
-export default function SideBar({open, onClick}) {
-    const {data} = useSelector(state => state.getDatas.datas);
+export default function SideBar({ open, onClick }) {
+    const { data } = useSelector(state => state.getDatas.datas);
     const [keyword, setKeyword] = useState('');
 
     return (
-        <div className={open ? 'nav-menu active': 'nav-menu'}>
+        <div className={open ? 'nav-menu active' : 'nav-menu'}>
             <div className='nav-menu-items'>
                 <div className='navbar-toggle'>
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
@@ -23,11 +25,14 @@ export default function SideBar({open, onClick}) {
                         onChange={e => setKeyword(e.target.value)}
                     />
 
-                    <div className='divider'/>
+                    <div className='divider' />
 
                     <LocationCardsList
-                        data={data.filter(d => d.location.toLowerCase().includes(keyword))}
+                        data={filterKeyword(data, keyword)}
                     />
+                    {/* <LoadMultiMarker
+                        data={filterKeyword(data, keyword)}
+                    /> */}
 
                 </div>
             </div>
