@@ -5,7 +5,6 @@ import LocationCard from "./LocationCardsList";
 import { useSelector } from "react-redux";
 import LocationCardsList from "./LocationCardsList";
 import filterKeyword from "../Map/filterKeyword";
-import LoadMultiMarker from "../Map/loadMultiMarker";
 
 export default function SideBar({ open, onClick }) {
     const { data } = useSelector(state => state.getDatas.datas);
@@ -30,9 +29,6 @@ export default function SideBar({ open, onClick }) {
                     <LocationCardsList
                         data={filterKeyword(data, keyword)}
                     />
-                    {/* <LoadMultiMarker
-                        data={filterKeyword(data, keyword)}
-                    /> */}
 
                 </div>
             </div>

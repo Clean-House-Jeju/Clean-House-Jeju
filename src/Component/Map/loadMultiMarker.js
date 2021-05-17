@@ -1,9 +1,10 @@
-import filterKeyword from "./filterKeyword";
 
+import { useSelector } from "react-redux";
 const { kakao } = window;
 
 export default function LoadMultiMarker(map, data) {
     const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    // const { data } = useSelector(state => state.getDatas.datas);
 
     for (let i = 0; i < data.length; i++) {
 
