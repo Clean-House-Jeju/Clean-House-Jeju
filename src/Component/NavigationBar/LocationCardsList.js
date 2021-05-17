@@ -7,7 +7,7 @@ export default function LocationCardList({data}) {
     return (
         <div className='card-list'>
             {
-                data.map(d => <LocationCard data={d}/>)
+                data.map((d, i) => <LocationCard key={i} data={d}/>)
             }
         </div>
     );

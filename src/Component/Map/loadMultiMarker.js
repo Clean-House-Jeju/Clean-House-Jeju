@@ -1,8 +1,11 @@
+import {useSelector} from "react-redux";
+
 const { kakao } = window;
 
 export default function LoadMultiMarker(map, data) {
-    const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
+
+    const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
     for (let i = 0; i < data.length; i++) {
         // 마커 이미지의 이미지 크기 입니다
         let imageSize = new kakao.maps.Size(24, 35);

@@ -1,13 +1,19 @@
 import React, {useState} from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
-import LocationCard from "./LocationCardsList";
 import {useSelector} from "react-redux";
 import LocationCardsList from "./LocationCardsList";
+import KakaoMapScript from "../Map/KakaoMapScript";
 
 export default function SideBar({open, onClick}) {
+
     const {data} = useSelector(state => state.getDatas.datas);
     const [keyword, setKeyword] = useState('');
+
+    const handleKeyword = (text) => {
+        setKeyword(text);
+        KakaoMapScript(data.filter(d => d.location.toLowerCase().includes(text)))
+    }
 
     return (
         <div className={open ? 'nav-menu active': 'nav-menu'}>
@@ -20,7 +26,7 @@ export default function SideBar({open, onClick}) {
                         className='input-text'
                         placeholder='키워드를 입력 해주세요'
                         type="text"
-                        onChange={e => setKeyword(e.target.value)}
+                        on={e => handleKeyword(e.target.value)}
                     />
 
                     <div className='divider'/>

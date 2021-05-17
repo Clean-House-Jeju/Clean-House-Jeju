@@ -5,6 +5,8 @@ const GET_DATAS = 'handleData/GET_DATA';
 const GET_DATAS_SUCCESS = 'handleData/GET_DATA_SUCCESS';
 const GET_DATAS_FAILURE = 'handleData/GET_DATA_FAILURE';
 
+
+
 export const getInfo = () => async dispatch => {
     // 요청이 시작됨
     dispatch({type: GET_DATAS});
@@ -16,7 +18,6 @@ export const getInfo = () => async dispatch => {
             type: GET_DATAS_SUCCESS,
             payload: response.data
         })
-        KakaoMapScript(response.data);
     } catch (e) {
         // 실패했을 떄
         dispatch({

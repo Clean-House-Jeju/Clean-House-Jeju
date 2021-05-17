@@ -1,5 +1,6 @@
 import GetCurrentLocation from "./GetCurrentLocation";
 import loadMultiMarker from "./loadMultiMarker";
+import {useSelector} from "react-redux";
 const { kakao } = window;
 
 export default function KakaoMapScript(data) {
@@ -13,5 +14,4 @@ export default function KakaoMapScript(data) {
 
     GetCurrentLocation(map);
     loadMultiMarker(map, data);
-
 }
