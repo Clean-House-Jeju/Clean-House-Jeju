@@ -1,17 +1,19 @@
 import React, {useState} from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import LocationCardsList from "./LocationCardsList";
 import KakaoMapScript from "../Map/KakaoMapScript";
+import {setKeyword} from "../../Modules/keyword";
 
 export default function SideBar({open, onClick}) {
 
     const {data} = useSelector(state => state.getDatas.datas);
-    const [keyword, setKeyword] = useState('');
+    const {text} = useSelector(state => state.keyword);
+    const dispatch = useDispatch();
 
     const handleKeyword = (text) => {
-        setKeyword(text);
+        dispatch(setKeyword(text));
     }
 
     return (
@@ -31,7 +33,7 @@ export default function SideBar({open, onClick}) {
                     <div className='divider'/>
 
                     <LocationCardsList
-                        data={data.filter(d => d.location.toLowerCase().includes(keyword))}
+                        data={data.filter(d => d.location.toLowerCase().includes(text))}
                     />
 
                 </div>
