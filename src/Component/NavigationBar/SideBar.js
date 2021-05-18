@@ -1,18 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
 import {useDispatch, useSelector} from "react-redux";
 import LocationCardsList from "./LocationCardsList";
-import KakaoMapScript from "../Map/KakaoMapScript";
 import {setKeyword} from "../../Modules/keyword";
 
-export default function SideBar({open, onClick}) {
+const SideBar = React.memo(({open, onClick}) => {
 
     const {data} = useSelector(state => state.getDatas.datas);
     const {text} = useSelector(state => state.keyword);
     const dispatch = useDispatch();
 
     const handleKeyword = (text) => {
+
         dispatch(setKeyword(text));
     }
 
@@ -40,4 +40,6 @@ export default function SideBar({open, onClick}) {
             </div>
         </div>
     )
-}
+})
+
+export default SideBar;

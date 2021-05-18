@@ -3,7 +3,7 @@ import './NavBar.css';
 import * as FaIcons from 'react-icons/fa';
 import SideBar from "./SideBar";
 
-export default function NavBar() {
+const NavBar = React.memo(() => {
     const [open, setOpen] = useState(false);
     const onClick = () => setOpen(!open);
 
@@ -17,4 +17,6 @@ export default function NavBar() {
             <SideBar open={open} onClick={onClick}/>
         </div>
     );
-}
+})
+
+export default NavBar

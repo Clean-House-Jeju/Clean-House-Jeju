@@ -2,7 +2,7 @@ import React from 'react';
 import './LocationCardsList.css';
 import LocationCard from "./LocationCard";
 
-export default function LocationCardList({data}) {
+const LocationCardList = React.memo(({data}) => {
 
     return (
         <div className='card-list'>
@@ -11,4 +11,6 @@ export default function LocationCardList({data}) {
             }
         </div>
     );
-}
+})
+
+export default LocationCardList

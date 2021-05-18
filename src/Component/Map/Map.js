@@ -5,7 +5,7 @@ import NavBar from "../NavigationBar/NavBar";
 import KakaoMapScript from "./KakaoMapScript";
 
 
-export default function Map() {
+const Map = React.memo(() => {
     const {data} = useSelector(state => state.getDatas.datas);
     const {text} = useSelector(state => state.keyword);
 
@@ -19,5 +19,6 @@ export default function Map() {
             <div id='myMap'/>
         </div>
     );
-}
+})
 
+export default Map;
