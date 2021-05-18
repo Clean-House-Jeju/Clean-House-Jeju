@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
 import {useDispatch, useSelector} from "react-redux";
@@ -6,14 +6,19 @@ import LocationCardsList from "./LocationCardsList";
 import {setKeyword} from "../../Modules/keyword";
 
 const SideBar = React.memo(({open, onClick}) => {
-
+    const [input, setInput] = useState('');
     const {data} = useSelector(state => state.getDatas.datas);
     const {text} = useSelector(state => state.keyword);
     const dispatch = useDispatch();
 
-    const handleKeyword = (text) => {
+    const handleKeyword = (e) => {
+        e.preventDefault();
+        dispatch(setKeyword(input));
+    }
 
-        dispatch(setKeyword(text));
+    const onChange = (e) => {
+       setInput(e.target.value);
+       console.log(input);
     }
 
     return (
@@ -23,12 +28,14 @@ const SideBar = React.memo(({open, onClick}) => {
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
                 </div>
                 <div className='content-box'>
-                    <input
-                        className='input-text'
-                        placeholder='키워드를 입력 해주세요'
-                        type="text"
-                        onChange={e => handleKeyword(e.target.value)}
-                    />
+                    <form onSubmit={e => handleKeyword(e)}>
+                        <input
+                            className='input-text'
+                            placeholder='키워드를 입력 해주세요'
+                            type="text"
+                            onChange={e => onChange(e)}
+                        />
+                    </form>
 
                     <div className='divider'/>
 
