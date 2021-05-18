@@ -5,19 +5,20 @@ import {getInfo} from "../../Modules/getDatas";
 import NavBar from "../NavigationBar/NavBar";
 import KakaoMapScript from "./KakaoMapScript";
 
+
 export default function Map() {
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getInfo());
+    useEffect(async () => {
+        await dispatch(getInfo());
+        KakaoMapScript(data);
     }, [dispatch]);
 
     if (loading) return <div>로딩중..</div>
     if (error) return <div>에러발생</div>
     if (!data) return <div>데이터가 없어요</div>;
 
-    KakaoMapScript(data);
     return (
         <div>
             <NavBar/>

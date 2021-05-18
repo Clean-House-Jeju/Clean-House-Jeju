@@ -18,6 +18,8 @@ export const getInfo = () => async dispatch => {
             type: GET_DATAS_SUCCESS,
             payload: response.data
         })
+        console.log('데이터를 가져왔습니다~');
+        // KakaoMapScript(response.data);
     } catch (e) {
         // 실패했을 떄
         dispatch({

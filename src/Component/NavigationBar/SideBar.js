@@ -12,7 +12,6 @@ export default function SideBar({open, onClick}) {
 
     const handleKeyword = (text) => {
         setKeyword(text);
-        KakaoMapScript(data.filter(d => d.location.toLowerCase().includes(text)))
     }
 
     return (
@@ -26,7 +25,7 @@ export default function SideBar({open, onClick}) {
                         className='input-text'
                         placeholder='키워드를 입력 해주세요'
                         type="text"
-                        on={e => handleKeyword(e.target.value)}
+                        onChange={e => handleKeyword(e.target.value)}
                     />
 
                     <div className='divider'/>
