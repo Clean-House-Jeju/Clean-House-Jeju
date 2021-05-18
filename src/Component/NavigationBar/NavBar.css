@@ -1,0 +1,16 @@
+.NavBar {
+    position: absolute;
+    z-index: 999;
+    width: 100vw;
+    height: 3.125rem;
+    background: #eee;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+}

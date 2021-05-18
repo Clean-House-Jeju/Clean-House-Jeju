@@ -1,4 +1,10 @@
 #myMap {
+    position: relative;
     width: 100vw;
     height: 100vh;
+}
+
+.Hamburger-Container {
+    position: absolute;
+    z-index: 9999;
 }
