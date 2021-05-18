@@ -7,6 +7,7 @@ import {getInfo} from "./Modules/getDatas";
 
 export default function App() {
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
+
     const dispatch = useDispatch();
     useEffect(() => {
         const fn = async () => {
