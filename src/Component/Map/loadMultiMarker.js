@@ -5,7 +5,6 @@ export default function LoadMultiMarker(map, data) {
     console.log(data);
 
     const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-    // const { data } = useSelector(state => state.getDatas.datas);
 
     for (let i = 0; i < data.length; i++) {
 

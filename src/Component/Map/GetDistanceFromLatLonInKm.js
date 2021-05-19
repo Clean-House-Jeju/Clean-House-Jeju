@@ -1,5 +1,6 @@
 
 export default function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) {
+    // console.log(`${lat1} ${lng1} ${lat2} ${lng2} `);
     function deg2rad(deg) {
         return deg * (Math.PI/180)
     }

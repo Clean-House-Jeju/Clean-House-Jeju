@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import NavBar from "../NavigationBar/NavBar";
 import KakaoMapScript from "./KakaoMapScript";
 import filterKeyword from "./filterKeyword";
+import currentLatLon from "./currentLatLon";
 
 
 const Map = React.memo(() => {
@@ -11,6 +12,7 @@ const Map = React.memo(() => {
     const {text} = useSelector(state => state.keyword);
 
     useEffect(() => {
+        
         KakaoMapScript(filterKeyword(data, text));
     }, [text])
 
