@@ -1,5 +1,6 @@
 import GetCurrentLocation from "./GetCurrentLocation";
 import loadMultiMarker from "./loadMultiMarker";
+import React from 'react';
 const { kakao } = window;
 
 export default function KakaoMapScript(data) {
@@ -12,6 +13,8 @@ export default function KakaoMapScript(data) {
     const map = new kakao.maps.Map(container, options);
 
     GetCurrentLocation(map);
-    loadMultiMarker(map, data);
+    if (data !== null && data.length > 0){
+        loadMultiMarker(map, data);
+    }
 
 }

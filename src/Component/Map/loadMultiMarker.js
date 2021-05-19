@@ -1,8 +1,9 @@
 
-import { useSelector } from "react-redux";
 const { kakao } = window;
 
 export default function LoadMultiMarker(map, data) {
+    console.log(data);
+
     const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
     // const { data } = useSelector(state => state.getDatas.datas);
 
@@ -23,4 +24,5 @@ export default function LoadMultiMarker(map, data) {
             image: markerImage // 마커 이미지
         });
     }
+
 }

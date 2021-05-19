@@ -1,20 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './Map.css';
-import {useDispatch, useSelector} from "react-redux";
-import {getInfo} from "../../Modules/getDatas";
+import {useSelector} from "react-redux";
 import NavBar from "../NavigationBar/NavBar";
+import KakaoMapScript from "./KakaoMapScript";
 
-export default function Map() {
-    const {data, loading, error} = useSelector(state => state.getDatas.datas);
-    const dispatch = useDispatch();
+
+const Map = React.memo(() => {
+    const {data} = useSelector(state => state.getDatas.datas);
+    const {text} = useSelector(state => state.keyword);
 
     useEffect(() => {
-        dispatch(getInfo());
-    }, [dispatch]);
-
-    if (loading) return <div>로딩중..</div>
-    if (error) return <div>에러발생</div>
-    if (!data) return <div>데이터가 없어요</div>;
+        KakaoMapScript(data.filter(d => d.location.toLowerCase().includes(text)));
+    }, [text])
 
     return (
         <div>
@@ -22,5 +19,6 @@ export default function Map() {
             <div id='myMap'/>
         </div>
     );
-}
+})
 
+export default Map;

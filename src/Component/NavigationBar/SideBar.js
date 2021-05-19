@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
-import LocationCard from "./LocationCardsList";
-import { useSelector } from "react-redux";
-import LocationCardsList from "./LocationCardsList";
-import filterKeyword from "../Map/filterKeyword";
 
-export default function SideBar({ open, onClick }) {
-    const { data } = useSelector(state => state.getDatas.datas);
-    const [keyword, setKeyword] = useState('');
+import {useDispatch, useSelector} from "react-redux";
+import LocationCardsList from "./LocationCardsList";
+import {setKeyword} from "../../Modules/keyword";
+
+const SideBar = React.memo(({open, onClick}) => {
+    const [input, setInput] = useState('');
+    const {data} = useSelector(state => state.getDatas.datas);
+    const {text} = useSelector(state => state.keyword);
+    const dispatch = useDispatch();
+
+    const handleKeyword = (e) => {
+        e.preventDefault();
+        dispatch(setKeyword(input));
+    }
+
+    const onChange = (e) => {
+       setInput(e.target.value);
+       console.log(input);
+    }
 
     return (
         <div className={open ? 'nav-menu active' : 'nav-menu'}>
@@ -17,21 +29,25 @@ export default function SideBar({ open, onClick }) {
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
                 </div>
                 <div className='content-box'>
-                    <input
-                        className='input-text'
-                        placeholder='키워드를 입력 해주세요'
-                        type="text"
-                        onChange={e => setKeyword(e.target.value)}
-                    />
+                    <form onSubmit={e => handleKeyword(e)}>
+                        <input
+                            className='input-text'
+                            placeholder='키워드를 입력 해주세요'
+                            type="text"
+                            onChange={e => onChange(e)}
+                        />
+                    </form>
 
                     <div className='divider' />
 
                     <LocationCardsList
-                        data={filterKeyword(data, keyword)}
+                        data={data.filter(d => d.location.toLowerCase().includes(text))}
                     />
 
                 </div>
             </div>
         </div>
     )
-}
+})
+
+export default SideBar;
