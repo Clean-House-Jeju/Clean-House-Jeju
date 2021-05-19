@@ -24,7 +24,7 @@ export default function LoadMultiMarker(map, data) {
             image: markerImage // 마커 이미지
         });
 
-        //console.log(marker.title);
+
         var clean = '<div class="wrap">' +
             '    <div class="info">' +
             '        <div class="title">' +
