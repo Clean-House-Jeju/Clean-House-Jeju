@@ -5,6 +5,7 @@ import './SideBar.css';
 import {useDispatch, useSelector} from "react-redux";
 import LocationCardsList from "./LocationCardsList";
 import {setKeyword} from "../../Modules/keyword";
+import filterKeyword from "../Map/filterKeyword";
 
 const SideBar = React.memo(({open, onClick}) => {
     const [input, setInput] = useState('');
@@ -41,7 +42,7 @@ const SideBar = React.memo(({open, onClick}) => {
                     <div className='divider' />
 
                     <LocationCardsList
-                        data={data.filter(d => d.location.toLowerCase().includes(text))}
+                        data={filterKeyword(data, text)}
                     />
 
                 </div>

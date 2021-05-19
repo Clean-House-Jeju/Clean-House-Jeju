@@ -6,6 +6,9 @@ const { kakao } = window;
 export default function KakaoMapScript(data) {
 
     const container = document.getElementById('myMap');
+    while(container.hasChildNodes()) {
+        container.removeChild(container.firstChild);
+    }
     const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         level: 3

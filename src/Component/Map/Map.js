@@ -3,6 +3,7 @@ import './Map.css';
 import {useSelector} from "react-redux";
 import NavBar from "../NavigationBar/NavBar";
 import KakaoMapScript from "./KakaoMapScript";
+import filterKeyword from "./filterKeyword";
 
 
 const Map = React.memo(() => {
@@ -10,7 +11,7 @@ const Map = React.memo(() => {
     const {text} = useSelector(state => state.keyword);
 
     useEffect(() => {
-        KakaoMapScript(data.filter(d => d.location.toLowerCase().includes(text)));
+        KakaoMapScript(filterKeyword(data, text));
     }, [text])
 
     return (
