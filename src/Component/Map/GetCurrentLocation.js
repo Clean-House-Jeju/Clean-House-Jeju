@@ -8,12 +8,13 @@ export default function GetCurrentLocation(map) {
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
         navigator.geolocation.getCurrentPosition(function(position) {
 
-            var lat = position.coords.latitude, // 위도
-                lon = position.coords.longitude; // 경도
+            let lat = position.coords.latitude; // 위도
+            let lon = position.coords.longitude; // 경도
 
             var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
                 message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
 
+            console.log(lat, lon);
             // 마커와 인포윈도우를 표시합니다
             displayMarker(locPosition, message);
 
