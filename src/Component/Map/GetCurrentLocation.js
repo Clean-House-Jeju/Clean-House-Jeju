@@ -6,7 +6,7 @@ export default function GetCurrentLocation(map) {
     if (navigator.geolocation) {
 
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
 
             var lat = position.coords.latitude, // 위도
                 lon = position.coords.longitude; // 경도
@@ -27,7 +27,7 @@ export default function GetCurrentLocation(map) {
         displayMarker(locPosition, message);
     }
 
-// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+    // 지도에 마커와 인포윈도우를 표시하는 함수입니다
     function displayMarker(locPosition, message) {
 
         // 마커를 생성합니다
@@ -41,8 +41,8 @@ export default function GetCurrentLocation(map) {
 
         // 인포윈도우를 생성합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content : iwContent,
-            removable : iwRemoveable
+            content: iwContent,
+            removable: iwRemoveable
         });
 
         // 인포윈도우를 마커위에 표시합니다
