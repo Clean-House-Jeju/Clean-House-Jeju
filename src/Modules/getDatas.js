@@ -62,7 +62,7 @@ export default function getDatas(state = initialState, action) {
                             location.latitude,
                             location.longitude,
                             data.latitude,
-                            data.longtitude
+                            data.longitude
                         ).toFixed(2)
                     })),
                     error: null
