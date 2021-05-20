@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Clean Jeju
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](https://img.shields.io/github/issues/Clean-House-Jeju/Clean-House-Jeju) ![](https://img.shields.io/github/forks/Clean-House-Jeju/Clean-House-Jeju) ![](https://img.shields.io/github/stars/Clean-House-Jeju/Clean-House-Jeju)  ![](https://img.shields.io/github/license/Clean-House-Jeju/Clean-House-Jeju) <br/>
 
-## Available Scripts
+카카오 맵 API를 사용해, 제주지역 클린하우스 및 재활용 도움센터 위치 및 정보 알림 웹페이지입니다. 
+ <br/>
+ <br/>
 
-In the project directory, you can run:
+ ### 📥 Download
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. yarn <br/>
+   
+        yarn install 
+        yarn start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ 2. npm
 
-### `yarn test`
+        npm install
+        npm run start
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ ### 🔍 Features
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. "재활용품 요일별 배출제"관련 정보 최신화 공지 <br/>
+2. 클린 하우스와 재활용 센터 위치 시각화 <br/>
+3. 클린 하우스 요일 배출 항목 알림<br/>
+4. 현재 위치와 클린 하우스 길찾기 서비스<br/>
+5. 클린 하우스와 재활용 센터 운영 시간 안내<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 📚 Environment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
+✔ **Front-End**
+1. React.js <br/>
+2. Redux.js <br/>
+<br/>
 
-### `yarn eject`
+✔ **Infra**
+1. AWS <br/>
+2. Mongo DB <br/>
+<br/>
+### 👨‍👨‍👦 Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. 양지웅 ( PM )
+    + Github : https://github.com/Woongstar
+    + Email : qualtypo@gmail.com
+<br/>
+2. 양상우 ( Front-End )
+    + Github : https://github.com/IGhost-P
+    + Email : dndb3599@gmail.com
+<br/>
+3. 염상권 ( Front-End )
+    + Github : https://github.com/Yummy-sk
+    + Email : kunshup2000@gmail.com
