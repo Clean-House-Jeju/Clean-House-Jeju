@@ -1,4 +1,5 @@
 import './CustomOverlay.css'
+import GetToday from './GetToday';
 
 const { kakao } = window;
 
@@ -31,12 +32,13 @@ export default function LoadMultiMarker(map, data) {
             `클린하우스` +
             '        </div>' +
             '        <div class="body">' +
-            `${data[i].location}` +
             '            <div class="desc">' +
-            '                <div class="ellipsis">' +
-            `${data[i].address}` + '</div>' +
-            '                <div class="jibun ellipsis">' +
+            '<div class="location">' + `위치 : ${data[i].location}` + '</div>' +
+            '<div class="adress">' + `주소 : ${data[i].address}` + '</div>' +
+            '<div class="recycle">' + `${GetToday()}` + '<div class="jibun ellipsis">' +
+
             '            </div>' +
+            '          </div>' +
             '        </div>' +
             '    </div>' +
             '</div>';
@@ -47,10 +49,10 @@ export default function LoadMultiMarker(map, data) {
             `재활용 도움 센터` +
             '        </div>' +
             '        <div class="body">' +
-            `${data[i].location}` +
+            `위치 : ${data[i].location}` +
             '            <div class="desc">' +
             '                <div class="ellipsis">' +
-            `${data[i].address}` + '</div>' +
+            `장소 : ${data[i].address}` + '</div>' +
             '                <div class="jibun ellipsis">' +
             '            </div>' +
             '        </div>' +
