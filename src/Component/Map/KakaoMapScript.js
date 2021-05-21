@@ -6,7 +6,9 @@ const { kakao } = window;
 export default function KakaoMapScript(data) {
 
     const container = document.getElementById('myMap');
-    while(container.hasChildNodes()) {
+
+    while (container.hasChildNodes()) {
+
         container.removeChild(container.firstChild);
     }
     const options = {
@@ -15,8 +17,9 @@ export default function KakaoMapScript(data) {
     };
     const map = new kakao.maps.Map(container, options);
 
+    // customoverlay(map, data);
     GetCurrentLocation(map);
-    if (data !== null && data.length > 0){
+    if (data !== null && data.length > 0) {
         loadMultiMarker(map, data);
     }
 
