@@ -58,12 +58,12 @@ export default function getDatas(state = initialState, action) {
                     loading: false,
                     data: action.payload.map(data => ({
                         ...data,
-                        distance: GetDistanceFromLatLonInKm(
+                        distance: parseFloat(GetDistanceFromLatLonInKm(
                             location.latitude,
                             location.longitude,
                             data.latitude,
                             data.longitude
-                        ).toFixed(2)
+                        ).toFixed(2))
                     })),
                     error: null
                 }

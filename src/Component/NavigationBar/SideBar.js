@@ -20,7 +20,6 @@ const SideBar = React.memo(({open, onClick}) => {
 
     const onChange = (e) => {
        setInput(e.target.value);
-       console.log(input);
     }
 
     return (
