@@ -1,5 +1,5 @@
-import './CustomOverlay.css'
-import GetToday from './GetToday';
+import CleanOverlay from '../InformationCard/CleanOverlay';
+import RecycleOverlay from '../InformationCard/RecycleOverlay';
 
 const { kakao } = window;
 
@@ -28,62 +28,32 @@ export default function LoadMultiMarker(map, data) {
         });
 
 
-        var clean = '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' +
-            `클린하우스` +
-            '        </div>' +
-            '        <div class="body">' +
-            '            <div class="desc">' +
-            '<div class="location">' + `위치 : ${data[i].location}` + '</div>' +
-            '<div class="adress">' + `주소 : ${data[i].address}` + '</div>' +
-            '<div class="recycle">' + `${GetToday()}` + '<div class="jibun ellipsis">' +
-
-            '            </div>' +
-            '          </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>';
-
-        var recycle = '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' +
-            `재활용 도움 센터` +
-            '        </div>' +
-            '        <div class="body">' +
-            `위치 : ${data[i].location}` +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">' +
-            `장소 : ${data[i].address}` + '</div>' +
-            '                <div class="jibun ellipsis">' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>';
+        var clean = CleanOverlay(data, i);
+        var recycle = RecycleOverlay(data, i);
 
 
 
         if (data[i].type == 'clean') {
             var infowindow = new kakao.maps.InfoWindow({
-                //content: data[i].location, // 인포윈도우에 표시할 내용
                 content: clean
             });
         }
         else if (data[i].type == 'recycle') {
             var infowindow = new kakao.maps.InfoWindow({
-                //content: data[i].location, // 인포윈도우에 표시할 내용
                 content: recycle
             });
         }
         kakao.maps.event.addListener(
             marker,
             "mouseover",
+            //"click",
             makeOverListener(map, marker, infowindow)
 
         );
         kakao.maps.event.addListener(
             marker,
             "mouseout",
+            //"click",
             makeOutListener(infowindow)
 
         );
