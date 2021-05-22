@@ -24,58 +24,41 @@ export default function LoadMultiMarker(map, data) {
             map: map, // 마커를 표시할 지도
             position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
             title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image: markerImage // 마커 이미지
+            image: markerImage,// 마커 이미지
+            clickable: true
         });
 
 
         var clean = CleanOverlay(data, i);
         var recycle = RecycleOverlay(data, i);
-
+        var iwRemoveable = true;
 
 
         if (data[i].type == 'clean') {
             var infowindow = new kakao.maps.InfoWindow({
-                content: clean
+                content: clean,
+                removable: iwRemoveable
             });
         }
         else if (data[i].type == 'recycle') {
             var infowindow = new kakao.maps.InfoWindow({
-                content: recycle
+                content: recycle,
+                removable: iwRemoveable
             });
         }
         kakao.maps.event.addListener(
             marker,
-            "mouseover",
-            //"click",
-            makeOverListener(map, marker, infowindow)
-
-        );
-        kakao.maps.event.addListener(
-            marker,
-            "mouseout",
-            //"click",
-            makeOutListener(infowindow)
-
+            "click",
+            MarkerClick(map, marker, infowindow)
         );
     };
 
     // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-    function makeOverListener(map, marker, infowindow) {
+    function MarkerClick(map, marker, infowindow) {
         return function () {
             infowindow.open(map, marker);
-
         };
     }
-
-    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-    function makeOutListener(infowindow) {
-        return function () {
-            infowindow.close();
-
-        };
-    }
-
-
 }
 
 
