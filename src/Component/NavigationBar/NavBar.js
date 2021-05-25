@@ -12,20 +12,25 @@ const NavBar = React.memo(() => {
     const [open, setOpen] = useState(false);
     const onClick = () => setOpen(!open);
     return (
-        <div className='menu-container'>
-            <div className='search-box'>
-                <FaIcons.FaBars onClick={onClick}/>
-                <form>
+        <div className='wrapper'>
+            <div className='menu-container'>
+                <FaIcons.FaBars  onClick={onClick}/>
+                <div className='div-line'></div>
+                <form className='search-form'>
                     <input
                         type="text"
-                        className='input-texts'
+                        className='keyword-input'
+                        placeholder='키워드를 입력해주세요'
                     />
                 </form>
+
+                <SideBar open={open} onClick={onClick}/>
             </div>
-            <div className='content-box'>
-                <LocationCardList data={filterKeyword(data, text)}/>
+
+            <div className='content-wrapper'>
+
+
             </div>
-            <SideBar open={open} onClick={onClick}/>
         </div>
     );
 })
