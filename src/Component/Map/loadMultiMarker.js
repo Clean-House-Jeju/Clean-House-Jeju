@@ -8,17 +8,24 @@ const { kakao } = window;
 export default function LoadMultiMarker(map, data) {
     console.log(data);
 
-    const imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+
+
 
     for (let i = 0; i < data.length; i++) {
 
-
+        if (data[i].type == 'clean') {
+            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
+        }
+        else if (data[i].type == 'recycle') {
+            var imageSrc = 'https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png'
+        }
         // 마커 이미지의 이미지 크기 입니다
         let imageSize = new kakao.maps.Size(24, 35);
 
         // 마커 이미지를 생성합니다
         let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
         // 마커를 생성합니다
         var marker = new kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
