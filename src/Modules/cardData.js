@@ -54,15 +54,15 @@ export default function cardData(state = initialState, action) {
         case GET_END_CARD_DATA:
             return {
                 ...state,
-                index: action.data.length - 1,
-                cardData: state.cardData.concat(action.data.slice(state.index, action.data.length)),
+                index: action.payload.length - 1,
+                cardData: state.cardData.concat(action.payload.slice(state.index, action.payload.length)),
                 have: false
             }
         case GET_CARD_DATA:
             return {
                 ...state,
                 index: state.index + NUM_GET_DATA,
-                cardData: state.cardData.concat(action.data.slice(state.index, state.index + NUM_GET_DATA)),
+                cardData: state.cardData.concat(action.payload.slice(state.index, state.index + NUM_GET_DATA)),
                 have: true
             }
         default:

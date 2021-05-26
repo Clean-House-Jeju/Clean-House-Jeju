@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import './ContentContainer.css'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import filterKeyword from "../Map/filterKeyword";
+import {getCardData} from "../../Modules/cardData";
 
 export const ContentContainer = React.memo(() => {
     const {data} = useSelector(state => state.getDatas.datas);
     const {text} = useSelector(state => state.keyword);
+    const {index, cardData, have} = useSelector(state => state.cardData);
+    const dispatch = useDispatch();
 
-    const d = filterKeyword(data, text);
-
-    const [have, setHave] = useState(true);
-    const [temp, setTemp] = useState([]);
-    const [index, setIndex] = useState(0);
 
     const style = {
         height: 100,
@@ -21,44 +19,33 @@ export const ContentContainer = React.memo(() => {
         padding: 8
     };
 
-    useEffect(() => {
-        setTemp([]);
-        setIndex(0);
-        dataLogic(5)
-        console.log(index);
-    }, []);
-
-    const dataLogic = (num) => {
-        if (d.length > num && d.length > 5) {
-            setTemp(temp.concat(d.slice(index, index + 5)));
-            setIndex(index + 5);
-        } else if (d.length <= index) {
-            setTemp(temp.concat(d.slice(index, d.length)));
-            setIndex(d.length - 1);
-        } else if (d.length === null || d.length === 0) {
-            setHave(false);
+    const handleCardData = () => {
+        try {
+            setTimeout(async () =>{
+                await dispatch(getCardData(filterKeyword(data, text), index));
+            }, 2000)
         }
-    }
+        catch (e) {
+            console.log(e);
+        }
+    };
 
-    const handleData = (index) => {
-        setTimeout(() => {
-            dataLogic(index);
-        }, 2000);
-        console.log(index);
-    }
+    useEffect(() => {
+        handleCardData();
+    }, [data, text]);
 
     return (
         <div >
             <InfiniteScroll
                 className='content-container-wrapper'
-                dataLength={temp.length}
-                next={() => handleData(index)}
+                dataLength={cardData.length}
+                next={handleCardData}
                 hasMore={have}
                 loader={<h4>Loading...</h4>}
                 scrollableTarget="content-wrapper"
             >
                 {
-                    temp.map((i, index) => (
+                    cardData.map((i, index) => (
                         <div style={style} key={index}>
                             {i.location}
                         </div>

@@ -2,21 +2,21 @@ import React, {useState} from 'react';
 import './NavBar.css';
 import * as FaIcons from 'react-icons/fa';
 import SideBar from "../SideBar";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import ContentContainer from "../ContentContainer";
-import filterKeyword from "../../Map/filterKeyword";
 import {setKeyword} from "../../../Modules/keyword";
+import {initCardData} from "../../../Modules/cardData";
 
 const NavBar = React.memo(() => {
     const [input, setInput] = useState('');
-    const {data} = useSelector(state => state.getDatas.datas);
-    const {text} = useSelector(state => state.keyword);
+
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
     const handleKeyword = (e) => {
         e.preventDefault();
         dispatch(setKeyword(input));
+        dispatch(initCardData());
     }
 
     const onChange = (e) => {
@@ -46,7 +46,7 @@ const NavBar = React.memo(() => {
             </div>
 
             <div id='content-wrapper'>
-                <ContentContainer data={filterKeyword(data, text)}/>
+                <ContentContainer />
             </div>
         </div>
     );
