@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import Map from "./Component/Map/Map";
 import {Reset} from "styled-reset";
-import KakaoMapScript from "./Component/Map/KakaoMapScript";
 import {useDispatch, useSelector} from "react-redux";
 import {getInfo} from "./Modules/getDatas";
 

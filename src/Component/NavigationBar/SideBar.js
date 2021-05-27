@@ -24,10 +24,12 @@ const SideBar = React.memo(({open, onClick}) => {
 
     return (
         <div className={open ? 'nav-menu active' : 'nav-menu'}>
+
             <div className='nav-menu-items'>
                 <div className='navbar-toggle'>
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
                 </div>
+
                 <div className='content-box'>
                     <form onSubmit={e => handleKeyword(e)}>
                         <input
@@ -39,10 +41,11 @@ const SideBar = React.memo(({open, onClick}) => {
                     </form>
 
                     <div className='divider' />
-
-                    <LocationCardsList
-                        data={filterKeyword(data, text)}
-                    />
+                    <div className='ca'>
+                        <LocationCardsList
+                            data={filterKeyword(data, text)}
+                        />
+                    </div>
 
                 </div>
             </div>

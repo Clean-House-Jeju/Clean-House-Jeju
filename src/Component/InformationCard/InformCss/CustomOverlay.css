@@ -1,25 +1,25 @@
-/* .wrap 
+/* .wrap
 {   position: relative;
         left: 0;
         bottom: 0px;
         width: 288px;
         height: 132px;
         margin-left: 0px;
-        text-align: 
+        text-align:
     left;
-        overflow: 
+        overflow:
     hidden;
         font-size: 12px;
         font-family: 'Malgun Gothic',
-        dotum, '돋움', 
+        dotum, '돋움',
     sans-serif;
         line-height: 1.5;} */
-.wrap * 
+.wrap *
 {   padding: 0;
     margin: 0;
 }
-.wrap .info 
-{  
+.wrap .info
+{
     width: 286px;
     height: 140px;
     border-radius: 5px;
@@ -30,13 +30,13 @@
     font-size: 13px;
     font-family: 'Malgun Gothic', dotum, '돋움';
     line-height: normal;
-    
+
 }
-.wrap .info:nth-child(1) 
+.wrap .info:nth-child(1)
 {   border: 0;
     box-shadow: 0px 1px 2px #888;
 }
-.info .title 
+.info .title
 {   padding: 15px 0 0 0px;
     height: 30px;background: #eee;
     border-bottom: 1px solid #ddd;
@@ -44,50 +44,56 @@
     font-weight: bold;
     font-family: 'Malgun Gothic',
     dotum, '돋움';
-    text-align: center; 
+    text-align: center;
 }
 
-.info .close:hover 
+.info .close:hover
 {   cursor: pointer;
 }
-.info .body 
+.info .body
 {   position: relative;
     margin: 10px 0 0 10px;
     overflow: hidden;
     word-break: normal;
 }
-.info .desc 
-{   
+.info .desc
+{
     position: relative;
     margin: 5px 0 0 0px;
     height: 75px;
     word-break: normal;
     line-height: normal;
 }
-.desc .ellipsis 
-{   
+.desc .ellipsis
+{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
+
 }
+<<<<<<< HEAD:src/Component/InformationCard/InformCss/CustomOverlay.css
 .desc .recycle 
 {   
     font-size: 10px;
+=======
+.desc .recycle
+{
+    font-size: 36px;
+>>>>>>> feature/navBarUpdate:src/Component/Map/CustomOverlay.css
 
     height: 75px;
     line-height: normal;
-    text-align: center; 
-    
+    text-align: center;
+
 }
-.desc .jibun 
+.desc .jibun
 {   font-size: 11px;
     color: #888;
     margin-top: -2px;
 }
 /* .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;} */
-.info:after 
-{   
+.info:after
+{
     /* content: '';
     position: absolute;
     margin-left: -12px;
