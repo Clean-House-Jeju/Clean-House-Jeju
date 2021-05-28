@@ -61,7 +61,7 @@ export default function LoadMultiMarker(map, data) {
     };
 
 
-    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+
     function MarkerClick(map, marker, infowindow) {
 
         var Ma = marker.getPosition().Ma;
@@ -71,7 +71,6 @@ export default function LoadMultiMarker(map, data) {
         return function () {
             infowindow.open(map, marker);
             map.setCenter(MarkerlocPosition);
-            console.log(marker.getPosition());
         };
     }
 }
