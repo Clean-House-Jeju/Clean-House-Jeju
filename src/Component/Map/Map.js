@@ -13,7 +13,7 @@ const Map = React.memo(() => {
 
     useEffect(() => {
 
-        KakaoMapScript(filterKeyword(data, text));
+        KakaoMapScript(filterKeyword(data, text), text);
     }, [text])
 
     return (

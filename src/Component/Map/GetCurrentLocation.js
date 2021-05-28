@@ -1,7 +1,7 @@
 import React from 'react';
 const { kakao } = window;
 
-export default function GetCurrentLocation(map) {
+export default function GetCurrentLocation(map, text) {
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
     if (navigator.geolocation) {
 
@@ -50,10 +50,14 @@ export default function GetCurrentLocation(map) {
 
         });
 
-        // 인포윈도우를 마커위에 표시합니다
-        infowindow.open(map, marker);
+        if (text == "") {
+            // 인포윈도우를 마커위에 표시합니다
+            infowindow.open(map, marker);
 
-        // 지도 중심좌표를 접속위치로 변경합니다
-        map.setCenter(locPosition);
+            // 지도 중심좌표를 접속위치로 변경합니다
+            map.setCenter(locPosition);
+        }
+        console.log(text);
+        console.log(marker.getPosition())
     }
 }
