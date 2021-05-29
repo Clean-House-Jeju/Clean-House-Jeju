@@ -71,15 +71,10 @@
     white-space: nowrap;
 
 }
-<<<<<<< HEAD:src/Component/InformationCard/InformCss/CustomOverlay.css
-.desc .recycle 
-{   
-    font-size: 10px;
-=======
+
 .desc .recycle
 {
-    font-size: 36px;
->>>>>>> feature/navBarUpdate:src/Component/Map/CustomOverlay.css
+    font-size: 10px;
 
     height: 75px;
     line-height: normal;
