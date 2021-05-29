@@ -2,25 +2,9 @@ import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
 
-import {useDispatch, useSelector} from "react-redux";
-import LocationCardsList from "./LocationCardsList";
-import {setKeyword} from "../../Modules/keyword";
-import filterKeyword from "../Map/filterKeyword";
 
 const SideBar = React.memo(({open, onClick}) => {
-    const [input, setInput] = useState('');
-    const {data} = useSelector(state => state.getDatas.datas);
-    const {text} = useSelector(state => state.keyword);
-    const dispatch = useDispatch();
 
-    const handleKeyword = (e) => {
-        e.preventDefault();
-        dispatch(setKeyword(input));
-    }
-
-    const onChange = (e) => {
-       setInput(e.target.value);
-    }
 
     return (
         <div className={open ? 'nav-menu active' : 'nav-menu'}>
@@ -30,24 +14,7 @@ const SideBar = React.memo(({open, onClick}) => {
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
                 </div>
 
-                <div className='content-box'>
-                    <form onSubmit={e => handleKeyword(e)}>
-                        <input
-                            className='input-text'
-                            placeholder='키워드를 입력 해주세요'
-                            type="text"
-                            onChange={e => onChange(e)}
-                        />
-                    </form>
 
-                    <div className='divider' />
-                    <div className='ca'>
-                        <LocationCardsList
-                            data={filterKeyword(data, text)}
-                        />
-                    </div>
-
-                </div>
             </div>
         </div>
     )
