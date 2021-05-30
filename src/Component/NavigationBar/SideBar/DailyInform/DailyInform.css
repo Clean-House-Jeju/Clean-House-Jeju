@@ -21,6 +21,7 @@
     box-shadow: 0 10px 16px rgba(0, 0, 0, 0.09);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
 }
 
 .daily-inform-container .daily-inform-body {
@@ -29,21 +30,25 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 10px 15px;
+    padding: 5px 0;
 }
 
 .daily-inform-container .daily-inform-body > img {
     width: 60px;
     height: 60px;
     margin-left: 10px;
+    margin-right: 30px;
 }
 
 .daily-inform-container .daily-inform-body .daily-inform-div-line {
     height: 50px;
     border-left: 1px solid #d3d3d3;
-    margin: 0 30px;
 }
 
 .daily-inform-container .daily-inform-body .daily-inform-list {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }

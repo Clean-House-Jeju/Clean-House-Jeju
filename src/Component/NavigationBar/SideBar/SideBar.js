@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
-import DailyInfom from "./DailyInfom";
+import DailyInfom from "./DailyInform/DailyInfom";
+import WeeklyInfom from "./WeeklyInform/WeeklyInfom";
 
 const SideBar = React.memo(({open, onClick}) => {
 
@@ -14,7 +15,7 @@ const SideBar = React.memo(({open, onClick}) => {
                     <AiIcons.AiOutlineClose className='close-btn' onClick={onClick} />
                 </div>
                 <DailyInfom/>
-
+                <WeeklyInfom/>
 
             </div>
         </div>
