@@ -12,7 +12,7 @@ export default function Loading() {
             <img className='logo' src={Logo} alt=""/>
             <div className='card'>
                 <div className='header'>
-                    {dayName} 배출 항목은 ❓
+                    클린 하우스 {dayName} 배출 항목은 ❓
                 </div>
                 <div className='icon-area'>
                     <img src={Logo} alt=""/>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Map.css';
 import { useSelector } from "react-redux";
-import NavBar from "../NavigationBar/NavBar/NavBar";
+import NavBar from "../NavigationBar/NavBar";
 import KakaoMapScript from "./KakaoMapScript";
 import filterKeyword from "./filterKeyword";
 import currentLatLon from "./currentLatLon";

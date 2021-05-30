@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import './NavBar.css';
 import * as FaIcons from 'react-icons/fa';
-import SideBar from "../SideBar";
+import SideBar from './SideBar/SideBar';
 import {useDispatch} from "react-redux";
-import ContentContainer from "../ContentContainer";
-import {setKeyword} from "../../../Modules/keyword";
-import {initCardData} from "../../../Modules/cardData";
+import ContentContainer from "./ContentContainer";
+import {setKeyword} from "../../Modules/keyword";
+import {initCardData} from "../../Modules/cardData";
 
 const NavBar = React.memo(() => {
     const [input, setInput] = useState('');

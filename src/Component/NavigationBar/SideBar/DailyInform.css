@@ -1,0 +1,44 @@
+.daily-inform-container {
+
+    width: 100%;
+    border-top: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
+    margin: 10px 0;
+}
+
+.daily-inform-container .daily-inform-header {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 0;
+    width: 100%;
+    background: #5fc69a;
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.09);
+}
+
+.daily-inform-container .daily-inform-body {
+
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.daily-inform-container .daily-inform-body > img {
+    width: 60px;
+    height: 60px;
+    margin-left: 10px;
+}
+
+.daily-inform-container .daily-inform-body .daily-inform-div-line {
+    height: 50px;
+    border-left: 1px solid #d3d3d3;
+    margin: 0 30px;
+}
+
+.daily-inform-container .daily-inform-body .daily-inform-list {
+
+}
