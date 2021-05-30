@@ -3,7 +3,10 @@
     width: 100%;
     border-top: 1px solid #d3d3d3;
     border-bottom: 1px solid #d3d3d3;
+    border-radius: 10px;
     margin: 10px 0;
+
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.09);
 }
 
 .daily-inform-container .daily-inform-header {
@@ -16,6 +19,8 @@
     width: 100%;
     background: #5fc69a;
     box-shadow: 0 10px 16px rgba(0, 0, 0, 0.09);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .daily-inform-container .daily-inform-body {
