@@ -13,7 +13,7 @@ export default function KakaoMapScript(data, text) {
         container.removeChild(container.firstChild);
     }
     const options = {
-        center: new kakao.maps.LatLng(data[0].latitude, data[0].longitude),
+        center: new kakao.maps.LatLng(data[0] === undefined ? 33.450701 : data[0].latitude, data[0] === undefined ? 126.570667 : data[0].longitude),
         level: text === "" ? 3 : 7
     };
     const map = new kakao.maps.Map(container, options);

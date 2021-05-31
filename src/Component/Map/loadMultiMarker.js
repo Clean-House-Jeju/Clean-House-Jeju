@@ -1,4 +1,5 @@
 import CleanOverlay from '../InformationCard/CleanOverlay';
+import MarkerRunnig from '../InformationCard/MarkerRunnig';
 import RecycleOverlay from '../InformationCard/RecycleOverlay';
 
 const { kakao } = window;
@@ -8,18 +9,17 @@ const { kakao } = window;
 export default function LoadMultiMarker(map, data) {
     console.log(data);
 
-    //var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-
-
-
-
     for (let i = 0; i < data.length; i++) {
 
         if (data[i].type == 'clean') {
-            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
+            clean = true;
+            recycle = false
+            var imageSrc = MarkerRunnig(clean, recycle);
         }
         else if (data[i].type == 'recycle') {
-            var imageSrc = 'https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png'
+            recycle = true;
+            clean = false;
+            var imageSrc = MarkerRunnig(clean, recycle);
         }
         // 마커 이미지의 이미지 크기 입니다
         let imageSize = new kakao.maps.Size(24, 35);
