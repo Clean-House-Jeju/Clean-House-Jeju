@@ -10,8 +10,8 @@ function CleanOverlay(data, i) {
         '        </div>' +
         '        <div class="body">' +
         '            <div class="desc">' +
-        '<div class="location">' + `위치 : ${data[i].location}` + '</div>' +
-        '<div class="adress">' + `주소 : ${data[i].address}` + '</div>' +
+        '<div class="location-M">' + '위치 : ' + '</div>' +
+        '<div class="location">' + `${data[i].location}` + '</div>' +
         '<div class="recycle">' + `${GetToday()}` + '<div class="jibun ellipsis">' +
 
         '            </div>' +

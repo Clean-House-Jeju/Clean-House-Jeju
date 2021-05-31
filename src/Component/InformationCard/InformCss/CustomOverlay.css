@@ -22,14 +22,11 @@
 {
     width: 286px;
     height: 140px;
-    border-radius: 5px;
     border-bottom: 2px solid #ccc;
     border-right: 1px solid #ccc;
-    /* overflow: hidden; */
     background: #fff;
-    font-size: 13px;
-    font-family: 'Malgun Gothic', dotum, '돋움';
-    line-height: normal;
+
+    /* line-height: normal; */
 
 }
 .wrap .info:nth-child(1)
@@ -38,10 +35,11 @@
 }
 .info .title
 {   padding: 15px 0 0 0px;
-    height: 30px;background: #eee;
-    border-bottom: 1px solid #ddd;
-    font-size: 18px;
+    height: 30px;background: #20c997;
+    border-bottom: 1px solid #20c997;
+    font-size: 19px;
     font-weight: bold;
+    color: white;
     font-family: 'Malgun Gothic',
     dotum, '돋움';
     text-align: center;
@@ -64,12 +62,25 @@
     word-break: normal;
     line-height: normal;
 }
-.desc .ellipsis
+.desc .location-M
+{
+    white-space: nowrap;
+    font-weight: bold;   
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+    font-family: 'Malgun Gothic', dotum, '돋움';
+    display: inline;
+
+}
+.desc .location
 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
+    font-size: 13px;
+    color: rgb(68, 68, 68);
+    font-family: 'Malgun Gothic', dotum, '돋움';
+    display: inline;
 }
 
 
