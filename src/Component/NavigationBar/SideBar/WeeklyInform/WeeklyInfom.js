@@ -3,6 +3,7 @@ import styled from "styled-components";
 import './WeeklyInform.css';
 import DayInfoContainer from "./DayInfoContainer";
 import TypeInfoContainer from "./TypeInfoContainer";
+import MoreInfoContents from "./MoreInfoContents";
 
 const Container = styled.div`
     margin-top: 30px;
@@ -36,16 +37,24 @@ const Glider = styled.span`
 
 const Content = styled.div`
     width: 100%;
-    height: 350px;
+  
     display: flex;
     justify-content: start;
     align-items: center;
     border-bottom: 1px solid #d3d3d3;
 `
 
-const TextInfo = styled.ul`
+const MoreInfo = styled.div`
+    width: 100%;
+    background: #eee;
+    border-bottom: 1px solid #d3d3d3;
     
-    list-style-type: circle;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    
+    padding: 5px 20px; 
 `
 
 export default function WeeklyInform() {
@@ -71,6 +80,10 @@ export default function WeeklyInform() {
                 }
             </Content>
 
+            <MoreInfo>
+                <MoreInfoContents title='🚮 매일 배출' body='스티로폼, 병류, 캔, 고철류, 종량제 봉투, 음식물 쓰레기'/>
+                <MoreInfoContents title='⏰ 이용 시간' body='오후 3시 ~ 새벽 5시'/>
+            </MoreInfo>
 
         </Container>
     );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from '../../../../lib/recycling-svgrepo-com.svg';
 
 const Container = styled.div`
-    width: 70%;
+    width: 100px;
     
     display: flex;
     justify-content: center;
@@ -31,20 +31,15 @@ const Content = styled.div`
     width: 100%;
     
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 5px;
 `
 const Logo = styled.img`
-    width: 25px;
-    height: 25px;
+    width: 50px;
+    height: 50px;
     margin: 0 20px;
-`
-
-const DivLine = styled.div`
-    height: 30px;
-    border-left: 1px solid #d3d3d3;
-
 `
 
 const Type = styled.div`
@@ -52,7 +47,7 @@ const Type = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 13px;
 `
 
 
@@ -62,7 +57,6 @@ export default function TypeInfoCard({day, type}) {
             <Header>{day}</Header>
             <Content>
                 <Logo src={logo}/>
-                <DivLine/>
                 <Type>
                     {type}
                 </Type>
