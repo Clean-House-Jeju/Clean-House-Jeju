@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../../../lib/recycling-svgrepo-com.svg';
 import styled from 'styled-components';
+import {dayName} from "../../../../lib/showDataByDate";
 
 const Container = styled.div`
     position: relative;
@@ -13,6 +14,16 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: transform .25s cubic-bezier(.7,.98,.86,.98), box-shadow .25s cubic-bezier(.7,.98,.86,.98);
+    ${ props => props.day === dayName
+    ? `transform: scale(1.2);
+      box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);`
+    : ''
+    }
+    &:hover {
+      transform: scale(1.1);  
+      box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);
+    }
 `
 
 const Header = styled.div`
@@ -59,7 +70,7 @@ const Text = styled.div`
 
 export default function DayInfoCard({color, day, type}) {
     return (
-        <Container>
+        <Container day={day}>
             <Header>
                 <Text>
                     {day}

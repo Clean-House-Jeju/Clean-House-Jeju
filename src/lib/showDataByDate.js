@@ -60,7 +60,7 @@ export const recycleData = [
     }
 ]
 
-const dayName = today.toLocaleDateString('ko-KR', {
+export const dayName = today.toLocaleDateString('ko-KR', {
     weekday: 'long'
 })
 
