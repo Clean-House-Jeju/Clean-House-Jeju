@@ -1,0 +1,36 @@
+.day-info-container {
+    width: 100%;
+    padding-left: 10px;
+    border: 1px solid #d3d3d3;
+
+    display: grid;
+
+    /*grid-template-columns: 150px 150px;*/
+    grid-template-areas:
+       "header header header header"
+		" . . . ."
+        ".  b b b";
+
+}
+
+.day-info-container:nth-child(1) {
+    grid-area: header;
+}
+.day-info-container:nth-child(2) {
+    grid-area: header;
+}
+.day-info-container:nth-child(3) {
+    grid-area: header;
+}
+.day-info-container:nth-child(4) {
+    grid-area: header;
+}
+.day-info-container:nth-child(5) {
+    grid-area: b;
+}
+.day-info-container:nth-child(6) {
+    grid-area: b;
+}
+.day-info-container:nth-child(7) {
+    grid-area: b;
+}
