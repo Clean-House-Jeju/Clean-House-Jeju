@@ -64,8 +64,22 @@ export default function LoadMultiMarker(map, data) {
             "click",
             MarkerClick(map, marker, infowindow)
         );
+
+        kakao.maps.event.addListener(
+            map,
+            "click",
+            infowindowClose(map, marker, infowindow)
+        );
     };
 
+
+    function infowindowClose(map, marker, infowindow) {
+
+        return function () {
+            infowindow.close(map, marker)
+        }
+
+    }
 
 
     function MarkerClick(map, marker, infowindow) {
