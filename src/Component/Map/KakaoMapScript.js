@@ -14,7 +14,7 @@ export default function KakaoMapScript(data, text) {
     }
     const options = {
         center: new kakao.maps.LatLng(data[0].latitude, data[0].longitude),
-        level: text === "" ? 3 : 7
+        level: text === "" ? 10 : 7
     };
     const map = new kakao.maps.Map(container, options);
 
@@ -23,5 +23,4 @@ export default function KakaoMapScript(data, text) {
     if (data !== null && data.length > 0) {
         loadMultiMarker(map, data);
     }
-
 }

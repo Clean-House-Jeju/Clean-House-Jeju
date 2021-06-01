@@ -4,39 +4,66 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     position: relative;
-    width: 80%;
-    margin: 20px auto;
+    width: 80px;
+    margin: 20px 8px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
-    padding: 5px 0;
+  
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    
     
     &::after {
         background: ${props => props.color};
         border-radius: 16px 16px 0 16px;
         content: '${props => props.day}';
-        height: 48px;
-        width: 48px;
-        left: -10px;
-        top: -10px;
+        height: 20px;
+        width: 20px;
+        left: -13px;
+        top: -13px;
         overflow: hidden;
         position: absolute;
         
         display: flex;
         justify-content: center;
         align-items: center;
-
+        font-size: 10px;
     }
 `
-// ${props => props.text || '월'}
-// ${props => props.color || `black`}
+
+const Header = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    width: 100%;
+    padding: 5px 0; 
+    font-size: 1px;
+    font-weight: bold;
+    background: #d3d3d3;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+    border-bottom: 1px solid #d3d3d3;
+`
+
+const Body = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    font-size: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+`
+
 const Icon = styled.img`
-    width: 40px;
-    height: 40px;
-    margin-left: 55px;
-    margin-right: 30px;
+    width: 30px;
+    height: 30px;
 `
 
 const DivLine = styled.div`
@@ -54,11 +81,14 @@ const Text = styled.div`
 export default function DayInfoCard({color, day, type}) {
     return (
         <Container color={color} day={day[0]}>
-            <Icon src={Logo} alt=""/>
-            <DivLine/>
-            <Text>
-                {type}
-            </Text>
+            <Header>
+                <Text>
+                    {type}
+                </Text>
+            </Header>
+            <Body>
+                <Icon src={Logo} alt=""/>
+            </Body>
         </Container>
     );
 }

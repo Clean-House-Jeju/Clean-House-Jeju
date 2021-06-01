@@ -9,6 +9,10 @@ export default function WeeklyInform() {
             {
                 recycleData.map(data => <DayInfoCard day={data.day} type={data.type} color={data.color}/>)
             }
+
+            <ul className=''>
+
+            </ul>
         </div>
     );
 }
