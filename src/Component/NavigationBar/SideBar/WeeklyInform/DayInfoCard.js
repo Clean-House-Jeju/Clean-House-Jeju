@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     position: relative;
-    width: 80px;
+    width: 100px;
     margin: 20px 8px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
@@ -13,7 +13,6 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
     
     &::after {
         background: ${props => props.color};
@@ -29,7 +28,7 @@ const Container = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 10px;
+        font-size: 13px;
     }
 `
 
@@ -41,7 +40,7 @@ const Header = styled.div`
     
     width: 100%;
     padding: 5px 0; 
-    font-size: 1px;
+    font-size: 13px;
     font-weight: bold;
     background: #d3d3d3;
     border-top-left-radius: 5px;
@@ -62,8 +61,8 @@ const Body = styled.div`
 `
 
 const Icon = styled.img`
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
 `
 
 const DivLine = styled.div`
