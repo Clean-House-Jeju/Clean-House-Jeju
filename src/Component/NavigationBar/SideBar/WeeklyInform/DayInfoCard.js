@@ -13,23 +13,6 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-    &::after {
-        background: ${props => props.color};
-        border-radius: 16px 16px 0 16px;
-        content: '${props => props.day}';
-        height: 20px;
-        width: 20px;
-        left: -13px;
-        top: -13px;
-        overflow: hidden;
-        position: absolute;
-        
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 13px;
-    }
 `
 
 const Header = styled.div`
@@ -53,6 +36,8 @@ const Body = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    font-weight: bold;
     
     width: 100%;
     font-size: 10px;
@@ -65,11 +50,6 @@ const Icon = styled.img`
     height: 50px;
 `
 
-const DivLine = styled.div`
-    height: 40px;
-    border-left: 1px solid #d3d3d3;
-`
-
 const Text = styled.div`
     flex: 1;
     display: flex;
@@ -79,14 +59,15 @@ const Text = styled.div`
 
 export default function DayInfoCard({color, day, type}) {
     return (
-        <Container color={color} day={day[0]}>
+        <Container>
             <Header>
                 <Text>
-                    {type}
+                    {day}
                 </Text>
             </Header>
             <Body>
                 <Icon src={Logo} alt=""/>
+                {type}
             </Body>
         </Container>
     );

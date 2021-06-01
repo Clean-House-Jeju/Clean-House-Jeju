@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import './WeeklyInform.css';
 import DayInfoContainer from "./DayInfoContainer";
+import TypeInfoContainer from "./TypeInfoContainer";
 
 const Container = styled.div`
     margin-top: 30px;
@@ -10,13 +11,14 @@ const Container = styled.div`
 const Nav = styled.div`
   display: flex;
   position: relative;
-  background-color: red;
+  background-color: #eee;
 `
 const Tab = styled.div`
   width: 50%;
-  height: 60px;
-  line-height: 60px;
-  text-align: center;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: color 0.15s ease-in;
   z-index: 1000;
@@ -25,12 +27,26 @@ const Glider = styled.span`
   position: absolute;
   top: 0;
   left: 0;
-  height: 60px;
+  height: 30px;
   width: 50%;
   background-color: #fff;
   transition: 0.25s ease-out;
   transform: translate3D(${props => props.index * 100}%, 0, 0);
 `;
+
+const Content = styled.div`
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-bottom: 1px solid #d3d3d3;
+`
+
+const TextInfo = styled.ul`
+    
+    list-style-type: circle;
+`
 
 export default function WeeklyInform() {
     const [index, setIndex] = useState(0);
@@ -49,9 +65,13 @@ export default function WeeklyInform() {
                 ))}
                 <Glider index={index} />
             </Nav>
-            {
-                index === 0? <DayInfoContainer/>: <div>안녕</div>
-            }
+            <Content>
+                {
+                    index === 0? <DayInfoContainer/>: <TypeInfoContainer/>
+                }
+            </Content>
+
+
         </Container>
     );
 }
