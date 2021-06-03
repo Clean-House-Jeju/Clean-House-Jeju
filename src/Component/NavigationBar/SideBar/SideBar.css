@@ -16,6 +16,7 @@
 .nav-menu.active {
     left: 0;
     transition: 350ms;
+
 }
 
 .nav-menu-items {
@@ -29,10 +30,9 @@
     display: flex;
     justify-content: start;
     align-items: center;
-}
 
-.close-btn {
     padding-left: 2rem;
     font-size: 2rem;
 }
+
 

@@ -3,6 +3,7 @@ import * as AiIcons from "react-icons/ai";
 import './SideBar.css';
 import DailyInfom from "./DailyInform/DailyInfom";
 import WeeklyInfom from "./WeeklyInform/WeeklyInfom";
+import AdditionalInfoContainer from "./AdditionalInfo/AdditionalInfoContainer";
 
 const SideBar = React.memo(({open, onClick}) => {
 
@@ -16,6 +17,7 @@ const SideBar = React.memo(({open, onClick}) => {
                 </div>
                 <DailyInfom/>
                 <WeeklyInfom/>
+                <AdditionalInfoContainer/>
 
             </div>
         </div>

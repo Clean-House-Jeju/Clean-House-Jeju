@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import logo from '../../../../lib/recycling-svgrepo-com.svg';
+import logo from '../../../../lib/img/recycling-svgrepo-com.svg';
 
 const Container = styled.div`
     width: 100px;

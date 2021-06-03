@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../../../lib/recycling-svgrepo-com.svg';
+import Logo from '../../../../lib/img/PNG파일바꿈.svg';
 import styled from 'styled-components';
 import {dayName} from "../../../../lib/showDataByDate";
 
@@ -57,8 +57,8 @@ const Body = styled.div`
 `
 
 const Icon = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
 `
 
 const Text = styled.div`

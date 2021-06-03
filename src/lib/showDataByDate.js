@@ -1,3 +1,5 @@
+import Hello from "../Component/NavigationBar/SideBar/Hello";
+
 const today = new Date();
 
 const recycleType = ['플라스틱', '종이', '비닐', '불연성'];
@@ -36,7 +38,7 @@ export const recycleData = [
     {
         day: `${dayType[2]}요일`,
         type: `${recycleType[0]}`,
-        color: '#FFEFD5'
+        color: '#FFEFD5',
     },
     {
         day: `${dayType[3]}요일`,

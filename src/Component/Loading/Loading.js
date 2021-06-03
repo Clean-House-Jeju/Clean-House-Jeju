@@ -1,6 +1,6 @@
 import React from 'react';
 import './Loading.css';
-import Logo from '../../lib/recycling-svgrepo-com.svg'
+import Logo from '../../lib/img/recycling-svgrepo-com.svg'
 import {filterByDate} from "../../lib/showDataByDate";
 
 export default function Loading() {
