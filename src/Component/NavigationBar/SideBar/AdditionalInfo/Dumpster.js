@@ -28,7 +28,7 @@ export default function Dumpster() {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="text-center">
-                    <Card.Link href="jejusi.go.kr/waste/main.do">제주시</Card.Link>
+                    <Card.Link href="https://www.jejusi.go.kr/waste/main.do">제주시</Card.Link>
                     <Card.Link href="https://www.seogwipo.go.kr/field/living/new_waste/order.htm">서귀포시</Card.Link>
                 </Card.Footer>
             </Card>

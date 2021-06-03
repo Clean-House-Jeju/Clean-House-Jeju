@@ -26,7 +26,7 @@ export default function TypeInfoContainer() {
             <Container>
                 {
                     typeData.map((data, i) => (
-                        <TypeInfoCard key={i} type={data.type} day={data.day}/>
+                        <TypeInfoCard key={i} type={data.type} day={data.day} img={data.img}/>
                     ))
                 }
             </Container>

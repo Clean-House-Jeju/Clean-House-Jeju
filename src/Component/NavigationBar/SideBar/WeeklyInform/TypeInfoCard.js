@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import logo from '../../../../lib/img/recycling-svgrepo-com.svg';
 
 const Container = styled.div`
     width: 100px;
@@ -37,8 +36,8 @@ const Content = styled.div`
     padding: 5px;
 `
 const Logo = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     margin: 0 20px;
 `
 
@@ -51,12 +50,12 @@ const Type = styled.div`
 `
 
 
-export default function TypeInfoCard({day, type}) {
+export default function TypeInfoCard({img, day, type}) {
     return (
         <Container>
             <Header>{day}</Header>
             <Content>
-                <Logo src={logo}/>
+                <Logo src={img}/>
                 <Type>
                     {type}
                 </Type>

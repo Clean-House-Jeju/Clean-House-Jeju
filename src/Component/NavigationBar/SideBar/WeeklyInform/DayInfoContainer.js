@@ -6,7 +6,7 @@ export default function DayInfoContainer() {
     return (
         <div className='day-info-container'>
             {
-                recycleData.map(data => <DayInfoCard day={data.day} type={data.type} color={data.color}/>)
+                recycleData.map(data => <DayInfoCard day={data.day} type={data.type} img={data.img}/>)
             }
         </div>
     );

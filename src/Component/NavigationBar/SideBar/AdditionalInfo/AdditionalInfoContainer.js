@@ -1,20 +1,27 @@
 import React from "react";
-import AdditionalInfoCard from "./AdditionalInfoCard";
 import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, AccordionItemButton} from "react-accessible-accordion";
-import WasteAppliances from "./WasteAppliances";
 import './AdditionalInfoContainer.css';
-import Dumpster from "./Dumpster";
 import {list} from "./infoList";
 
 export default function AdditionalInfoContainer() {
+    const style = {
+        position: 'absolute',
+        top: '5px',
+        display: 'inline-flex',
+        justifyContent: 'start',
+        alignItems: 'center'
+
+    }
     return (
         <Accordion allowZeroExpanded>
             {
-                list.map((l, i) => (
+                list.map((l) => (
                     <AccordionItem key={l.id}>
-                        <AccordionItemHeading>
+                        <AccordionItemHeading style={{position: 'relative'}}>
                             <AccordionItemButton>
-                                {l.title}
+                                <div style={style}>
+                                    <img  style={{width: '50px', height: '50px'}} src={l.img} alt=""/>{l.title}
+                                </div>
                             </AccordionItemButton>
                         </AccordionItemHeading>
                         <AccordionItemPanel className='items'>

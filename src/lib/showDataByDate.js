@@ -1,4 +1,7 @@
-import Hello from "../Component/NavigationBar/SideBar/Hello";
+import MWF from './img/월수금.svg';
+import TS from './img/화토.svg';
+import F from './img/목.svg';
+import S from './img/일.svg';
 
 const today = new Date();
 
@@ -9,18 +12,22 @@ export const typeData = [
     {
         day: `${dayType[0]}, ${dayType[2]}, ${dayType[4]}`,
         type: `${recycleType[0]}`,
+        img: MWF
     },
     {
         day: `${dayType[1]}, ${dayType[5]}`,
         type: `${recycleType[1]}, ${recycleType[3]}`,
+        img: TS,
     },
     {
         day: `${dayType[3]}`,
         type: `${recycleType[1]}, ${recycleType[2]}`,
+        img: F
     },
     {
         day: `${dayType[6]}`,
         type: `${recycleType[0]}, ${recycleType[2]}`,
+        img: S
     }
 ];
 
@@ -28,37 +35,38 @@ export const recycleData = [
     {
         day: `${dayType[0]}요일`,
         type: `${recycleType[0]}`,
-        color: '#FF87D2'
+        img: MWF
     },
     {
         day: `${dayType[1]}요일`,
         type: `${recycleType[1]}, ${recycleType[3]}`,
-        color: '#FAFA96'
+        img: TS,
+
     },
     {
         day: `${dayType[2]}요일`,
         type: `${recycleType[0]}`,
-        color: '#FFEFD5',
+        img: MWF,
     },
     {
         day: `${dayType[3]}요일`,
         type: `${recycleType[1]}, ${recycleType[2]}`,
-        color: '#E1AE68',
+        img: F,
     },
     {
         day: `${dayType[4]}요일`,
         type: `${recycleType[0]}`,
-        color: '#FF98FE'
+        img: MWF,
     },
     {
         day: `${dayType[5]}요일`,
         type: `${recycleType[1]}, ${recycleType[3]}`,
-        color: '#5BFFB0'
+        img: TS,
     },
     {
         day: `${dayType[6]}요일`,
         type: `${recycleType[0]}, ${recycleType[2]}`,
-        color: '#46FFFF'
+        img: S
     }
 ]
 

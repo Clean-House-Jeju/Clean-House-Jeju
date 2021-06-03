@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from '../../../../lib/img/PNG파일바꿈.svg';
 import styled from 'styled-components';
 import {dayName} from "../../../../lib/showDataByDate";
 
@@ -57,8 +56,8 @@ const Body = styled.div`
 `
 
 const Icon = styled.img`
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
 `
 
 const Text = styled.div`
@@ -68,7 +67,7 @@ const Text = styled.div`
     align-items: center;
 `
 
-export default function DayInfoCard({color, day, type}) {
+export default function DayInfoCard({img, day, type}) {
     return (
         <Container day={day}>
             <Header>
@@ -77,7 +76,7 @@ export default function DayInfoCard({color, day, type}) {
                 </Text>
             </Header>
             <Body>
-                <Icon src={Logo} alt=""/>
+                <Icon src={img} alt=""/>
                 {type}
             </Body>
         </Container>
