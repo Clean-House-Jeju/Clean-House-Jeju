@@ -44,53 +44,65 @@ export default function LoadMultiMarker(map, data) {
 
         var clean = CleanOverlay(data, i);
         var recycle = RecycleOverlay(data, i);
-        var iwRemoveable = true;
+
+
 
 
         if (data[i].type == 'clean') {
-            var infowindow = new kakao.maps.InfoWindow({
+            var overlay = new kakao.maps.CustomOverlay({
                 content: clean,
-                removable: iwRemoveable
+                map: map,
+                position: marker.getPosition()
             });
         }
         else if (data[i].type == 'recycle') {
-            var infowindow = new kakao.maps.InfoWindow({
+            var overlay = new kakao.maps.CustomOverlay({
                 content: recycle,
-                removable: iwRemoveable
+                map: map,
+                position: marker.getPosition()
             });
         }
+
+        overlay.setMap(null);
+
         kakao.maps.event.addListener(
             marker,
             "click",
-            MarkerClick(map, marker, infowindow)
+            MarkerClick(map, marker, overlay)
         );
 
         kakao.maps.event.addListener(
             map,
             "click",
-            infowindowClose(map, marker, infowindow)
+            closeOverlay(map, marker, overlay)
         );
     };
 
 
-    function infowindowClose(map, marker, infowindow) {
+    function closeOverlay(map, marker, overlay) {
 
         return function () {
-            infowindow.close(map, marker)
+            overlay.setMap(null);
         }
 
     }
 
+    var overlaylive;
 
-    function MarkerClick(map, marker, infowindow) {
+    function MarkerClick(map, marker, overlay) {
 
         var Ma = marker.getPosition().Ma;
         var La = marker.getPosition().La;
         const MarkerlocPosition = new kakao.maps.LatLng(Ma, La)
+        console.log(overlaylive);
 
         return function () {
-            infowindow.open(map, marker);
+            // if (overlay.n !== overlaylive)
+            overlay.setMap(null);
+            overlay.setMap(map, marker);
             map.setCenter(MarkerlocPosition);
+            overlaylive = overlay.n;
+            console.log(overlaylive)
         };
     }
 
