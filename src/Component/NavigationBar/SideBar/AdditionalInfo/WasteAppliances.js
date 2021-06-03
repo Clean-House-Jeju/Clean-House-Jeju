@@ -1,13 +1,13 @@
 import React from 'react';
-import AppliancesTable from "./AppliancesTable";
 import {Card, ListGroup} from "react-bootstrap";
+import table from "../../../../lib/img/무제-5.svg";
 
 
 
 export default function WasteAppliances() {
     return (
         <div>
-            <AppliancesTable/>
+            <img style={{width: '450px'}} src={table} alt=""/>
             <Card style={{ width: '100%', margin: '5px 0', borderRadius: '5px' }}>
                 <Card.Header>배출 방법</Card.Header>
                 <ListGroup variant="flush">
