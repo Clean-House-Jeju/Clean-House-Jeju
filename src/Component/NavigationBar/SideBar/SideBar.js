@@ -4,6 +4,7 @@ import './SideBar.css';
 import DailyInfom from "./DailyInform/DailyInfom";
 import WeeklyInfom from "./WeeklyInform/WeeklyInfom";
 import AdditionalInfoContainer from "./AdditionalInfo/AdditionalInfoContainer";
+import ContactForm from "./ContactForm/ContactForm";
 
 const SideBar = React.memo(({open, onClick}) => {
 
@@ -18,7 +19,7 @@ const SideBar = React.memo(({open, onClick}) => {
                 <DailyInfom/>
                 <WeeklyInfom/>
                 <AdditionalInfoContainer/>
-
+                <ContactForm/>
             </div>
         </div>
     )

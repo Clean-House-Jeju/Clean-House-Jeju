@@ -11,6 +11,11 @@ const Container = styled.div`
     border: 1px solid #d3d3d3;
     border-radius: 5px;
     margin-top: 10px;
+    transition: transform .25s cubic-bezier(.7,.98,.86,.98), box-shadow .25s cubic-bezier(.7,.98,.86,.98);
+    &:hover {
+      transform: scale(1.1);  
+      box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);
+    }
 `
 const Header = styled.div`
     width: 100%;

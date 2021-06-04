@@ -35,7 +35,10 @@ const Header = styled.div`
     padding: 5px 0; 
     font-size: 13px;
     font-weight: bold;
-    background: #d3d3d3;
+     ${ props => props.day === dayName
+    ? `background: #5fc69a;`
+    : `background: #d3d3d3;`
+}
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     
@@ -69,8 +72,8 @@ const Text = styled.div`
 
 export default function DayInfoCard({img, day, type}) {
     return (
-        <Container day={day}>
-            <Header>
+        <Container day={day} >
+            <Header day={day} >
                 <Text>
                     {day}
                 </Text>
