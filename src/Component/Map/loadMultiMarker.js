@@ -16,12 +16,12 @@ export default function LoadMultiMarker(map, data) {
         if (data[i].type == 'clean') {
             clean = true;
             recycle = false
-            var imageSrc = MarkerRunnig(clean, recycle);
+            var imageSrc = MarkerRunnig(clean, recycle, data, i);
         }
         else if (data[i].type == 'recycle') {
             recycle = true;
             clean = false;
-            var imageSrc = MarkerRunnig(clean, recycle);
+            var imageSrc = MarkerRunnig(clean, recycle, data, i);
         }
         // 마커 이미지의 이미지 크기 입니다
         let imageSize = new kakao.maps.Size(24, 35);
@@ -94,9 +94,6 @@ export default function LoadMultiMarker(map, data) {
         var Ma = marker.getPosition().Ma;
         var La = marker.getPosition().La;
         const MarkerlocPosition = new kakao.maps.LatLng(Ma, La)
-        var i = 0;
-        console.log(overlaylive);
-
         return function () {
             if (overlaylive) {
                 overlaylive.setMap(null)

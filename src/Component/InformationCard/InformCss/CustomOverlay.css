@@ -59,9 +59,10 @@
 }
 .info .desc 
 {   position: relative;
-    margin: 13px 0 0 90px;
+    margin: 10px 0 0 5px;
     height: 75px;
 }
+
 .desc .location
 {   
     overflow: hidden;
