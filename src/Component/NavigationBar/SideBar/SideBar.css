@@ -1,16 +1,15 @@
 .nav-menu {
     background: #eee;
-    width: 510px;
+    width: 25%;
     height: 100vh;
     display: flex;
     justify-content: center;
     position: fixed;
     top: 0;
-    left: -100%;
+    left: -1000%;
     transition: 850ms;
     border-right: 15px;
     overflow-x: hidden;
-
 }
 
 .nav-menu.active {

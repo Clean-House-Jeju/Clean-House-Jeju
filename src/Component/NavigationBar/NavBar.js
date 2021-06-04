@@ -2,21 +2,33 @@ import React, {useState} from 'react';
 import './NavBar.css';
 import * as FaIcons from 'react-icons/fa';
 import SideBar from './SideBar/SideBar';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ContentContainer from "./ContentContainer";
 import {setKeyword} from "../../Modules/keyword";
 import {initCardData} from "../../Modules/cardData";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import {closeToggle, openToggle} from "../../Modules/toggle";
 
 const NavBar = React.memo(() => {
+    const {isToggle} = useSelector(state => state.toggle);
     const [input, setInput] = useState('');
-
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+
+    const onToggle = () => {
+        if (isToggle) {
+            dispatch(initCardData());
+            dispatch(closeToggle());
+        } else {
+            dispatch(openToggle());
+        }
+    }
 
     const handleKeyword = (e) => {
         e.preventDefault();
         dispatch(setKeyword(input));
         dispatch(initCardData());
+        dispatch(openToggle());
     }
 
     const onChange = (e) => {
@@ -45,8 +57,16 @@ const NavBar = React.memo(() => {
                 <SideBar open={open} onClick={onClick}/>
             </div>
 
-            <div id='content-wrapper'>
-                <ContentContainer />
+            <div id={isToggle? "content-wrapper": "content-wrapper content-wrapper-disabled"}>
+                <ContentContainer/>
+            </div>
+
+            <div className={isToggle? 'content-fold': 'content-fold folded'}>
+                {
+                    isToggle
+                        ? <IoIosArrowUp onClick={onToggle}/>
+                        : <IoIosArrowDown onClick={onToggle}/>
+                }
             </div>
         </div>
     );
