@@ -9,23 +9,25 @@ function CleanOverlay(data, i) {
     let runningTime = '운영중';
     if (3 < hours && hours < 15)
         runningTime = '운영마감'
+    var i = 0;
+    var clean = `<div class="wrap">
+            <div class="info">
+                <div class="title">
+                    클린하우스
+              <div class="close" onclick=""title="닫기"></div>
+        </div>
+                <div class="body">
+                   </div>
+                    <div class="desc">
+                        <div class="location">${data[i].location}</div>
+                        <div class="runtime">${runningTime}</div>
+                        <div><a href="https://apis.map.kakao.com/" target="_blank" class="link">홈페이지</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 
-    var clean = '<div class="wrap">' +
-        '    <div class="info">' +
-        '        <div class="title">' +
-        '            클린하우스' +
-        '        </div>' +
-        '        <div class="body">' +
-        '           </div>' +
-        '            <div class="desc">' +
-        '                <div class="location">' + `${data[i].location}` + '</div>' +
-        '                <div class="runtime">' + `${runningTime}` + '</div>' +
-        '                <div><a href="https://apis.map.kakao.com/" target="_blank" class="link">홈페이지</a></div>' +
-        '            </div>' +
-        '        </div>' +
-        '    </div>' +
-        '</div>';
-
+    console.log(i);
 
     return clean;
 }

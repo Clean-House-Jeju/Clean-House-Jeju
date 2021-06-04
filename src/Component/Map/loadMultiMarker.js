@@ -68,7 +68,8 @@ export default function LoadMultiMarker(map, data) {
             var overlay = new kakao.maps.CustomOverlay({
                 content: clean,
                 map: map,
-                position: marker.getPosition()
+                position: marker.getPosition(),
+                clickable: true
             });
         }
         else if (data[i].type == 'recycle') {
