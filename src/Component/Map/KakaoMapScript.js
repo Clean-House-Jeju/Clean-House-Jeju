@@ -1,6 +1,5 @@
 import GetCurrentLocation from "./GetCurrentLocation";
 import loadMultiMarker from "./loadMultiMarker";
-import { setKeyword } from "../../Modules/keyword";
 import React from 'react';
 const { kakao } = window;
 
@@ -23,5 +22,4 @@ export default function KakaoMapScript(data, text) {
     if (data !== null && data.length > 0) {
         loadMultiMarker(map, data);
     }
-
 }

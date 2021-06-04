@@ -8,6 +8,7 @@ import {Provider} from "react-redux";
 import ReduxThunk from 'redux-thunk';
 import rootReducer from "./Modules";
 import {composeWithDevTools} from "redux-devtools-extension";
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk)));
 
