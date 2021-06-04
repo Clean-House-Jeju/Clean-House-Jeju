@@ -87,22 +87,24 @@ export default function LoadMultiMarker(map, data) {
 
     }
 
-    var overlaylive;
+    var overlaylive = null;
 
     function MarkerClick(map, marker, overlay) {
 
         var Ma = marker.getPosition().Ma;
         var La = marker.getPosition().La;
         const MarkerlocPosition = new kakao.maps.LatLng(Ma, La)
+        var i = 0;
         console.log(overlaylive);
 
         return function () {
-            // if (overlay.n !== overlaylive)
-            overlay.setMap(null);
-            overlay.setMap(map, marker);
+            if (overlaylive) {
+                overlaylive.setMap(null)
+            }
             map.setCenter(MarkerlocPosition);
-            overlaylive = overlay.n;
-            console.log(overlaylive)
+            overlay.setMap(map, marker)
+            overlaylive = overlay;
+
         };
     }
 
