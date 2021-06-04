@@ -9,9 +9,13 @@ const { kakao } = window;
 export default function LoadMultiMarker(map, data) {
     console.log(data);
 
-    var markers = [];
+
+    var Cleanmarkers = [];
+    var Recyclemarkers = [];
 
     for (let i = 0; i < data.length; i++) {
+
+
 
         if (data[i].type == 'clean') {
             clean = true;
@@ -30,22 +34,34 @@ export default function LoadMultiMarker(map, data) {
         let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
         // 마커를 생성합니다
 
+        if (data[i].type == 'clean') {
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
+                title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image: markerImage,// 마커 이미지
+                clickable: true
+            });
 
-        var marker = new kakao.maps.Marker({
-            map: map, // 마커를 표시할 지도
-            position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
-            title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image: markerImage,// 마커 이미지
-            clickable: true
-        });
+            Cleanmarkers.push(marker);
+        }
+        else if (data[i].type == 'recycle') {
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
+                title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                image: markerImage,// 마커 이미지
+                clickable: true
+            });
+            Recyclemarkers.push(marker);
+        }
 
-        markers.push(marker);
+
+
 
 
         var clean = CleanOverlay(data, i);
         var recycle = RecycleOverlay(data, i);
-
-
 
 
         if (data[i].type == 'clean') {
@@ -60,6 +76,35 @@ export default function LoadMultiMarker(map, data) {
                 content: recycle,
                 map: map,
                 position: marker.getPosition()
+            });
+        }
+
+        if (data[i].type == 'clean') {
+            // 클린하우스 클러스터
+            var Cleanclusterer = new kakao.maps.MarkerClusterer({
+                map: map,
+                gridSize: 100, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+                averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+                minLevel: 4, // 클러스터 할 최소 지도 레벨 
+                texts: " ",
+                styles: [{
+                    width: '53px', height: '52px',
+                    background: 'url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png) no-repeat',
+                }]
+            });
+        }
+
+        else if (data[i].type == 'recycle') {
+            var Recycleclusterer = new kakao.maps.MarkerClusterer({
+                map: map,
+                gridSize: 150, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+                averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+                minLevel: 4,
+                texts: " ",
+                styles: [{
+                    width: '53px', height: '52px',
+                    background: 'url(https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png) no-repeat',
+                }] // 클러스터 할 최소 지도 레벨 
             });
         }
 
@@ -105,14 +150,11 @@ export default function LoadMultiMarker(map, data) {
         };
     }
 
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 4 // 클러스터 할 최소 지도 레벨 
-    });
 
-    // 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
-    clusterer.addMarkers(markers);
+
+    // 클린하우스 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
+    Cleanclusterer.addMarkers(Cleanmarkers);
+    Recycleclusterer.addMarkers(Recyclemarkers);
 
 }
 
