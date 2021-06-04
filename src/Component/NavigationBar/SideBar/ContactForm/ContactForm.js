@@ -4,7 +4,7 @@ import {Card} from "react-bootstrap";
 
 export default function ContactForm() {
     return (
-        <Card className='contact-form-card'>
+        <div className='contact-form'>
             <Card.Body className='contact-form-card-body'>
                 <div>
                     <Card.Title>{'📞 제주시 생활환경과'}</Card.Title>
@@ -19,6 +19,6 @@ export default function ContactForm() {
                     </Card.Text>
                 </div>
             </Card.Body>
-        </Card>
+        </div>
     );
 }
