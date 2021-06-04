@@ -15,7 +15,7 @@ export default function ContactForm() {
                 <div>
                     <Card.Title>{'📧 개발자 이메일'}</Card.Title>
                     <Card.Text>
-                        <a href="mailto:Woongstardev@gmail.com">Woongstardev@gmail.com</a>
+                        <a href="mailto:kunshup2000@gmail.com">kunshup2000@gmail.com</a>
                     </Card.Text>
                 </div>
             </Card.Body>

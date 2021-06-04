@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, ListGroup, Table} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
 export default function Dumpster() {
     const style = {

@@ -13,7 +13,7 @@ const Container = styled.div`
 const Title = styled.div`
     font-wight: bold;
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 13px;
     
 `
 
