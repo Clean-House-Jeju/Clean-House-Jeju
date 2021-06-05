@@ -62,11 +62,89 @@ export default function LoadMultiMarker(map, data) {
 
         var clean = CleanOverlay(data, i);
         var recycle = RecycleOverlay(data, i);
+        // //--- 추가 ---//
+
+        // var wrap = document.createElement('div');
+        // wrap.className = 'wrap';
+
+        // var info = document.createElement('div');
+        // info.className = 'info';
+
+        // wrap.appendChild(info);
+
+        // var title = document.createElement('div');
+        // title.className = "title";
+        // var sometext = document.createTextNode("추가된거");
+
+        // title.appendChild(sometext);
+        // info.appendChild(title);
+
+        // var close = document.createElement('button');
+        // close.innnerHTML = '닫기';
+        // close.onclick = closeOverlay();
+
+        // clean.appendChild(close);
+        // overlay.setContent(wrap);
+
+        // var title = document.createElement('div');
+        // title.className = "title";
+        // title.innerText = "시발";
+        // //var sometext = document.createTextNode("추가된거");
+
+        // //title.appendChild(sometext);
+        // //info.appendChild(title);
+
+        // var close = document.createElement('button');
+        // close.innerHTML = '닫기';
+        // close.onclick = closeOverlay();
+
+        // title.appendChild(close);
+        // overlay.setContent(title);
+        // var content = `<div class="wrap">
+        //     <div class="info">
+        //         <div class="title">
+        //             클린하우스
+        //       <div class="close" onclick=""title="닫기"></div>
+        // </div>
+        //         <div class="body">
+        //            </div>
+        //             <div class="desc">
+        //                 <div class="location"></div>
+        //                 <div class="runtime"></div>
+        //                 <div><a href="https://apis.map.kakao.com/" target="_blank" class="link">홈페이지</a></div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>`;
+
+        // var wrap = document.createElement('div');
+        // wrap.className = "wrap"
+        // var info = document.createElement('div');
+
+
+        var content = document.createElement('div');
+        content.className = "wrap"
+        content.innerHTML = data.title;
+        content.style.cssText = `background: white; border: 1px solid black`;
+
+        var closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '닫기';
+        closeBtn.onclick = function () {
+            var sibal;
+            //document.classList.remove("wrap");
+            closeOverlay();
+            //sibal.remove();
+            console.log("시발");
+            console.log(sibal);
+        };
+        content.appendChild(closeBtn);
+        //overlay.setContent(content);
+        //--- 마무리 ---//
 
 
         if (data[i].type == 'clean') {
             var overlay = new kakao.maps.CustomOverlay({
-                content: clean,
+                content: content,
                 map: map,
                 position: marker.getPosition(),
                 clickable: true
@@ -79,6 +157,7 @@ export default function LoadMultiMarker(map, data) {
                 position: marker.getPosition()
             });
         }
+
 
         if (data[i].type == 'clean') {
             // 클린하우스 클러스터
