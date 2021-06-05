@@ -29,7 +29,7 @@ function CleanOverlay(data, i) {
         </div>
     </div>`;
 
-    //--- 추가 ---//
+    //------------- 삽질 추가 -------------//
 
     // var wrap = document.createElement('div');
     // wrap.className = 'wrap';
@@ -54,6 +54,7 @@ function CleanOverlay(data, i) {
     // title.appendChild(close);
     // overlay.setContent(title);
 
+    //------------- 마무리 -------------//
     return clean;
 }
 

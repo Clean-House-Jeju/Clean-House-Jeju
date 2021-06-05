@@ -62,7 +62,9 @@ export default function LoadMultiMarker(map, data) {
 
         var clean = CleanOverlay(data, i);
         var recycle = RecycleOverlay(data, i);
-        // //--- 추가 ---//
+
+
+        //------------- 삽질 추가 -------------//
 
         // var wrap = document.createElement('div');
         // wrap.className = 'wrap';
@@ -139,7 +141,9 @@ export default function LoadMultiMarker(map, data) {
         };
         content.appendChild(closeBtn);
         //overlay.setContent(content);
-        //--- 마무리 ---//
+
+
+        //------------- 마무리 -------------//
 
 
         if (data[i].type == 'clean') {
