@@ -4,7 +4,7 @@ import {dayName} from "../../../../lib/showDataByDate";
 
 const Container = styled.div`
     position: relative;
-    width: 100px;
+    width: 80%;
     margin: 20px 8px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
