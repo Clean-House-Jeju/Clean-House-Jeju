@@ -1,16 +1,15 @@
 .nav-menu {
     background: #eee;
-    width: 510px;
+    width: 25%;
     height: 100vh;
     display: flex;
     justify-content: center;
     position: fixed;
     top: 0;
-    left: -100%;
+    left: -1000%;
     transition: 850ms;
     border-right: 15px;
     overflow-x: hidden;
-
 }
 
 .nav-menu.active {
@@ -35,4 +34,19 @@
     font-size: 2rem;
 }
 
+@media screen and (max-width: 1300px) {
+
+    .nav-menu {
+        left: 50%;
+        top: 1000%;
+
+    }
+
+    .nav-menu.active {
+        top: 50%;
+        height: 50%;
+        width: 100%;
+        overflow: scroll;
+    }
+}
 
