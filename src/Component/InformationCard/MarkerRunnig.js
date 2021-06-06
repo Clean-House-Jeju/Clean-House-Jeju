@@ -6,7 +6,6 @@ function MarkerRunnig(clean, recycle, data, i) {
     timeEnd = parseInt(timeEnd[0]);
     let timeStart = data[i].timeStart.split(':');
     timeStart = parseInt(timeStart[0]);
-    hours -= 12;
     if (clean && !recycle) {
 
         if (3 < hours && hours < 15) {

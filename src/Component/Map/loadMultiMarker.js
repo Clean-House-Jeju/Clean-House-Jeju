@@ -90,7 +90,7 @@ export default function LoadMultiMarker(map, data) {
                 texts: " ",
                 styles: [{
                     width: '53px', height: '52px',
-                    background: 'url("Clean_active.svg") no-repeat',
+                    background: 'url(Clean_house_active.svg) no-repeat'
                 }]
             });
         }
@@ -104,7 +104,8 @@ export default function LoadMultiMarker(map, data) {
                 texts: " ",
                 styles: [{
                     width: '53px', height: '52px',
-                    background: 'url("recycle_active.svg") no-repeat',
+                    background: 'url(Recycle_center_active.svg) no-repeat',
+
                 }] // 클러스터 할 최소 지도 레벨 
             });
         }
