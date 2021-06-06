@@ -50,3 +50,19 @@
     }
 }
 
+@media screen and (max-width: 1300px) {
+
+    .nav-menu {
+        left: 50%;
+        top: 1000%;
+
+    }
+
+    .nav-menu.active {
+        top: 50%;
+        height: 50%;
+        width: 100%;
+        overflow: scroll;
+    }
+}
+

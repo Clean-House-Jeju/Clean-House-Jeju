@@ -11,13 +11,15 @@ const Wrapper = styled.div`
     align-items: center;
 `
 const Container = styled.div`
-    width: 50%;
+    width: 63%;
     
     display: grid;
-    grid-template-columns: repeat( 2, 1fr);
-    grid-template-rows: repeat( 2,1fr); 
+    grid-template-columns: repeat( 2, minmax(100px, auto));
+    grid-template-rows: repeat( 2, minmax(100px, auto)); 
+    
+    align-items: center;
+    justify-items: center;
     grid-gap: 10px;
-    margin: 20px 8px;
 `
 
 export default function TypeInfoContainer() {

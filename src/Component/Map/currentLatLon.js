@@ -1,7 +1,5 @@
 
-export let location = {}
-
-function currentLatLon() {
+function currentLatLon(location) {
 
     navigator.geolocation.getCurrentPosition(
          function(position) {

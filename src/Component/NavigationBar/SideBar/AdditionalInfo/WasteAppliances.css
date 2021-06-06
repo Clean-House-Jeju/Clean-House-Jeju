@@ -1,0 +1,18 @@
+.waste-appliances-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.waste-appliances-table {
+    width: 90%;
+}
+
+.waste-appliances-card.card {
+    width: 90%;
+    margin: 5px 0;
+    border-radius: 5px;
+}

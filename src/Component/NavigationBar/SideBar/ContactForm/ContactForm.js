@@ -1,24 +1,23 @@
 import React from 'react';
 import './ContactForm.css';
 import {Card} from "react-bootstrap";
+import {list} from "./ContactData";
 
 export default function ContactForm() {
     return (
-        <div className='contact-form'>
+        <Card className='contact-form'>
             <Card.Body className='contact-form-card-body'>
-                <div>
-                    <Card.Title>{'📞 제주시 생활환경과'}</Card.Title>
-                    <Card.Text>
-                        <a href='tel:064-728-3181'>제주시 생활환경과 (064-728-3181)</a>
-                    </Card.Text>
-                </div>
-                <div>
-                    <Card.Title>{'📧 개발자 이메일'}</Card.Title>
-                    <Card.Text>
-                        <a href="mailto:kunshup2000@gmail.com">kunshup2000@gmail.com</a>
-                    </Card.Text>
-                </div>
+                {
+                    list.map((l, i) => (
+                        <div className='contact-form-card-content' key={i}>
+                            <Card.Title>{l.title}</Card.Title>
+                            <Card.Text>
+                                <a href={l.href}>{l.info}</a>
+                            </Card.Text>
+                        </div>
+                    ))
+                }
             </Card.Body>
-        </div>
+        </Card>
     );
 }

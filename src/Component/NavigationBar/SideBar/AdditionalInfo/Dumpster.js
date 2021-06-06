@@ -1,16 +1,13 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
+import './Dumpster.css';
 
 export default function Dumpster() {
-    const style = {
-        width: '95%',
-        margin: '5px 0',
-        borderRadius: '5px'
-    }
+
     return (
-        <div>
-            <Card className="text-center" style={style}>
-                <Card.Header>대상 품목</Card.Header>
+        <div className='dumpster-container'>
+            <Card className="dumpster-card" >
+                <Card.Header className="text-center">대상 품목</Card.Header>
                 <Card.Body>
                     <Card.Title style={{fontWeight: 'bold', marginBottom: '20px'}}>종량제 봉투에 담기 어려운 품목</Card.Title>
                     <Card.Text style={{fontSize: '15px'}}>
@@ -19,7 +16,7 @@ export default function Dumpster() {
                 </Card.Body>
             </Card>
 
-            <Card style={style}>
+            <Card className='dumpster-card'>
                 <Card.Header className="text-center">배출 방법</Card.Header>
                 <Card.Body>
                     <Card.Text style={{fontSize: '17px', fontWeight: 'bold'}}>

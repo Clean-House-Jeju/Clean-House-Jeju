@@ -33,37 +33,44 @@ export const typeData = [
 
 export const recycleData = [
     {
+        name: 'a',
         day: `${dayType[0]}요일`,
         type: `${recycleType[0]}`,
         img: MWF
     },
     {
+        name: 'b',
         day: `${dayType[1]}요일`,
         type: `${recycleType[1]}, ${recycleType[3]}`,
         img: TS,
 
     },
     {
+        name: 'c',
         day: `${dayType[2]}요일`,
         type: `${recycleType[0]}`,
         img: MWF,
     },
     {
+        name: 'd',
         day: `${dayType[3]}요일`,
         type: `${recycleType[1]}, ${recycleType[2]}`,
         img: F,
     },
     {
+        name: 'e',
         day: `${dayType[4]}요일`,
         type: `${recycleType[0]}`,
         img: MWF,
     },
     {
+        name: 'f',
         day: `${dayType[5]}요일`,
         type: `${recycleType[1]}, ${recycleType[3]}`,
         img: TS,
     },
     {
+        name: 'g',
         day: `${dayType[6]}요일`,
         type: `${recycleType[0]}, ${recycleType[2]}`,
         img: S
