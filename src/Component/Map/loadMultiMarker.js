@@ -90,7 +90,7 @@ export default function LoadMultiMarker(map, data) {
                 texts: " ",
                 styles: [{
                     width: '53px', height: '52px',
-                    background: 'url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png) no-repeat',
+                    background: 'url("Clean_active.svg") no-repeat',
                 }]
             });
         }
@@ -104,7 +104,7 @@ export default function LoadMultiMarker(map, data) {
                 texts: " ",
                 styles: [{
                     width: '53px', height: '52px',
-                    background: 'url(https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png) no-repeat',
+                    background: 'url("recycle_active.svg") no-repeat',
                 }] // 클러스터 할 최소 지도 레벨 
             });
         }
