@@ -1,7 +1,7 @@
 import * as api from "../lib/api";
 import GetDistanceFromLatLonInKm from "../Component/Map/GetDistanceFromLatLonInKm";
 import currentLatLon from "../Component/Map/currentLatLon";
-import {location} from "../Component/Map/currentLatLon";
+import { location } from "../Component/Map/currentLatLon";
 
 const GET_DATAS = 'handleData/GET_DATA';
 const GET_DATAS_SUCCESS = 'handleData/GET_DATA_SUCCESS';
@@ -11,7 +11,7 @@ const GET_DATAS_FAILURE = 'handleData/GET_DATA_FAILURE';
 
 export const getInfo = () => async dispatch => {
     // 요청이 시작됨
-    dispatch({type: GET_DATAS});
+    dispatch({ type: GET_DATAS });
     try {
         // API를 호출
         const response = await api.getData();
@@ -51,7 +51,6 @@ export default function getDatas(state = initialState, action) {
                 }
             }
         case GET_DATAS_SUCCESS:
-
             return {
                 ...state,
                 datas: {

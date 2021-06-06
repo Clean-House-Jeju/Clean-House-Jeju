@@ -16,7 +16,6 @@ function CleanOverlay(data, i) {
         <div class="info">
             <div class="title">
                 클린하우스
-          <div class="close" onclick=""title="닫기"></div>
     </div>
             <div class="body">
                </div>
@@ -28,33 +27,6 @@ function CleanOverlay(data, i) {
             </div>
         </div>
     </div>`;
-
-    //------------- 삽질 추가 -------------//
-
-    // var wrap = document.createElement('div');
-    // wrap.className = 'wrap';
-
-    // var info = document.createElement('div');
-    // info.className = 'info';
-
-    // wrap.appendChild(info);
-
-    // var title = document.createElement('div');
-    // title.className = "title";
-    // title.innerText = "시발";
-    // //var sometext = document.createTextNode("추가된거");
-
-    // //title.appendChild(sometext);
-    // //info.appendChild(title);
-
-    // var close = document.createElement('button');
-    // close.innerHTML = '닫기';
-    // close.onclick = closeOverlay();
-
-    // title.appendChild(close);
-    // overlay.setContent(title);
-
-    //------------- 마무리 -------------//
     return clean;
 }
 
