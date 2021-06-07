@@ -12,5 +12,4 @@ export default function GetToday() {
         return '🥡' + '오늘은 플라스틱 버리는 날입니다.'
     else if (dayName == '화' || dayName == '목' || dayName == '토')
         return '📦' + '오늘은 종이 버리는 날입니다.'
-    console.log(dayName);
 }

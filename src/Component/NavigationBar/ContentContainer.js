@@ -9,6 +9,7 @@ export const ContentContainer = React.memo(() => {
     const {data} = useSelector(state => state.getDatas.datas);
     const {text} = useSelector(state => state.keyword);
     const {index, cardData, have} = useSelector(state => state.cardData);
+    const {isToggle} = useSelector(state => state.toggle);
     const dispatch = useDispatch();
 
 
@@ -23,7 +24,7 @@ export const ContentContainer = React.memo(() => {
         try {
             setTimeout(async () =>{
                 await dispatch(getCardData(filterKeyword(data, text), index));
-            }, 2000)
+            }, 1000)
         }
         catch (e) {
             console.log(e);
@@ -31,18 +32,21 @@ export const ContentContainer = React.memo(() => {
     };
 
     useEffect(() => {
-        handleCardData();
-    }, [data, text]);
+        if (isToggle) {
+            handleCardData();
+        }
+    }, [data, text, isToggle]);
 
     return (
         <div >
             <InfiniteScroll
-                className='content-container-wrapper'
+                className={isToggle?'content-container-wrapper': 'content-container-wrapper disable'}
                 dataLength={cardData.length}
-                next={handleCardData}
+                next={isToggle && handleCardData}
                 hasMore={have}
                 loader={<h4>Loading...</h4>}
-                scrollableTarget="content-wrapper"
+                endMessage={<h4>No Data...</h4>}
+                scrollableTarget={isToggle? "content-wrapper": "content-wrapper content-wrapper-disabled"}
             >
                 {
                     cardData.map((i, index) => (

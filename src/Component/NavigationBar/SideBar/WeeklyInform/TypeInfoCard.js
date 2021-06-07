@@ -2,15 +2,15 @@ import React from 'react';
 import styled from "styled-components";
 
 const Container = styled.div`
-    width: 100px;
-    
+    width: 100%;
+    max-width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
-    margin-top: 10px;
+    margin: 15px 0;
     transition: transform .25s cubic-bezier(.7,.98,.86,.98), box-shadow .25s cubic-bezier(.7,.98,.86,.98);
     &:hover {
       transform: scale(1.1);  

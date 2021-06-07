@@ -52,3 +52,27 @@
     align-items: center;
 
 }
+
+@media screen and (max-width: 1300px) {
+    .daily-inform-container {
+        width: 70%;
+        max-width: 500px;
+    }
+
+    .daily-inform-container.daily-inform-header {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .daily-inform-container .daily-inform-header {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+    .daily-inform-container .daily-inform-body .daily-inform-list  {
+        font-size: 12px;
+
+    }
+}

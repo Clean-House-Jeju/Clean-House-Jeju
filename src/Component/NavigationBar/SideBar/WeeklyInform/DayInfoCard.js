@@ -4,7 +4,8 @@ import {dayName} from "../../../../lib/showDataByDate";
 
 const Container = styled.div`
     position: relative;
-    width: 100px;
+    max-width: 200px;
+    width: 80%;
     margin: 20px 8px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
@@ -70,9 +71,9 @@ const Text = styled.div`
     align-items: center;
 `
 
-export default function DayInfoCard({img, day, type}) {
+export default function DayInfoCard({name, img, day, type}) {
     return (
-        <Container day={day} >
+        <Container className={name} day={day} >
             <Header day={day} >
                 <Text>
                     {day}

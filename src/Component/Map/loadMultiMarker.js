@@ -9,7 +9,6 @@ const { kakao } = window;
 export default function LoadMultiMarker(map, data) {
     console.log(data);
 
-
     var Cleanmarkers = [];
     var Recyclemarkers = [];
 
@@ -66,6 +65,7 @@ export default function LoadMultiMarker(map, data) {
         if (data[i].type == 'clean') {
             var overlay = new kakao.maps.CustomOverlay({
                 content: clean,
+
                 map: map,
                 position: marker.getPosition(),
                 clickable: true
@@ -110,6 +110,7 @@ export default function LoadMultiMarker(map, data) {
             });
         }
 
+
         overlay.setMap(null);
 
         kakao.maps.event.addListener(
@@ -128,6 +129,7 @@ export default function LoadMultiMarker(map, data) {
 
     function closeOverlay(map, marker, overlay) {
 
+
         return function () {
             overlay.setMap(null);
         }
@@ -135,6 +137,8 @@ export default function LoadMultiMarker(map, data) {
     }
 
     var overlaylive = null;
+
+
 
     function MarkerClick(map, marker, overlay) {
 
@@ -154,11 +158,10 @@ export default function LoadMultiMarker(map, data) {
 
 
 
+
     // 클린하우스 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
     Cleanclusterer.addMarkers(Cleanmarkers);
     Recycleclusterer.addMarkers(Recyclemarkers);
 
 }
-
-
 

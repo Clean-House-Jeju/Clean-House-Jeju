@@ -1,3 +1,16 @@
 .content-container-wrapper::-webkit-scrollbar {
     display: none;
 }
+
+.content-container-wrapper.disable {
+    visibility: hidden;
+}
+
+h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bolder;
+    color: #5fc69a;
+}
