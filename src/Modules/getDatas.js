@@ -1,7 +1,6 @@
 import * as api from "../lib/api";
 import GetDistanceFromLatLonInKm from "../Component/Map/GetDistanceFromLatLonInKm";
 import currentLatLon from "../Component/Map/currentLatLon";
-import { location } from "../Component/Map/currentLatLon";
 
 
 const GET_DATAS = 'handleData/GET_DATA';

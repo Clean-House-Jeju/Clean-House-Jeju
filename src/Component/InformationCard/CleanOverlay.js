@@ -3,6 +3,9 @@ import './InformCss/CustomOverlay.css';
 import GetToday from './GetToday';
 import closeOverlay from '../Map/loadMultiMarker';
 import { Overlay } from 'react-bootstrap';
+
+
+
 function CleanOverlay(data, i) {
 
     let today = new Date();
