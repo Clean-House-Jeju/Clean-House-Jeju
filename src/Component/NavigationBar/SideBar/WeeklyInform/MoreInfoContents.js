@@ -19,6 +19,11 @@ const Title = styled.div`
 
 const Body = styled.div`
     font-size: 15px;
+    
+    @media screen and (max-width: 1800px) {
+        line-height: 20px;
+    }
+
 `
 
 export default function MoreInfoContents({title, body}) {

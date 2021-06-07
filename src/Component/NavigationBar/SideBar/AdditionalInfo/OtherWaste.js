@@ -29,8 +29,8 @@ export default function OtherWaste() {
             <Card style={{ width: '100%', margin: '5px 0', borderRadius: '5px' }}>
                 <Card.Header>건전지</Card.Header>
                 <Card.Body>
-                    <Card.Title style={{fontWeight: 'bold'}}>주요지점에 비치된 폐전지 수거함에 배출</Card.Title>
-                    <Card.Text>
+                    <Card.Title style={{fontWeight: 'bold', lineHeight: '25px'}}>주요지점에 비치된 폐전지 수거함에 배출</Card.Title>
+                    <Card.Text style={{lineHeight: '25px'}}>
                         시청, 읍면사무소, 학교, 병원, 아파트 등
                     </Card.Text>
                 </Card.Body>
@@ -40,12 +40,12 @@ export default function OtherWaste() {
                 <Card.Header>형광등</Card.Header>
                 <ListGroup className='list-group' variant="flush">
                     <ListGroup.Item>1. 포장재를 벗겨, 깨지지 않게 지정된 폐형광등 분리수거함에 배출</ListGroup.Item>
-                    <ListGroup.Item>2. 가까운 곳에 설치된 전용 회수함에 배출</ListGroup.Item>
+                    <ListGroup.Item>2. 근처에 설치된 전용 회수함에 배출</ListGroup.Item>
                     <ListGroup.Item>3. 새로운 형광등을 구입할 때, 폐형광등을 판매점에 배출</ListGroup.Item>
                 </ListGroup>
             </Card>
 
-            <Card style={{ width: '100%', margin: '5px 0', borderRadius: '5px' }} body>더 자세히 보고싶다면 👉 <a href="https://www.jejusi.go.kr/recycle/intro/division/etcdiv.do">제주시재활용마당</a></Card>
+            <Card style={{ width: '100%', margin: '5px 0', borderRadius: '5px', lineHeight: '25px'}} body>더 자세히 보고싶다면 👉 <a href="https://www.jejusi.go.kr/recycle/intro/division/etcdiv.do">제주시재활용마당</a></Card>
         </div>
     );
 }
