@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import filterKeyword from "../Map/filterKeyword";
 import { getCardData } from "../../Modules/cardData";
 import CleanOverlayCard from '../InformationCard/CleanOverlayCard';
+import RecycleOverlayCard from '../InformationCard/RecycleOverlayCard';
+import LocationCard from './LocationCard';
+
 
 export const ContentContainer = React.memo(() => {
     const { data } = useSelector(state => state.getDatas.datas);
@@ -13,13 +16,6 @@ export const ContentContainer = React.memo(() => {
     const { isToggle } = useSelector(state => state.toggle);
     const dispatch = useDispatch();
 
-
-    const style = {
-        height: 100,
-        border: "1px solid green",
-        margin: 6,
-        padding: 8
-    };
 
     const handleCardData = () => {
         try {
@@ -52,9 +48,12 @@ export const ContentContainer = React.memo(() => {
                 {
                     cardData.map((i, index) => (
                         <div key={index}>
-                            <CleanOverlayCard data={i} />
+                            {i.type === "clean" ? (
+                                <CleanOverlayCard data={i} />
+                            ) : (
+                                <RecycleOverlayCard data={i} />
+                            )}
                         </div>
-
                     ))
                 }
             </InfiniteScroll>
