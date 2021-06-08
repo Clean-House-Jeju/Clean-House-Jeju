@@ -1,0 +1,62 @@
+.item
+{   height: 150px;
+    margin: 1px;
+    padding: 8px;
+    border-bottom:1px solid #888;}
+
+.item .Cleaninfo
+{  
+    overflow: hidden;
+    background: #fff;
+}
+
+.Cleaninfo .Cleantitle
+{   
+    padding: 5px 0 0 10px;
+    height: 30px;
+    background: #20c997;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.Cleaninfo.Cleandesc 
+{   
+    margin: 15px 0 0 0px;
+    position: relative;
+    height: 75px;
+}
+.Cleandesc .Cmarkerbg {
+    float:left;
+    width:50px;
+    height: 40px;
+    margin:15px 20px 0px 15px;
+    background:url(../../../image/Clean_house.svg) no-repeat;}
+
+.Cleandesc .Clocation
+{   
+    font-size: 18px;
+    margin: 10px 0px 0 0px;
+    padding-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.Cleandesc .Crunningtime
+{   
+    margin: 30px 0 0 0px;
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+}
+
+
+.Cleandesc .link 
+{   
+    margin: 15px 0 0 0px;
+    font-size: 5px;
+    color: red;
+}
