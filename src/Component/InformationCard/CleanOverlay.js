@@ -4,16 +4,16 @@ import GetToday from './GetToday';
 import closeOverlay from '../Map/loadMultiMarker';
 import { Overlay } from 'react-bootstrap';
 
+let today = new Date();
+let hours = today.getHours(); // 시간
+let runningTime = '운영중';
+if (3 < hours && hours < 15)
+    runningTime = '운영마감'
+var i = 0;
 
 
 function CleanOverlay(data, i) {
 
-    let today = new Date();
-    let hours = today.getHours(); // 시간
-    let runningTime = '운영중';
-    if (3 < hours && hours < 15)
-        runningTime = '운영마감'
-    var i = 0;
 
     var clean = `<div class="wrap">
         <div class="info">

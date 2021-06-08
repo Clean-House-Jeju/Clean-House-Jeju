@@ -4,7 +4,6 @@ import './ContentContainer.css'
 import { useDispatch, useSelector } from "react-redux";
 import filterKeyword from "../Map/filterKeyword";
 import { getCardData } from "../../Modules/cardData";
-import LocationCard from './LocationCard';
 import CleanOverlayCard from '../InformationCard/CleanOverlayCard';
 
 export const ContentContainer = React.memo(() => {
@@ -52,7 +51,7 @@ export const ContentContainer = React.memo(() => {
             >
                 {
                     cardData.map((i, index) => (
-                        <div style={style} key={index}>
+                        <div key={index}>
                             <CleanOverlayCard data={i} />
                         </div>
 
