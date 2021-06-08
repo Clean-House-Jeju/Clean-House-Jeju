@@ -6,9 +6,9 @@ import { Overlay } from 'react-bootstrap';
 
 let today = new Date();
 let hours = today.getHours(); // 시간
-let runningTime = '운영중';
+let runningTime = '운영중 ✅';
 if (3 < hours && hours < 15)
-    runningTime = '운영마감'
+    runningTime = '운영마감 💤'
 var i = 0;
 
 

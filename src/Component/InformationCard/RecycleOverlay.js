@@ -8,10 +8,10 @@ function RecycleOverlay(data, i) {
     timeEnd = parseInt(timeEnd[0]);
     let timeStart = data[i].timeStart.split(':');
     timeStart = parseInt(timeStart[0]);
-    let runningTime = '운영마감';
+    let runningTime = '운영마감 💤';
     let Time = data[i].time
     if (timeStart < hours && hours < timeEnd)
-        runningTime = `운영중  (${Time})`
+        runningTime = `운영중 ✅  (${Time})`
 
     var recycle = `<div class="wrap">
             <div class="info">

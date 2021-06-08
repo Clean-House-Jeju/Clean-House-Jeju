@@ -6,8 +6,7 @@ import filterKeyword from "../Map/filterKeyword";
 import { getCardData } from "../../Modules/cardData";
 import CleanOverlayCard from '../InformationCard/CleanOverlayCard';
 import RecycleOverlayCard from '../InformationCard/RecycleOverlayCard';
-import LocationCard from './LocationCard';
-import LoadMultiMarker from '../Map/loadMultiMarker';
+
 
 
 export const ContentContainer = React.memo(() => {
