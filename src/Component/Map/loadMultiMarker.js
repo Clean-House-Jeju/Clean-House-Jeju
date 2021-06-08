@@ -165,10 +165,11 @@ export default function LoadMultiMarker(map, data) {
 
 
 
-
+    console.log(Recyclemarkers)
     // 클린하우스 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
     Cleanclusterer.addMarkers(Cleanmarkers);
-    Recycleclusterer.addMarkers(Recyclemarkers);
+    if (Recyclemarkers[0])
+        Recycleclusterer.addMarkers(Recyclemarkers);
 
 }
 
