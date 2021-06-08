@@ -144,8 +144,7 @@ export default function LoadMultiMarker(map, data) {
     }
 
     var overlaylive = null;
-
-
+    var serchedData;
 
     function MarkerClick(map, marker, overlay) {
 
@@ -159,17 +158,16 @@ export default function LoadMultiMarker(map, data) {
             map.setCenter(MarkerlocPosition);
             overlay.setMap(map, marker)
             overlaylive = overlay;
+            serchedData = marker.fb
 
         };
     }
 
-
-
-    console.log(Recyclemarkers)
     // 클린하우스 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
     Cleanclusterer.addMarkers(Cleanmarkers);
     if (Recyclemarkers[0])
         Recycleclusterer.addMarkers(Recyclemarkers);
 
+    return serchedData
 }
 
