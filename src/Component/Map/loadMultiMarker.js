@@ -11,7 +11,6 @@ export default function LoadMultiMarker(map, data) {
 
     var Cleanmarkers = [];
     var Recyclemarkers = [];
-    var dataSerched;
 
     for (let i = 0; i < data.length; i++) {
 
