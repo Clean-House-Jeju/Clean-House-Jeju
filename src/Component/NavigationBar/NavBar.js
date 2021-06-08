@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './NavBar.css';
 import * as FaIcons from 'react-icons/fa';
+import {GrPowerReset} from 'react-icons/gr';
 import SideBar from './SideBar/SideBar';
 import {useDispatch, useSelector} from "react-redux";
 import ContentContainer from "./ContentContainer";
@@ -29,6 +30,13 @@ const NavBar = React.memo(() => {
         dispatch(setKeyword(input));
         dispatch(initCardData());
         dispatch(openToggle());
+        setInput('');
+    }
+
+    const onReset = () => {
+        dispatch(initCardData());
+        dispatch(setKeyword(input));
+        dispatch(closeToggle());
     }
 
     const onChange = (e) => {
@@ -51,9 +59,10 @@ const NavBar = React.memo(() => {
                         className='keyword-input'
                         placeholder='키워드를 입력해주세요'
                         onChange={e => onChange(e)}
+                        value={input}
                     />
                 </form>
-
+                <GrPowerReset onClick={onReset}/>
                 <SideBar open={open} onClick={onClick}/>
             </div>
 

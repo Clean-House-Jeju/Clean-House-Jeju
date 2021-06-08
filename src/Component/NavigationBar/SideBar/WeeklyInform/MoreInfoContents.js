@@ -25,12 +25,14 @@ const Body = styled.div`
     }
 
 `
-
-export default function MoreInfoContents({title, body}) {
+const MoreInfoContents = React.memo(({title, body}) => {
     return (
         <Container>
             <Title>{title}</Title>
             <Body>{body}</Body>
         </Container>
     );
-}
+});
+
+export default MoreInfoContents;
+

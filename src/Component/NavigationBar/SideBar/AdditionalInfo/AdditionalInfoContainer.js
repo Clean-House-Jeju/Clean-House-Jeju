@@ -3,7 +3,7 @@ import {Accordion, AccordionItem, AccordionItemHeading, AccordionItemPanel, Acco
 import './AdditionalInfoContainer.css';
 import {list} from "./infoList";
 
-export default function AdditionalInfoContainer() {
+const AdditionalInfoContainer = React.memo(() => {
     const style = {
         position: 'absolute',
         top: '5px',
@@ -32,4 +32,6 @@ export default function AdditionalInfoContainer() {
             }
         </Accordion>
     );
-}
+});
+
+export default AdditionalInfoContainer;

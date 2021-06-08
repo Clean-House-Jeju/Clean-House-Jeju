@@ -41,7 +41,8 @@
     margin: 0 10px;
 }
 .menu-container .search-form {
-    width: 80%;
+    width: 70%;
+    margin-right: 10px;
 }
 
 .menu-container .keyword-input {

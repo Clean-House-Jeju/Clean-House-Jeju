@@ -4,7 +4,7 @@ import table from "../../../../lib/img/table.svg";
 import './WasteAppliances.css';
 
 
-export default function WasteAppliances() {
+const WasteAppliances = React.memo(() => {
     return (
         <div className='waste-appliances-container'>
             <img className='waste-appliances-table' src={table} alt=""/>
@@ -26,4 +26,6 @@ export default function WasteAppliances() {
             </Card>
         </div>
     );
-}
+});
+
+export default WasteAppliances;

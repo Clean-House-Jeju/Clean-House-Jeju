@@ -71,7 +71,7 @@ const Text = styled.div`
     align-items: center;
 `
 
-export default function DayInfoCard({name, img, day, type}) {
+const DayInfoCard = React.memo(({name, img, day, type}) => {
     return (
         <Container className={name} day={day} >
             <Header day={day} >
@@ -85,4 +85,6 @@ export default function DayInfoCard({name, img, day, type}) {
             </Body>
         </Container>
     );
-}
+});
+
+export default DayInfoCard;

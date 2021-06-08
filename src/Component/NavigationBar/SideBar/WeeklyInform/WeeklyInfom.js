@@ -57,7 +57,7 @@ const MoreInfo = styled.div`
     padding: 5px 20px; 
 `
 
-export default function WeeklyInform() {
+const WeeklyInform = React.memo(() => {
     const [index, setIndex] = useState(0);
     const toggleState = (index) => {
         setIndex(index);
@@ -87,4 +87,6 @@ export default function WeeklyInform() {
 
         </Container>
     );
-}
+});
+
+export default WeeklyInform;

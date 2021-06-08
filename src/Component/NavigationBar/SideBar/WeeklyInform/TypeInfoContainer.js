@@ -22,7 +22,7 @@ const Container = styled.div`
     grid-gap: 10px;
 `
 
-export default function TypeInfoContainer() {
+const TypeInfoContainer = React.memo(() => {
     return (
         <Wrapper>
             <Container>
@@ -34,4 +34,6 @@ export default function TypeInfoContainer() {
             </Container>
         </Wrapper>
     );
-}
+})
+
+export default TypeInfoContainer

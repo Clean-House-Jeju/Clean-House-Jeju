@@ -3,7 +3,7 @@ import './ContactForm.css';
 import {Card} from "react-bootstrap";
 import {list} from "./ContactData";
 
-export default function ContactForm() {
+const ContactForm = React.memo(() =>{
     return (
         <Card className='contact-form'>
             <Card.Body className='contact-form-card-body'>
@@ -20,4 +20,6 @@ export default function ContactForm() {
             </Card.Body>
         </Card>
     );
-}
+});
+
+export default ContactForm;

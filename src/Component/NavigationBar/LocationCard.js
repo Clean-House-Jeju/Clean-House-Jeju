@@ -1,7 +1,7 @@
 import React from "react";
 import './LocationCard.css';
 
-export default function LocationCard({data}) {
+const LocationCard = React.memo(({data}) => {
     return (
         <div className='location-card-container'>
             <p>
@@ -9,4 +9,6 @@ export default function LocationCard({data}) {
             </p>
         </div>
     );
-}
+});
+
+export default LocationCard;

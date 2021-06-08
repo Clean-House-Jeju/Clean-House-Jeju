@@ -55,7 +55,7 @@ const Type = styled.div`
 `
 
 
-export default function TypeInfoCard({img, day, type}) {
+const TypeInfoCard = React.memo(({img, day, type}) =>  {
     return (
         <Container>
             <Header>{day}</Header>
@@ -67,4 +67,6 @@ export default function TypeInfoCard({img, day, type}) {
             </Content>
         </Container>
     );
-}
+});
+
+export default TypeInfoCard;

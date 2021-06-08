@@ -2,7 +2,7 @@ import React from "react";
 import {Card, ListGroup} from "react-bootstrap";
 import './OtherWaste.css';
 
-export default function OtherWaste() {
+const OtherWaste = React.memo(() => {
     return (
         <div style={{width: '100%'}}>
             <Card style={{ width: '100%', margin: '5px 0', borderRadius: '5px' }}>
@@ -48,4 +48,6 @@ export default function OtherWaste() {
             <Card style={{ width: '100%', margin: '5px 0', borderRadius: '5px', lineHeight: '25px'}} body>더 자세히 보고싶다면 👉 <a href="https://www.jejusi.go.kr/recycle/intro/division/etcdiv.do">제주시재활용마당</a></Card>
         </div>
     );
-}
+});
+
+export default OtherWaste;

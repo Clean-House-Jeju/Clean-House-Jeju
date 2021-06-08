@@ -2,7 +2,7 @@ import React from 'react';
 import {recycleData} from "../../../../lib/showDataByDate";
 import DayInfoCard from "./DayInfoCard";
 import './DayInfoContainer.css';
-export default function DayInfoContainer() {
+const DayInfoContainer = React.memo(() => {
 
     return (
         <div className='day-info-container'>
@@ -11,4 +11,6 @@ export default function DayInfoContainer() {
             }
         </div>
     );
-}
+})
+
+export default DayInfoContainer;

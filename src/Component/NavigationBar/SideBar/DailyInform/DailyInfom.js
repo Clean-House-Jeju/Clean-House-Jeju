@@ -2,7 +2,7 @@ import React from 'react';
 import './DailyInform.css';
 import {filterByDate} from "../../../../lib/showDataByDate";
 
-export default function DailyInform() {
+const DailyInform = React.memo(() => {
 
     const recycleType = filterByDate();
 
@@ -18,4 +18,6 @@ export default function DailyInform() {
             </div>
         </div>
     );
-}
+});
+
+export default DailyInform;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from "react-bootstrap";
 import './Dumpster.css';
 
-export default function Dumpster() {
+const Dumpster = React.memo(() => {
 
     return (
         <div className='dumpster-container'>
@@ -31,4 +31,6 @@ export default function Dumpster() {
             </Card>
         </div>
     )
-}
+});
+
+export default Dumpster;
