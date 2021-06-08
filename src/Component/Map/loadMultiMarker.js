@@ -39,6 +39,7 @@ export default function LoadMultiMarker(map, data) {
                 position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
                 title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image: markerImage,// 마커 이미지
+                zIndex: 5,
                 clickable: true
             });
 
@@ -50,6 +51,7 @@ export default function LoadMultiMarker(map, data) {
                 position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
                 title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image: markerImage,// 마커 이미지
+                zIndex: 5,
                 clickable: true
             });
             Recyclemarkers.push(marker);
@@ -65,7 +67,7 @@ export default function LoadMultiMarker(map, data) {
         if (data[i].type == 'clean') {
             var overlay = new kakao.maps.CustomOverlay({
                 content: clean,
-
+                zIndex: 8,
                 map: map,
                 position: marker.getPosition(),
                 clickable: true
@@ -74,8 +76,10 @@ export default function LoadMultiMarker(map, data) {
         else if (data[i].type == 'recycle') {
             var overlay = new kakao.maps.CustomOverlay({
                 content: recycle,
+                zIndex: 9,
                 map: map,
-                position: marker.getPosition()
+                position: marker.getPosition(),
+                clickable: true
             });
         }
 
@@ -87,6 +91,7 @@ export default function LoadMultiMarker(map, data) {
                 gridSize: 100, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
                 averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
                 minLevel: 5, // 클러스터 할 최소 지도 레벨 
+                zIndex: 3,
                 texts: " ",
                 styles: [{
                     width: '53px', height: '52px',
@@ -101,6 +106,7 @@ export default function LoadMultiMarker(map, data) {
                 gridSize: 150, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
                 averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
                 minLevel: 5,
+                zIndex: 3,
                 texts: " ",
                 styles: [{
                     width: '53px', height: '52px',
@@ -137,8 +143,7 @@ export default function LoadMultiMarker(map, data) {
     }
 
     var overlaylive = null;
-
-
+    var serchedData;
 
     function MarkerClick(map, marker, overlay) {
 
@@ -152,16 +157,16 @@ export default function LoadMultiMarker(map, data) {
             map.setCenter(MarkerlocPosition);
             overlay.setMap(map, marker)
             overlaylive = overlay;
+            serchedData = marker.fb
 
         };
     }
 
-
-
-
     // 클린하우스 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
     Cleanclusterer.addMarkers(Cleanmarkers);
-    Recycleclusterer.addMarkers(Recyclemarkers);
+    if (Recyclemarkers[0])
+        Recycleclusterer.addMarkers(Recyclemarkers);
 
+    return serchedData
 }
 

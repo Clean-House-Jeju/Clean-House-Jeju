@@ -6,7 +6,7 @@ import filterKeyword from "../Map/filterKeyword";
 import { getCardData } from "../../Modules/cardData";
 import CleanOverlayCard from '../InformationCard/CleanOverlayCard';
 import RecycleOverlayCard from '../InformationCard/RecycleOverlayCard';
-import LocationCard from './LocationCard';
+
 
 
 export const ContentContainer = React.memo(() => {
@@ -33,6 +33,8 @@ export const ContentContainer = React.memo(() => {
             handleCardData();
         }
     }, [data, text, isToggle]);
+
+
 
     return (
         <div >

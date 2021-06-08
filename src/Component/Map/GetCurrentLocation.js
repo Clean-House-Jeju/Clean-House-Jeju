@@ -15,7 +15,7 @@ export default function GetCurrentLocation(map, text) {
             const lon = position.coords.longitude; // 경도
 
             const locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+                message = '<div style=" padding-top: 5px; padding-left: 25px;  height: 25px; width:150px">📍 현재 위치  </div>'; // 인포윈도우에 표시될 내용입니다
 
             // 마커와 인포윈도우를 표시합니다
             displayMarker(locPosition, message);
@@ -32,10 +32,14 @@ export default function GetCurrentLocation(map, text) {
 
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다
     function displayMarker(locPosition, message) {
-
+        var imageSrc = "현재마커.svg"
+        let imageSize = new kakao.maps.Size(34, 46);
+        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
         // 마커를 생성합니다
         const marker = new kakao.maps.Marker({
             map: map,
+            zIndex: 8,
+            image: markerImage,
             position: locPosition
         });
 
@@ -45,9 +49,8 @@ export default function GetCurrentLocation(map, text) {
         // 인포윈도우를 생성합니다
         const infowindow = new kakao.maps.InfoWindow({
             content: iwContent,
+            zIndex: 8,
             removable: iwRemoveable
-
-
         });
 
         if (text === "") {
