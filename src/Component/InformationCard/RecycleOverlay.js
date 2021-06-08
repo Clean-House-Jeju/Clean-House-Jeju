@@ -27,7 +27,7 @@ function RecycleOverlay(data, i) {
                         <div class="runtime">${runningTime}</div>
                         <div>
                         <div class = 'far'>거리: 
-                        <div class = 'distance'>${data[i].distance}km</div></div><div><a href="mailto:dndb3599@gmail.com?subject=신고">⚠️ 신고</a></div>
+                        <div class = 'distance'>${data[i].distance} Km</div></div><div class="link"><a href="mailto:dndb3599@gmail.com?subject=신고">⚠️ 신고</a></div>
                     </div>
                 </div>
             </div>

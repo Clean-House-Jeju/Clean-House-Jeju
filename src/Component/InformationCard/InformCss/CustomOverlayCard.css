@@ -72,33 +72,33 @@
     position: relative;
     overflow: hidden;
 }
-.infoC .desc 
+.infoC .descC 
 {   position: relative;
     margin: 15px 0px 0px 5px;
     height: 75px;
     padding-left:  100px;
 }
 
-.desc .location
+.descC .location
 {   
-    font-size: 14px;
-    margin-bottom: 3px;
+    font-size: 13px;
+    margin-bottom: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.desc .runtime 
+.descC .runtime 
 {   
     font-size: 11px;
     color: #888;
     margin-top: -2px;
 }
-.desc .far
+.descC .far
 {    
     font-size: 11px;
     display: inline;
 }
-.desc .distance
+.descC .distance
 {   
     font-size: 11px;
     color: rgb(18, 15, 202);
@@ -106,7 +106,7 @@
     display: inline;
 }
 
-.infoC .link 
+.infoC .linkC 
 {   
     margin-left: 140px;
     font-size: 10px;

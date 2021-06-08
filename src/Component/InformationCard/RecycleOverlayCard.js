@@ -23,12 +23,12 @@ function RecycleOverlayCard({ data }, { i }) {
                     <div className="img">
                         <img src="recycle_center.svg" width={73} height={70} />
                     </div>
-                    <div className="desc">
+                    <div className="descC">
                         <div className="location"> {data.location}</div>
                         <div className="runtime"> {runningTime}</div>
                         <div>
                             <div className="far">거리:
-                    <div className="distance">{data.distance} Km</div></div><div className="link"><a href="mailto:dndb3599@gmail.com?subject=신고">⚠️ 신고</a></div>
+                    <div className="distance">{data.distance} Km</div></div><div className="linkC"><a href="mailto:dndb3599@gmail.com?subject=신고">⚠️ 신고</a></div>
                         </div>
                     </div>
                 </div>
