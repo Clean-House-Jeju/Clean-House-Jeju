@@ -36,6 +36,7 @@ export default function GetCurrentLocation(map, text) {
         // 마커를 생성합니다
         const marker = new kakao.maps.Marker({
             map: map,
+            zIndex: 8,
             position: locPosition
         });
 
@@ -45,6 +46,7 @@ export default function GetCurrentLocation(map, text) {
         // 인포윈도우를 생성합니다
         const infowindow = new kakao.maps.InfoWindow({
             content: iwContent,
+            zIndex: 8,
             removable: iwRemoveable
 
 
