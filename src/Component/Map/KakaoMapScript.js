@@ -3,18 +3,23 @@ import loadMultiMarker from "./loadMultiMarker";
 import React from 'react';
 const { kakao } = window;
 
-export default function KakaoMapScript(data) {
+export default function KakaoMapScript(data, text) {
 
     const container = document.getElementById('myMap');
+
+    while (container.hasChildNodes()) {
+
+        container.removeChild(container.firstChild);
+    }
     const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3
+        center: new kakao.maps.LatLng(data[0] === undefined ? 33.450701 : data[0].latitude, data[0] === undefined ? 126.570667 : data[0].longitude),
+        level: text === "" ? 3 : 7
     };
     const map = new kakao.maps.Map(container, options);
 
-    GetCurrentLocation(map);
-    if (data !== null && data.length > 0){
+
+    GetCurrentLocation(map, text);
+    if (data !== null && data.length > 0) {
         loadMultiMarker(map, data);
     }
-
 }

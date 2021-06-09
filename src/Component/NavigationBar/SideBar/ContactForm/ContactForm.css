@@ -1,0 +1,31 @@
+.contact-form.card {
+    flex: 1;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.contact-form-card-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1870px) {
+    .contact-form-card-body {
+        flex-direction: column;
+    }
+    .contact-form-card-content:first-child {
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .contact-form-card-body {
+        flex-direction: column;
+    }
+    .contact-form-card-content:first-child {
+        margin-bottom: 8px;
+    }
+}

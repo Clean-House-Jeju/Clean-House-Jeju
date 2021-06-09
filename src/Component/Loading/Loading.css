@@ -1,0 +1,84 @@
+.loading-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #eee;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.card {
+    width: 300px;
+    background: white;
+    border-radius: 20px;
+
+    margin:  0;
+}
+
+.card .header {
+    width: 100%;
+    background: #5fc69a;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.card .icon-area {
+    padding: 30px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .text-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 10px 0;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card .icon-area > img {
+    width: 80px;
+    height: 80px;
+}
+
+
+
+/*.card .header .header-text {*/
+/*    margin: 5px 0;*/
+/*}*/
+
+.spin {
+    width: 50px;
+    height: 50px;
+    border: 4px solid white;
+    border-bottom: 4px solid transparent;
+    border-radius: 50%;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
