@@ -86,7 +86,9 @@ This application is Copyright © (owner name). All rights reserved.
 <br/><br/>
 The following sets forth attribution notices for third party software that may be contained in this application.
 <br/><br/>
-@testing-library/user-event
+<h4>
+    @testing-library/user-event
+        </h4>
 <br/><br/>
 https://github.com/testing-library/user-event
 <br/><br/>
@@ -94,7 +96,9 @@ Copyright 2020 Giorgio Polvara
 <br/><br/>
 MIT License
 <br/><br/>
-axios
+<h4>
+    
+   axios     </h4>
 <br/><br/>
 https://github.com/axios/axios
 <br/><br/>
@@ -102,7 +106,9 @@ Copyright 2014-present Matt Zabriskie
 <br/><br/>
 MIT License
 <br/><br/>
-Bootstrap
+<h4>
+    Bootstrap
+        </h4>
 <br/><br/>
 https://github.com/twbs/bootstrap/
 <br/><br/>
@@ -112,7 +118,9 @@ Copyright 2011-2017 The Bootstrap Authors
 <br/><br/>
 MIT License
 <br/><br/>
-Create React App
+<h4>
+    Create React App
+        </h4>
 <br/><br/>
 https://github.com/facebook/create-react-app
 <br/><br/>
@@ -120,7 +128,7 @@ Copyright 2013-present, Facebook, Inc.
 <br/><br/>
 MIT License
 <br/><br/>
-Facebook React
+       <h4>Facebook React</h4>
 <br/><br/>
 https://github.com/facebook/react
 <br/><br/>
@@ -128,7 +136,9 @@ Copyright 2013-present, Facebook, Inc.
 <br/><br/>
 MIT License
 <br/><br/>
-jest-dom
+        <h4>
+            jest-dom
+        </h4>
 <br/><br/>
 https://github.com/testing-library/jest-dom
 <br/><br/>
@@ -136,7 +146,9 @@ Copyright 2017 Kent C. Dodds
 <br/><br/>
 MIT License
 <br/><br/>
-Material-UI
+        <h4>
+            Material-UI
+        </h4>
 <br/><br/>
 https://github.com/mui-org/material-ui
 <br/><br/>
@@ -144,7 +156,9 @@ Copyright 2014 Call-Em-All
 <br/><br/>
 MIT License
 <br/><br/>
-React Icons
+        <h4>
+            React Icons
+        </h4>
 <br/><br/>
 https://github.com/react-icons/react-icons
 <br/><br/>
@@ -152,7 +166,7 @@ Copyright 2018 kamijin_fanta
 <br/><br/>
 MIT License
 <br/><br/>
-React Redux
+        <h4>React Redux</h4>
 <br/><br/>
 https://github.com/reduxjs/react-redux
 <br/><br/>
@@ -160,7 +174,9 @@ Copyright 2015-present Dan Abramov
 <br/><br/>
 MIT License
 <br/><br/>
-React Testing Library
+        <h4>
+            React Testing Library
+        </h4>
 <br/><br/>
 https://github.com/testing-library/react-testing-library
 <br/><br/>
@@ -168,13 +184,17 @@ Copyright 2017 Kent C. Dodds
 <br/><br/>
 MIT License
 <br/><br/>
-react-accessible-accordion
+        <h4>
+            react-accessible-accordion
+        </h4>
 <br/><br/>
 https://github.com/springload/react-accessible-accordion
 <br/><br/>
 MIT License
 <br/><br/>
-React-Bootstrap
+        <h4>
+            React-Bootstrap
+        </h4>
 <br/><br/>
 https://github.com/react-bootstrap/react-bootstrap
 <br/><br/>
@@ -182,7 +202,9 @@ Copyright 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
 <br/><br/>
 MIT License
 <br/><br/>
-react-infinite-scroll-component
+        <h4>
+            react-infinite-scroll-component
+        </h4>
 <br/><br/>
 https://github.com/ankeetmaini/react-infinite-scroll-component
 <br/><br/>
@@ -190,7 +212,9 @@ Copyright Ankeet Maini
 <br/><br/>
 MIT License
 <br/><br/>
-Redux
+        <h4>
+            Redux
+        </h4>
 <br/><br/>
 https://github.com/reduxjs/redux
 <br/><br/>
@@ -198,7 +222,9 @@ Copyright 2015-present Dan Abramov
 <br/><br/>
 MIT License
 <br/><br/>
-Redux DevTools Extension
+        <h4>
+            Redux DevTools Extension
+        </h4>
 <br/><br/>
 https://github.com/zalmoxisus/redux-devtools-extension
 <br/><br/>
@@ -206,7 +232,9 @@ Copyright 2015-present Mihail Diordiev
 <br/><br/>
 MIT License
 <br/><br/>
-Redux Thunk
+        <h4>
+            Redux Thunk
+        </h4>
 <br/><br/>
 https://github.com/reduxjs/redux-thunk
 <br/><br/>
@@ -214,7 +242,9 @@ Copyright 2015-present Dan Abramov
 <br/><br/>
 MIT License
 <br/><br/>
-styled-components
+        <h4>
+            styled-components
+        </h4>
 <br/><br/>
 https://github.com/styled-components/styled-components
 <br/><br/>
@@ -222,7 +252,9 @@ Copyright 2016-present Glen Maddern and Maximilian Stoiber
 <br/><br/>
 MIT License
 <br/><br/>
-styled-reset
+        <h4>
+            styled-reset
+        </h4>
 <br/><br/>
 https://github.com/zacanger/styled-reset
 <br/><br/>
@@ -230,7 +262,9 @@ Copyright Zac Anger
 <br/><br/>
 GNU Lesser General Public License v3.0 or later
 <br/><br/>
-web-vitals
+        <h4>
+            web-vitals
+        </h4>
 <br/><br/>
 https://github.com/GoogleChrome/web-vitals
 <br/><br/>
@@ -238,7 +272,8 @@ Copyright 2020 Google LLC
 <br/><br/>
 Apache License 2.0
 <br/><br/>
-GNU Lesser General Public License v3.0 or later
+       <hr/>
+       <h3>GNU Lesser General Public License v3.0 or later</h3>
 <br/><br/>
 GNU LESSER GENERAL PUBLIC LICENSE
 <br/><br/>
@@ -330,7 +365,8 @@ This version of the GNU Lesser General Public License incorporates the terms and
 <br/><br/>
    If the Library as you received it specifies that a proxy can decide whether future versions of the GNU Lesser General Public License shall apply, that proxy's public statement of acceptance of any version is permanent authorization for you to choose that version for the Library.
 <br/><br/>
-      Apache License 2.0
+       <hr/>
+       <h3>Apache License 2.0</h3>
 <br/><br/>
       Apache License
 <br/><br/>
@@ -411,7 +447,8 @@ See the License for the specific language governing permissions and
 <br/><br/>
       limitations under the License.
 <br/><br/>
-      MIT License
+       <hr/>
+       <h3>MIT License</h3>
 <br/><br/>
 MIT License
 <br/><br/>
