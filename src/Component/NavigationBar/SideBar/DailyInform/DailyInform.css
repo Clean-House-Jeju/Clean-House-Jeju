@@ -1,0 +1,78 @@
+.daily-inform-container {
+
+    width: 80%;
+    border-top: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
+    border-radius: 10px;
+    margin: 10px auto;
+
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.09);
+}
+
+.daily-inform-container .daily-inform-header {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 0;
+    width: 100%;
+    background: #5fc69a;
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.09);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+.daily-inform-container .daily-inform-body {
+
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.daily-inform-container .daily-inform-body > img {
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+.daily-inform-container .daily-inform-body .daily-inform-div-line {
+    height: 50px;
+    border-left: 1px solid #d3d3d3;
+}
+
+.daily-inform-container .daily-inform-body .daily-inform-list {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@media screen and (max-width: 1300px) {
+    .daily-inform-container {
+        width: 70%;
+        max-width: 500px;
+    }
+
+    .daily-inform-container.daily-inform-header {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .daily-inform-container .daily-inform-header {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+    .daily-inform-container .daily-inform-body .daily-inform-list  {
+        font-size: 12px;
+
+    }
+}

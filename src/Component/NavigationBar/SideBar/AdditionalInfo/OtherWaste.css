@@ -1,0 +1,13 @@
+.cloth-list {
+    list-style: circle;
+    margin-left: 25px;
+}
+
+.cloth-list > li {
+    margin-bottom: 10px;
+}
+
+.list-group > * {
+    font-size: 15px;
+    line-height: 25px;
+}

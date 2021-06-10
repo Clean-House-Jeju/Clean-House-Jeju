@@ -1,0 +1,124 @@
+.item
+{   height: 120px;
+    margin-bottom: 4px;
+    padding: 4px;
+    border-bottom:1px solid #888;}
+
+
+.wrap 
+{   position: absolute;
+    left: 0;bottom: 40px;
+    width: 288px;
+    height: 132px;
+    margin-left: -144px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    line-height: 1.5;
+}
+.wrap * {
+    padding: 0;
+    margin: 0;}
+
+.wrap .infoC 
+{   width: 286px;
+    height: 120px;
+    border-radius: 5px;
+    border-bottom: 2px solid #ccc;
+    border-right: 1px solid #ccc;
+    overflow: hidden;
+    background: #fff;
+}
+.wrap .infoC:nth-child(1) 
+{   
+    border: 0;
+    box-shadow: 0px 1px 2px #888;
+}
+.infoC .body 
+{
+    position: relative;
+    overflow: hidden;
+}
+.infoC .img 
+{
+    position: absolute;
+    border-right:  1px solid #ddd;color: #888;
+    top: 6px;
+    left: 10px;
+    right: 10px;
+    width: 84px;
+    height: 70px;
+    padding: 0 0 1px 1px;
+    overflow: hidden;
+}
+.infoC .title 
+{   
+    padding: 5px 0 0 10px;
+    height: 30px;
+    background: #20c997;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.infoC .close:hover 
+{   cursor: pointer;
+}
+.infoC .body 
+{   
+    position: relative;
+    overflow: hidden;
+}
+.infoC .descC 
+{   position: relative;
+    margin: 15px 0px 0px 5px;
+    height: 75px;
+    padding-left:  100px;
+}
+
+.descC .location
+{   
+    font-size: 13px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.descC .runtime 
+{   
+    font-size: 11px;
+    color: #888;
+    margin-top: -2px;
+}
+.descC .far
+{    
+    font-size: 11px;
+    display: inline;
+}
+.descC .distance
+{   
+    font-size: 11px;
+    color: rgb(18, 15, 202);
+    margin-top: -2px;
+    display: inline;
+}
+
+.infoC .linkC 
+{   
+    margin-left: 120px;
+    font-size: 10px;
+    color: #5085BB;
+}
+.info:after 
+{
+    content: '';
+    position: absolute;
+    margin-left: -12px;
+    left: 50%;
+    bottom: 0;
+    width: 22px;
+    height: 12px;
+    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
