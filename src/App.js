@@ -1,18 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Map from "./Component/Map/Map";
 import {Reset} from "styled-reset";
 import {useDispatch, useSelector} from "react-redux";
 import {getInfo} from "./Modules/getDatas";
 import Loading from "./Component/Loading/Loading";
+import currentLatLon from "./Component/Map/currentLatLon";
 
 export default function App() {
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
-
     const dispatch = useDispatch();
+
     useEffect(() => {
-        const fn = async () => {
+        async function fn () {
             try{
-                await dispatch(getInfo());
+                currentLatLon()
+                    .then((location) => dispatch(getInfo(location)))
             } catch (e) {
                 console.log(e);
             }
