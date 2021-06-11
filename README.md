@@ -82,7 +82,7 @@
 <br/><br/>
 <h1>OSS Notice | Clean-House-Jeju</h1>
 <br/><br/>
-This application is Copyright © (owner name). All rights reserved.
+This application is Copyright © (Clean-House-Jeju). All rights reserved.
 <br/><br/>
 The following sets forth attribution notices for third party software that may be contained in this application.
 <br/><br/>
