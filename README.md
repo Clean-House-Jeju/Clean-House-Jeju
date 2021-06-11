@@ -87,6 +87,30 @@ This application is Copyright © (Clean-House-Jeju). All rights reserved.
 The following sets forth attribution notices for third party software that may be contained in this application.
 <br/><br/>
 <h4>
+    제주특별자치도 제주시 클린하우스 정보
+        </h4>
+<br/><br/>
+https://www.data.go.kr/data/15058749/openapi.do
+<br/><br/>
+Copyright DATA.go.kr
+<br/><br/>
+<h4>
+    서귀포시 클린하우스 정보 데이터
+        </h4>
+<br/><br/>
+https://www.data.go.kr/data/15056472/fileData.do
+<br/><br/>
+Copyright DATA.go.kr
+<br/><br/>
+<h4>
+    제주 재활용 도움센터 데이터
+        </h4>
+<br/><br/>
+https://www.jeju.go.kr/nature/environment/recycle.htm 
+<br/><br/>
+Copyright 2019 제주특별자치도. All rights reserved
+<br/><br/>
+<h4>
     @testing-library/user-event
         </h4>
 <br/><br/>
