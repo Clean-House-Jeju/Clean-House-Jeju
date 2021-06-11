@@ -76,7 +76,7 @@
 
 <details>
     <summary><span style="font-size: 20px">
-        라이선스 고지문
+        NOTICE
         </span></summary>
     <div markdown="1">
 <br/><br/>
