@@ -1,27 +1,34 @@
 import * as api from "../lib/api";
 import GetDistanceFromLatLonInKm from "../Component/Map/GetDistanceFromLatLonInKm";
-import currentLatLon from "../Component/Map/currentLatLon";
 
 
 const GET_DATAS = 'handleData/GET_DATA';
 const GET_DATAS_SUCCESS = 'handleData/GET_DATA_SUCCESS';
 const GET_DATAS_FAILURE = 'handleData/GET_DATA_FAILURE';
-const location = {};
 
 
 export const getInfo = (location) => async dispatch => {
     // 요청이 시작됨
-    console.log(location);
     dispatch({ type: GET_DATAS });
+    
     try {
         // API를 호출
         const response = await api.getData();
-        // 성공했을 때
+
+        const data = response.data.map(data => ({
+            ...data,
+            distance: parseFloat(GetDistanceFromLatLonInKm(
+                location.latitude,
+                location.longitude,
+                data.latitude,
+                data.longitude
+            ).toFixed(2))
+        }));
+
         dispatch({
             type: GET_DATAS_SUCCESS,
             payload: {
-                data: response.data,
-                location
+                data
             }
         })
     } catch (e) {
@@ -45,7 +52,7 @@ const initialState = {
 export default function getDatas(state = initialState, action) {
     switch (action.type) {
         case GET_DATAS:
-            currentLatLon(location);
+            
             return {
                 ...state,
                 datas: {
@@ -59,15 +66,7 @@ export default function getDatas(state = initialState, action) {
                 ...state,
                 datas: {
                     loading: false,
-                    data: action.payload.data.map(data => ({
-                        ...data,
-                        distance: parseFloat(GetDistanceFromLatLonInKm(
-                            action.payload.location.latitude,
-                            action.payload.location.longitude,
-                            data.latitude,
-                            data.longitude
-                        ).toFixed(2))
-                    })),
+                    data: action.payload.data,
                     error: null
                 }
             }

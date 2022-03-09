@@ -21,11 +21,10 @@ export default function App() {
             }
         };
         fn();
-    });
+    }, [dispatch]);
 
-    if (loading) return <Loading/>
+    if (loading || !data) return <Loading/>;
     if (error) return <div>에러발생</div>
-    if (!data) return <div>데이터가 없어요</div>;
 
 
   return (

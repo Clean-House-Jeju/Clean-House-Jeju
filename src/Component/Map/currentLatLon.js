@@ -16,12 +16,12 @@ const currentLatLon = () => {
                     }
                 },
                 function (e) {
-                    console.error(e)
+                    console.error(e);
                 },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
+                { 
+                    maximumAge: 15000,
+                    timeout: 30000,
+                    enableHighAccuracy: false
                 }
             );
 
