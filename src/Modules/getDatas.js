@@ -9,8 +9,9 @@ const GET_DATAS_FAILURE = 'handleData/GET_DATA_FAILURE';
 const location = {};
 
 
-export const getInfo = () => async dispatch => {
+export const getInfo = (location) => async dispatch => {
     // 요청이 시작됨
+    console.log(location);
     dispatch({ type: GET_DATAS });
     try {
         // API를 호출
@@ -18,10 +19,14 @@ export const getInfo = () => async dispatch => {
         // 성공했을 때
         dispatch({
             type: GET_DATAS_SUCCESS,
-            payload: response.data
+            payload: {
+                data: response.data,
+                location
+            }
         })
     } catch (e) {
         // 실패했을 떄
+        console.log(e);
         dispatch({
             type: GET_DATAS_FAILURE,
             error: true
@@ -33,12 +38,11 @@ const initialState = {
     datas: {
         loading: false,
         data: null,
-        error: null
+        error: null,
     }
 }
 
 export default function getDatas(state = initialState, action) {
-
     switch (action.type) {
         case GET_DATAS:
             currentLatLon(location);
@@ -47,7 +51,7 @@ export default function getDatas(state = initialState, action) {
                 datas: {
                     loading: true,
                     data: null,
-                    error: null
+                    error: null,
                 }
             }
         case GET_DATAS_SUCCESS:
@@ -55,11 +59,11 @@ export default function getDatas(state = initialState, action) {
                 ...state,
                 datas: {
                     loading: false,
-                    data: action.payload.map(data => ({
+                    data: action.payload.data.map(data => ({
                         ...data,
                         distance: parseFloat(GetDistanceFromLatLonInKm(
-                            location.latitude,
-                            location.longitude,
+                            action.payload.location.latitude,
+                            action.payload.location.longitude,
                             data.latitude,
                             data.longitude
                         ).toFixed(2))

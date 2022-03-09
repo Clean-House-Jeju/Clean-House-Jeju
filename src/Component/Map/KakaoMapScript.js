@@ -17,6 +17,8 @@ export default function KakaoMapScript(data, text) {
     };
     const map = new kakao.maps.Map(container, options);
 
+    if (data[0] === undefined)
+        alert('검색결과가 없습니다.')
 
     GetCurrentLocation(map, text);
     if (data !== null && data.length > 0) {

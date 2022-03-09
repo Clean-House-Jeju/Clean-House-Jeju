@@ -8,8 +8,8 @@ function RecycleOverlayCard({ data }, { i }) {
     timeEnd = parseInt(timeEnd[0]);
     let timeStart = data.timeStart.split(':');
     timeStart = parseInt(timeStart[0]);
-    let runningTime = '운영마감 💤';
-    let Time = data.time
+    let Time = data.time;
+    let runningTime = `운영마감 💤 (${Time})`;
     if (timeStart < hours && hours < timeEnd)
         runningTime = `운영중 ✅  (${Time})`
 
