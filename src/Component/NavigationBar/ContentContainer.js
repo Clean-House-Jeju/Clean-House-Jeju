@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import './ContentContainer.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -17,22 +17,22 @@ export const ContentContainer = React.memo(() => {
     const dispatch = useDispatch();
 
 
-    const handleCardData = () => {
+    const handleCardData = useCallback(() => {
         try {
             setTimeout(async () => {
-                await dispatch(getCardData(filterKeyword(data, text), index));
+                dispatch(getCardData(filterKeyword(data, text), index));
             }, 1000)
         }
         catch (e) {
             console.log(e);
         }
-    };
+    }, [data, dispatch, index, text]);
 
     useEffect(() => {
         if (isToggle) {
             handleCardData();
         }
-    }, [data, text, isToggle]);
+    }, [data, text, isToggle, handleCardData]);
 
 
 

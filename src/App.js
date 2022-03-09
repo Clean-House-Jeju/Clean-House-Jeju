@@ -4,15 +4,18 @@ import {Reset} from "styled-reset";
 import {useDispatch, useSelector} from "react-redux";
 import {getInfo} from "./Modules/getDatas";
 import Loading from "./Component/Loading/Loading";
+import currentLatLon from "./Component/Map/currentLatLon";
 
 export default function App() {
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
-
     const dispatch = useDispatch();
+
     useEffect(() => {
-        const fn = async () => {
+        async function fn () {
             try{
-                await dispatch(getInfo());
+                currentLatLon()
+                    .then((location) => dispatch(getInfo(location)))
+
             } catch (e) {
                 console.log(e);
             }
@@ -20,9 +23,8 @@ export default function App() {
         fn();
     }, [dispatch]);
 
-    if (loading) return <Loading/>
+    if (loading || !data) return <Loading/>;
     if (error) return <div>에러발생</div>
-    if (!data) return <div>데이터가 없어요</div>;
 
 
   return (

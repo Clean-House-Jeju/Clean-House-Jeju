@@ -16,6 +16,12 @@ const NavBar = React.memo(() => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
+    const onRefresh = (text) => {
+            dispatch(setKeyword(text));
+            dispatch(initCardData());
+            dispatch(openToggle());
+    }
+
     const onToggle = () => {
         if (isToggle) {
             dispatch(initCardData());
@@ -25,18 +31,14 @@ const NavBar = React.memo(() => {
         }
     }
 
-    const handleKeyword = (e) => {
+    const handleKeyword = async (e) => {
         e.preventDefault();
-        dispatch(setKeyword(input));
-        dispatch(initCardData());
-        dispatch(openToggle());
-        setInput('');
+        onRefresh(input);
     }
 
-    const onReset = () => {
-        dispatch(initCardData());
-        dispatch(setKeyword(input));
-        dispatch(closeToggle());
+    const onReset = async() => {
+        setInput('');
+        onRefresh('');
     }
 
     const onChange = (e) => {
@@ -62,7 +64,7 @@ const NavBar = React.memo(() => {
                         value={input}
                     />
                 </form>
-                <GrPowerReset onClick={onReset}/>
+                <GrPowerReset className='reset-button' onClick={onReset}/>
                 <SideBar open={open} onClick={onClick}/>
             </div>
 

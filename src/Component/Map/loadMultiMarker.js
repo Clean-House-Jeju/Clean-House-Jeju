@@ -4,28 +4,65 @@ import RecycleOverlay from '../InformationCard/RecycleOverlay';
 
 const { kakao } = window;
 
+const makeCluster = ({map, gridSize, urlName}) => {
+
+    return new kakao.maps.MarkerClusterer({
+        map: map,
+        gridSize: gridSize, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+        minLevel: 5, // 클러스터 할 최소 지도 레벨 
+        zIndex: 3,
+        texts: " ",
+        styles: [{
+            width: '53px', height: '52px',
+            background: `url(${urlName}) no-repeat`
+        }]
+    });
+}
+
+const makeOverlay = ({content, zIndex, map, position}) => {
+
+    return new kakao.maps.CustomOverlay({
+        content,
+        zIndex,
+        map,
+        position,
+        clickable: true
+    });
+}
+
+const makeMarker = ({map, markerImage, data, markerArr}) => {
+
+    const {latitude, longitude, location} = data;
+    
+    let marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new kakao.maps.LatLng(latitude, longitude), // 마커를 표시할 위치
+        title: location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image: markerImage,// 마커 이미지
+        zIndex: 5,
+        clickable: true
+    });
+
+    markerArr.push(marker);
+
+    return marker;
+}
 
 
 export default function LoadMultiMarker(map, data) {
-    console.log(data);
 
-    var Cleanmarkers = [];
-    var Recyclemarkers = [];
+    const Cleanmarkers = [];
+    const Recyclemarkers = [];
+    let Cleanclusterer = null;
+    let Recycleclusterer = null; 
 
     for (let i = 0; i < data.length; i++) {
 
+        const imageSrc = (data[i].type === 'clean') 
+                         ? MarkerRunnig(true, false, data, i)
+                         : MarkerRunnig(false, true, data, i)
 
-
-        if (data[i].type == 'clean') {
-            clean = true;
-            recycle = false
-            var imageSrc = MarkerRunnig(clean, recycle, data, i);
-        }
-        else if (data[i].type == 'recycle') {
-            recycle = true;
-            clean = false;
-            var imageSrc = MarkerRunnig(clean, recycle, data, i);
-        }
         // 마커 이미지의 이미지 크기 입니다
         let imageSize = new kakao.maps.Size(24, 35);
 
@@ -33,89 +70,66 @@ export default function LoadMultiMarker(map, data) {
         let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
         // 마커를 생성합니다
 
-        if (data[i].type == 'clean') {
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
-                title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                image: markerImage,// 마커 이미지
-                zIndex: 5,
-                clickable: true
-            });
 
-            Cleanmarkers.push(marker);
+        let marker = null;
+
+        if (data[i].type === 'clean') {
+
+            marker = makeMarker(
+                {
+                    map, 
+                    markerImage, 
+                    data: { latitude: data[i].latitude,  
+                            longitude: data[i].longitude,
+                            location: data[i].location
+                          },
+                    markerArr: Cleanmarkers
+                });
+
+        } else if (data[i].type === 'recycle') {
+
+            marker = makeMarker(
+                {
+                    map, 
+                    markerImage, 
+                    data: { latitude: data[i].latitude,  
+                            longitude: data[i].longitude,
+                            location: data[i].location
+                          },
+                    markerArr: Recyclemarkers
+                });
         }
-        else if (data[i].type == 'recycle') {
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커를 표시할 위치
-                title: data[i].location, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                image: markerImage,// 마커 이미지
-                zIndex: 5,
-                clickable: true
-            });
-            Recyclemarkers.push(marker);
-        }
 
+        
+        let overlay = null;
+        const clean = CleanOverlay(data, i);
+        const recycle = RecycleOverlay(data, i);
 
+        if (data[i].type === 'clean') {
 
-
-
-        var clean = CleanOverlay(data, i);
-        var recycle = RecycleOverlay(data, i);
-
-        if (data[i].type == 'clean') {
-            var overlay = new kakao.maps.CustomOverlay({
+            overlay = makeOverlay({
                 content: clean,
                 zIndex: 8,
-                map: map,
-                position: marker.getPosition(),
-                clickable: true
+                map,
+                position: marker.getPosition()
             });
         }
-        else if (data[i].type == 'recycle') {
-            var overlay = new kakao.maps.CustomOverlay({
+        else if (data[i].type === 'recycle') {
+
+            overlay = makeOverlay({
                 content: recycle,
                 zIndex: 9,
-                map: map,
-                position: marker.getPosition(),
-                clickable: true
+                map,
+                position: marker.getPosition()
             });
         }
 
-
-        if (data[i].type == 'clean') {
-            // 클린하우스 클러스터
-            var Cleanclusterer = new kakao.maps.MarkerClusterer({
-                map: map,
-                gridSize: 100, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-                averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-                minLevel: 5, // 클러스터 할 최소 지도 레벨 
-                zIndex: 3,
-                texts: " ",
-                styles: [{
-                    width: '53px', height: '52px',
-                    background: 'url(Clean_house_active.svg) no-repeat'
-                }]
-            });
+        if (data[i].type === 'clean') {
+            Cleanclusterer = makeCluster({map, gridSize: 100, urlName: 'Clean_house_active.svg'});
         }
-
-        else if (data[i].type == 'recycle') {
-            var Recycleclusterer = new kakao.maps.MarkerClusterer({
-                map: map,
-                gridSize: 150, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-                averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-                minLevel: 5,
-                zIndex: 3,
-                texts: " ",
-                styles: [{
-                    width: '53px', height: '52px',
-                    background: 'url(Recycle_center_active.svg) no-repeat',
-
-                }] // 클러스터 할 최소 지도 레벨 
-            });
+        else if (data[i].type === 'recycle') {
+            Recycleclusterer = makeCluster({map, gridSize: 150, urlName: 'Recycle_center_active.svg'});
         }
-
 
         overlay.setMap(null);
 
@@ -128,13 +142,12 @@ export default function LoadMultiMarker(map, data) {
         kakao.maps.event.addListener(
             map,
             "click",
-            closeOverlay(map, marker, overlay)
+            closeOverlay(overlay)
         );
     };
 
 
-    function closeOverlay(map, marker, overlay) {
-
+    function closeOverlay(overlay) {
 
         return function () {
             overlay.setMap(null);
@@ -142,13 +155,13 @@ export default function LoadMultiMarker(map, data) {
 
     }
 
-    var overlaylive = null;
-    var serchedData;
+    let overlaylive = null;
+    let serchedData;
 
     function MarkerClick(map, marker, overlay) {
 
-        var Ma = marker.getPosition().Ma;
-        var La = marker.getPosition().La;
+        const Ma = marker.getPosition().Ma;
+        const La = marker.getPosition().La;
         const MarkerlocPosition = new kakao.maps.LatLng(Ma, La)
         return function () {
             if (overlaylive) {
@@ -158,14 +171,14 @@ export default function LoadMultiMarker(map, data) {
             overlay.setMap(map, marker)
             overlaylive = overlay;
             serchedData = marker.fb
-
         };
+
     }
 
     // 클린하우스 클러스터러에 마커들을 추가합니다(마커 클러스터러 관련)
     Cleanclusterer.addMarkers(Cleanmarkers);
-    if (Recyclemarkers[0])
-        Recycleclusterer.addMarkers(Recyclemarkers);
+    Recycleclusterer.addMarkers(Recyclemarkers);
+
 
     return serchedData
 }

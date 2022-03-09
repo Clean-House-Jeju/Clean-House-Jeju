@@ -1,4 +1,3 @@
-import React from 'react'
 import './InformCss/CustomOverlay.css';
 
 function RecycleOverlay(data, i) {
@@ -8,8 +7,8 @@ function RecycleOverlay(data, i) {
     timeEnd = parseInt(timeEnd[0]);
     let timeStart = data[i].timeStart.split(':');
     timeStart = parseInt(timeStart[0]);
-    let runningTime = '운영마감 💤';
-    let Time = data[i].time
+    let Time = data[i].time;
+    let runningTime = `운영마감 💤 (${Time})`;
     if (timeStart < hours && hours < timeEnd)
         runningTime = `운영중 ✅  (${Time})`
 
@@ -20,7 +19,7 @@ function RecycleOverlay(data, i) {
                 </div>
         <div class="body">
                     <div class="img">
-                        <img src="Recycle_center.svg" width="73" height="70">
+                        <img src="recycle_center.svg" width="73" height="70">
                    </div>
                     <div class="desc">
                         <div class="location"> ${data[i].location}</div>

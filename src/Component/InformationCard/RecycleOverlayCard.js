@@ -8,8 +8,8 @@ function RecycleOverlayCard({ data }, { i }) {
     timeEnd = parseInt(timeEnd[0]);
     let timeStart = data.timeStart.split(':');
     timeStart = parseInt(timeStart[0]);
-    let runningTime = '운영마감 💤';
-    let Time = data.time
+    let Time = data.time;
+    let runningTime = `운영마감 💤 (${Time})`;
     if (timeStart < hours && hours < timeEnd)
         runningTime = `운영중 ✅  (${Time})`
 
@@ -21,7 +21,7 @@ function RecycleOverlayCard({ data }, { i }) {
             </div>
                 <div className="body">
                     <div className="img">
-                        <img src="recycle_center.svg" width={73} height={70} />
+                        <img src="recycle_center.svg" width={73} height={70} alt="리사이클 센터 이미지"/>
                     </div>
                     <div className="descC">
                         <div className="location"> {data.location}</div>
