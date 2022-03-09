@@ -21,7 +21,7 @@ function RecycleOverlayCard({ data }, { i }) {
             </div>
                 <div className="body">
                     <div className="img">
-                        <img src="recycle_center.svg" width={73} height={70} />
+                        <img src="recycle_center.svg" width={73} height={70} alt="리사이클 센터 이미지"/>
                     </div>
                     <div className="descC">
                         <div className="location"> {data.location}</div>

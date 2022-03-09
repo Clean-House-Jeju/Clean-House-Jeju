@@ -1,4 +1,3 @@
-import React from 'react'
 import './InformCss/CustomOverlay.css';
 
 function RecycleOverlay(data, i) {
