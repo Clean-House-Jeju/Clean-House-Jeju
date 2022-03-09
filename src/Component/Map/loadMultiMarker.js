@@ -136,7 +136,7 @@ export default function LoadMultiMarker(map, data) {
         kakao.maps.event.addListener(
             map,
             "click",
-            closeOverlay(map, marker, overlay)
+            closeOverlay(overlay)
         );
     };
 
