@@ -51,12 +51,11 @@ const makeMarker = ({map, markerImage, data, markerArr}) => {
 
 
 export default function LoadMultiMarker(map, data) {
-    console.log(data);
 
     const Cleanmarkers = [];
     const Recyclemarkers = [];
-    const Cleanclusterer = makeCluster(map, 100, 'Clean_house_active.svg');
-    const Recycleclusterer = makeCluster(map, 150, 'Recycle_center_active.svg');
+    let Cleanclusterer = null;
+    let Recycleclusterer = null; 
 
     for (let i = 0; i < data.length; i++) {
 
@@ -125,6 +124,13 @@ export default function LoadMultiMarker(map, data) {
             });
         }
 
+        if (data[i].type === 'clean') {
+            Cleanclusterer = makeCluster({map, gridSize: 100, urlName: 'Clean_house_active.svg'});
+        }
+        else if (data[i].type === 'recycle') {
+            Recycleclusterer = makeCluster({map, gridSize: 150, urlName: 'Recycle_center_active.svg'});
+        }
+
         overlay.setMap(null);
 
         kakao.maps.event.addListener(
@@ -165,8 +171,8 @@ export default function LoadMultiMarker(map, data) {
             overlay.setMap(map, marker)
             overlaylive = overlay;
             serchedData = marker.fb
-
         };
+
     }
 
     console.log(Cleanmarkers);
