@@ -9,16 +9,17 @@ export default function App() {
     const {data, loading, error} = useSelector(state => state.getDatas.datas);
 
     const dispatch = useDispatch();
+
     useEffect(() => {
         const fn = async () => {
             try{
-                await dispatch(getInfo());
+                dispatch(getInfo());
             } catch (e) {
                 console.log(e);
             }
         };
         fn();
-    }, [dispatch]);
+    });
 
     if (loading) return <Loading/>
     if (error) return <div>에러발생</div>
