@@ -1,5 +1,18 @@
 const { kakao } = window;
 
+const checkInJuju = (locPosition) => {
+    let isJeju = false;
+    const {La, Ma} = locPosition;
+    const [startLan, endLan] = [33.190833, 33.563888];
+    const [startLon, endLon] = [125.979622, 127.094417];
+
+    if ((startLan <= Ma && Ma <= endLan) &&
+        (startLon <= La && La <= endLon)) {
+        isJeju = true;
+    }
+    return isJeju;
+}
+
 export default function GetCurrentLocation(map, text) {
 
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다
@@ -7,7 +20,8 @@ export default function GetCurrentLocation(map, text) {
         var imageSrc = "현재마커.svg"
         let imageSize = new kakao.maps.Size(34, 46);
         let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-        // 마커를 생성합니다
+        let isJeju = checkInJuju(locPosition);
+
         const marker = new kakao.maps.Marker({
             map: map,
             zIndex: 8,
@@ -25,14 +39,21 @@ export default function GetCurrentLocation(map, text) {
             removable: iwRemoveable
         });
 
+        if (!isJeju) {
+            map.setCenter(new kakao.maps.LatLng(37.537183, 127.005454));
+
+            return;
+        }
+
         if (text === "") {
-            console.log('hello')
             // 인포윈도우를 마커위에 표시합니다
             infowindow.open(map, marker);
 
             // 지도 중심좌표를 접속위치로 변경합니다
             map.setCenter(locPosition);
-        }
+
+            return;
+        } 
     }
 
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
@@ -56,7 +77,7 @@ export default function GetCurrentLocation(map, text) {
         });
 
     } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-        
+
         const locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
             message = '현재 위치를 가져 올 수가 없습니다.'
 
