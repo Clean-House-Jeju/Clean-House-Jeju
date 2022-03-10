@@ -40,7 +40,7 @@ export default function GetCurrentLocation(map, text) {
         });
 
         if (!isJeju) {
-            map.setCenter(new kakao.maps.LatLng(37.537183, 127.005454));
+            map.setCenter(new kakao.maps.LatLng(33.450701, 126.570667));
 
             return;
         }
