@@ -1,6 +1,3 @@
-import Link from "next/link";
-import Logo from "@/components/Logo";
-import TodayBanner from "@/components/home/TodayBanner";
 import MapView from "@/components/map/MapView";
 import { getDataAsOf, getRules } from "@/lib/data";
 import styles from "./page.module.css";
@@ -14,21 +11,8 @@ export default function Home() {
 
 	return (
 		<div className={styles.page}>
-			<header className={styles.header}>
-				<div className={styles.titleRow}>
-					<h1 className={styles.title}>
-						<Logo />
-					</h1>
-					<nav className={styles.nav} aria-label="주 메뉴">
-						<Link href="/guide">배출 안내</Link>
-						<Link href="/recycle-center">재활용도움센터</Link>
-						<Link href="/clean-house">클린하우스</Link>
-					</nav>
-					<span className={styles.asOf}>데이터 기준일 {asOf}</span>
-				</div>
-				<TodayBanner rules={rules} />
-			</header>
-			<MapView rules={rules} />
+			<h1 className={styles.srOnly}>클린 제주 — 제주 클린하우스·재활용도움센터 지도</h1>
+			<MapView rules={rules} asOf={asOf} />
 		</div>
 	);
 }

@@ -1,10 +1,13 @@
 "use client";
 
-import { Banner, EmptyState, SegmentedControl, SegmentedControlItem, Spinner, TextInput } from "@astryxdesign/core";
+import { Banner, EmptyState, Spinner } from "@astryxdesign/core";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CloseIcon, MoonIcon } from "@/components/icons";
-import { DEFAULT_CENTER, distanceKm, formatDistance } from "@/lib/geo";
+import TodayBanner from "@/components/home/TodayBanner";
+import { CloseIcon, MoonIcon, SearchIcon, TargetIcon } from "@/components/icons";
+import Logo from "@/components/Logo";
+import { DEFAULT_CENTER, distanceKm, formatDistance, isInJeju } from "@/lib/geo";
 import { formatHours, isOpen, withRuleHours } from "@/lib/status";
 import type { DisposalRule, MapSite, SiteType } from "@/lib/types";
 import { type KakaoNS, loadKakaoMaps } from "./kakao-loader";
@@ -14,6 +17,11 @@ import styles from "./MapView.module.css";
 type Filter = "all" | SiteType;
 
 const TYPE_LABEL: Record<SiteType, string> = { clean: "클린하우스", recycle: "재활용도움센터" };
+const FILTERS: { value: Filter; label: string; icon?: string }[] = [
+	{ value: "all", label: "전체" },
+	{ value: "clean", label: "클린하우스", icon: "/markers/clean-open.svg" },
+	{ value: "recycle", label: "도움센터", icon: "/markers/recycle-open.svg" },
+];
 // 레거시 클러스터 파라미터 계승 (research R5)
 const CLUSTER_PARAMS: Record<SiteType, { gridSize: number }> = {
 	clean: { gridSize: 100 },
@@ -51,13 +59,14 @@ interface MarkerEntry {
 	marker: KakaoNS;
 }
 
-export default function MapView({ rules }: { rules: DisposalRule[] }) {
+export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: string }) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const mapRef = useRef<KakaoNS>(null);
 	const kakaoRef = useRef<KakaoNS>(null);
 	const markersRef = useRef<Record<SiteType, MarkerEntry[]>>({ clean: [], recycle: [] });
 	const clusterersRef = useRef<Record<SiteType, KakaoNS>>({ clean: null, recycle: null });
 	const overlayRef = useRef<KakaoNS>(null);
+	const meMarkerRef = useRef<KakaoNS>(null);
 
 	const [sites, setSites] = useState<MapSite[]>([]);
 	const [mapError, setMapError] = useState<string | null>(null);
@@ -103,13 +112,9 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 						styles: clusterStyles(type),
 					});
 				}
-				// 선택 마커 식별용 미니 칩 오버레이 — 카드 정보가 어느 마커인지 연결
+				// 선택 마커 식별 칩 오버레이
 				const el = document.createElement("div");
-				overlayRef.current = new kakao.maps.CustomOverlay({
-					content: el,
-					yAnchor: 1,
-					zIndex: 30,
-				});
+				overlayRef.current = new kakao.maps.CustomOverlay({ content: el, yAnchor: 1, zIndex: 30 });
 				setChipEl(el);
 				kakao.maps.event.addListener(map, "click", () => setSelected(null));
 				setMapReady(true);
@@ -186,23 +191,45 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 		setSelected(null);
 	};
 
-	// 현위치 반영 (허용 + 제주 안일 때만 이동 — FR-007)
-	useEffect(() => {
+	// 현위치 마커 이동/생성
+	const showMe = useCallback((lat: number, lng: number, pan: boolean) => {
 		const kakao = kakaoRef.current;
 		const map = mapRef.current;
-		if (!mapReady || !kakao || !map) return;
-		if (geo.status === "granted" && geo.inJeju) {
-			const pos = new kakao.maps.LatLng(geo.lat, geo.lng);
-			new kakao.maps.Marker({
+		if (!kakao || !map) return;
+		const pos = new kakao.maps.LatLng(lat, lng);
+		if (!meMarkerRef.current) {
+			meMarkerRef.current = new kakao.maps.Marker({
 				map,
 				position: pos,
 				image: new kakao.maps.MarkerImage("/markers/me.svg", new kakao.maps.Size(36, 36)),
 				zIndex: 9,
 			});
-			map.setCenter(pos);
-			map.setLevel(5);
+		} else {
+			meMarkerRef.current.setPosition(pos);
 		}
-	}, [mapReady, geo]);
+		if (pan) {
+			map.setLevel(5);
+			map.panTo(pos);
+		}
+	}, []);
+
+	// 초기 위치 반영 (허용 + 제주 안일 때만 이동 — FR-007)
+	useEffect(() => {
+		if (!mapReady) return;
+		if (geo.status === "granted" && geo.inJeju) showMe(geo.lat, geo.lng, true);
+	}, [mapReady, geo, showMe]);
+
+	// 현위치 FAB
+	const locateMe = () => {
+		navigator.geolocation?.getCurrentPosition(
+			(pos) => {
+				const { latitude, longitude } = pos.coords;
+				if (isInJeju(latitude, longitude)) showMe(latitude, longitude, true);
+			},
+			() => {},
+			{ timeout: 5000, maximumAge: 30_000 },
+		);
+	};
 
 	const origin = geo.status === "granted" ? { lat: geo.lat, lng: geo.lng } : DEFAULT_CENTER;
 
@@ -238,76 +265,103 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 
 	return (
 		<div className={styles.wrap}>
-			<div className={styles.controls}>
-				<TextInput
-					label="클린하우스·재활용도움센터 검색"
-					isLabelHidden
-					placeholder="명칭·주소·읍면동 검색"
-					value={query}
-					onChange={(v: string) => setQuery(v)}
-					hasClear
-				/>
-				<SegmentedControl label="유형 필터" value={filter} onChange={(v: string) => handleFilter(v as Filter)}>
-					<SegmentedControlItem value="all" label="전체" />
-					<SegmentedControlItem value="clean" label="클린하우스" />
-					<SegmentedControlItem value="recycle" label="도움센터" />
-				</SegmentedControl>
-			</div>
-
-			{query.trim() !== "" && (
-				<div className={styles.results}>
-					{results.length === 0 ? (
-						<EmptyState title="검색 결과가 없습니다" description="다른 검색어로 시도해 보세요." />
-					) : (
-						results.map(({ site, dist }) => {
-							const open = openState(site);
-							return (
-								<button key={site.id} type="button" className={styles.resultItem} onClick={() => focusSite(site)}>
-									<img
-										className={styles.resultIcon}
-										src={`/markers/${site.type}-${open === false ? "closed" : "open"}.svg`}
-										alt=""
-										width={22}
-										height={28}
-									/>
-									<span className={styles.resultBody}>
-										<span className={styles.resultName}>{site.name}</span>
-										<span className={styles.resultMeta}>
-											{TYPE_LABEL[site.type]} · {site.emd} · {site.address}
-										</span>
-									</span>
-									<span className={styles.resultDist}>{formatDistance(dist)}</span>
-								</button>
-							);
-						})
-					)}
+			{/* 풀블리드 지도 */}
+			<div ref={containerRef} className={styles.map} role="application" aria-label="제주 배출 장소 지도" />
+			{!mapReady && !mapError && (
+				<div className={styles.mapFallback}>
+					<Spinner aria-label="지도 로딩 중" />
+				</div>
+			)}
+			{mapError && (
+				<div className={styles.mapFallback}>
+					<Banner status="warning" title="지도를 불러올 수 없습니다" description={mapError} />
 				</div>
 			)}
 
-			<div ref={containerRef} className={styles.map} role="application" aria-label="제주 배출 장소 지도">
-				{!mapReady && !mapError && (
-					<div className={styles.mapFallback}>
-						<Spinner aria-label="지도 로딩 중" />
+			{/* 플로팅 상단 레이어 */}
+			<div className={styles.top}>
+				<div className={styles.topRow}>
+					<span className={styles.brand}>
+						<Logo size={24} />
+					</span>
+					<label className={styles.search}>
+						<SearchIcon />
+						<input
+							type="search"
+							placeholder="명칭·주소·읍면동 검색"
+							aria-label="클린하우스·재활용도움센터 검색"
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+						/>
+						{query !== "" && (
+							<button type="button" aria-label="검색어 지우기" onClick={() => setQuery("")}>
+								<CloseIcon size={14} />
+							</button>
+						)}
+					</label>
+					<nav className={styles.deskNav} aria-label="주 메뉴">
+						<Link href="/guide">배출 안내</Link>
+						<Link href="/recycle-center">도움센터</Link>
+						<Link href="/clean-house">클린하우스</Link>
+					</nav>
+				</div>
+
+				<div className={styles.chips}>
+					<div className={styles.filterGroup} role="radiogroup" aria-label="유형 필터">
+						{FILTERS.map((f) => (
+							<button
+								key={f.value}
+								type="button"
+								role="radio"
+								aria-checked={filter === f.value}
+								className={styles.filterPill}
+								data-active={filter === f.value}
+								onClick={() => handleFilter(f.value)}
+							>
+								{f.icon && <img src={f.icon} alt="" width={12} height={16} />}
+								{f.label}
+							</button>
+						))}
 					</div>
-				)}
-				{mapError && (
-					<div className={styles.mapFallback}>
-						<Banner status="warning" title="지도를 불러올 수 없습니다" description={mapError} />
+					<span className={styles.chipDivider} aria-hidden />
+					<TodayBanner rules={rules} />
+					<span className={styles.asOf}>기준일 {asOf}</span>
+				</div>
+
+				{query.trim() !== "" && (
+					<div className={styles.results}>
+						{results.length === 0 ? (
+							<EmptyState title="검색 결과가 없습니다" description="다른 검색어로 시도해 보세요." />
+						) : (
+							results.map(({ site, dist }) => {
+								const open = openState(site);
+								return (
+									<button key={site.id} type="button" className={styles.resultItem} onClick={() => focusSite(site)}>
+										<img
+											src={`/markers/${site.type}-${open === false ? "closed" : "open"}.svg`}
+											alt=""
+											width={22}
+											height={28}
+										/>
+										<span className={styles.resultBody}>
+											<span className={styles.resultName}>{site.name}</span>
+											<span className={styles.resultMeta}>
+												{TYPE_LABEL[site.type]} · {site.emd} · {site.address}
+											</span>
+										</span>
+										<span className={styles.resultDist}>{formatDistance(dist)}</span>
+									</button>
+								);
+							})
+						)}
 					</div>
 				)}
 			</div>
 
-			<div className={styles.legend} aria-hidden>
-				<span>
-					<img src="/markers/clean-open.svg" alt="" width={15} height={19} /> 클린하우스
-				</span>
-				<span>
-					<img src="/markers/recycle-open.svg" alt="" width={15} height={19} /> 도움센터
-				</span>
-				<span>
-					<span className={`cj-dot ${styles.legendDot}`} /> 운영마감
-				</span>
-			</div>
+			{/* 현위치 FAB */}
+			<button type="button" className={styles.locate} onClick={locateMe} aria-label="내 위치로 이동">
+				<TargetIcon />
+			</button>
 
 			{geo.status === "granted" && !geo.inJeju && (
 				<div className={styles.notice}>
@@ -315,7 +369,7 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 				</div>
 			)}
 
-			{/* 선택 마커 식별 칩 — 카드 ↔ 마커 연결 */}
+			{/* 선택 마커 식별 칩 */}
 			{chipEl &&
 				selected &&
 				createPortal(
@@ -325,47 +379,45 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 					chipEl,
 				)}
 
+			{/* 다크 정보 카드 */}
 			{selected && selectedHours && (
 				<article className={styles.card} data-type={selected.type}>
-					<header className={styles.cardHead}>
-						<span className={styles.cardType}>{TYPE_LABEL[selected.type]}</span>
-						<span className={styles.cardStatus} data-open={selectedOpen ?? "unknown"}>
-							{selectedOpen === undefined ? (
-								"운영정보 없음"
-							) : selectedOpen ? (
-								<>
-									<span className={styles.statusPulse} /> 운영중
-								</>
-							) : (
-								<>
-									<MoonIcon /> 운영마감
-								</>
-							)}
-						</span>
-						<button type="button" className={styles.cardClose} onClick={() => setSelected(null)} aria-label="닫기">
-							<CloseIcon />
-						</button>
-					</header>
+					<button type="button" className={styles.cardClose} onClick={() => setSelected(null)} aria-label="닫기">
+						<CloseIcon size={15} />
+					</button>
 					<div className={styles.cardBody}>
-						<img
-							className={styles.cardIcon}
-							src={`/markers/${selected.type}-open.svg`}
-							alt=""
-							width={30}
-							height={39}
-						/>
+						<span className={styles.cardThumb} data-type={selected.type}>
+							<img src={`/markers/${selected.type}-open.svg`} alt="" width={26} height={34} />
+						</span>
 						<div className={styles.cardInfo}>
-							<h3 className={styles.cardName}>{selected.name}</h3>
-							<p className={styles.cardAddr}>{selected.address}</p>
-							<p className={styles.cardMeta}>
-								{formatHours(selectedHours)} ·{" "}
-								{formatDistance(distanceKm(origin.lat, origin.lng, selected.lat, selected.lng))}
+							<p className={styles.cardTags}>
+								#{TYPE_LABEL[selected.type]} #{selected.emd}
 							</p>
+							<h3 className={styles.cardName}>{selected.name}</h3>
+							<div className={styles.cardBadges}>
+								<span className={styles.cardStatus} data-open={selectedOpen ?? "unknown"}>
+									{selectedOpen === undefined ? (
+										"운영정보 없음"
+									) : selectedOpen ? (
+										<>
+											<span className={styles.statusPulse} /> 운영중
+										</>
+									) : (
+										<>
+											<MoonIcon size={11} /> 운영마감
+										</>
+									)}
+								</span>
+								<span className={styles.cardMeta}>
+									{formatHours(selectedHours)} · {formatDistance(distanceKm(origin.lat, origin.lng, selected.lat, selected.lng))}
+								</span>
+							</div>
 						</div>
 					</div>
 					<footer className={styles.cardActions}>
 						<a
 							className={styles.cardPrimary}
+							data-type={selected.type}
 							href={`https://map.kakao.com/link/to/${encodeURIComponent(selected.name)},${selected.lat},${selected.lng}`}
 							target="_blank"
 							rel="noreferrer"

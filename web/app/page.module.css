@@ -2,68 +2,16 @@
 	display: flex;
 	flex-direction: column;
 	height: 100dvh;
-	background: var(--cj-bg);
 }
 
-.header {
-	padding: 12px 16px 0;
-	background: var(--cj-surface);
-}
-
-.titleRow {
-	display: flex;
-	align-items: center;
-	gap: 18px;
-	flex-wrap: wrap;
-}
-
-.title {
-	line-height: 1;
-}
-
-.nav {
-	display: flex;
-	gap: 14px;
-	font-size: 14px;
-	font-weight: 600;
-	flex: 1;
-}
-
-.nav a {
-	text-decoration: none;
-	color: var(--cj-ink-2);
-	padding: 4px 2px;
-	border-bottom: 2px solid transparent;
-	transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.nav a:hover {
-	color: var(--cj-clean-deep);
-	border-bottom-color: var(--cj-clean);
-}
-
-.asOf {
-	font-size: 12px;
-	color: var(--cj-ink-2);
-	font-variant-numeric: tabular-nums;
-}
-
-@media (max-width: 767px) {
-	.asOf {
-		display: none;
-	}
-
-	/* 상단 내비 → 하단 탭 바로 대체 */
-	.nav {
-		display: none;
-	}
-
-	.page {
-		/* 하단 탭 바에 지도가 가리지 않게 */
-		padding-bottom: calc(58px + env(safe-area-inset-bottom));
-	}
-
-	.header {
-		padding: 10px 14px 0;
-	}
+.srOnly {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
 }

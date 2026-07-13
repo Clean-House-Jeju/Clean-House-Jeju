@@ -1,68 +1,57 @@
-.wrap {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	padding: 8px 0 12px;
-	flex-wrap: wrap;
-}
+/* 지도 위 플로팅 칩 — MapView .chips 행 안에서 흐른다 */
 
 .today {
-	font-size: 13px;
+	display: inline-flex;
+	align-items: center;
+	padding: 7px 13px;
+	border-radius: 999px;
+	background: var(--cj-ink);
+	color: #fff;
+	font-size: 12.5px;
 	font-weight: 800;
-	color: var(--cj-ink);
 	letter-spacing: -0.01em;
-	padding-right: 2px;
+	white-space: nowrap;
+	box-shadow: 0 6px 20px rgba(13, 60, 48, 0.18);
 }
 
 .districtRow {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	flex-wrap: wrap;
 }
 
 .district {
-	font-size: 12.5px;
-	font-weight: 700;
-	color: var(--cj-ink-2);
+	font-size: 12px;
+	font-weight: 800;
+	color: var(--cj-ink);
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--cj-surface) 82%, transparent);
+	backdrop-filter: blur(6px);
+	white-space: nowrap;
 }
 
-.districtRow[data-district="seogwipo"] .cj-chip {
-	background: var(--cj-recycle-soft);
+/* 플로팅용 칩 보강 — 불투명 배경 + 그림자 */
+.chip {
+	box-shadow: 0 6px 18px rgba(13, 60, 48, 0.16);
+	background: var(--cj-surface);
+	color: var(--cj-clean-deep);
+	border: 1px solid rgba(18, 163, 122, 0.25);
+}
+
+.districtRow[data-district="seogwipo"] .chip {
 	color: var(--cj-recycle-deep);
+	border-color: rgba(79, 86, 201, 0.25);
 }
 
 .always {
 	gap: 8px;
+	color: var(--cj-ink-2);
+	border: 1px solid var(--cj-line);
 }
 
 .alwaysItem {
 	display: inline-flex;
 	align-items: center;
 	gap: 3px;
-}
-
-@media (max-width: 767px) {
-	/* 칩을 한 줄 가로 스크롤로 — 모바일 헤더 높이 절약 */
-	.wrap {
-		flex-wrap: nowrap;
-		overflow-x: auto;
-		scrollbar-width: none;
-		-webkit-overflow-scrolling: touch;
-		margin: 0 -14px;
-		padding-left: 14px;
-		padding-right: 14px;
-	}
-
-	.wrap::-webkit-scrollbar {
-		display: none;
-	}
-
-	.wrap > * {
-		flex: none;
-	}
-
-	.districtRow {
-		flex-wrap: nowrap;
-	}
 }

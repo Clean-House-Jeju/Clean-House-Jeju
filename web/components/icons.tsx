@@ -160,6 +160,27 @@ export function MoonIcon({ size = 13 }: { size?: number }) {
 	);
 }
 
+/** 검색 (돋보기) */
+export function SearchIcon({ size = 17 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<circle cx="9" cy="9" r="5.5" />
+			<path d="m13.2 13.2 3.6 3.6" />
+		</Svg>
+	);
+}
+
+/** 현위치 (타겟) */
+export function TargetIcon({ size = 19 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<circle cx="10" cy="10" r="5.6" />
+			<circle cx="10" cy="10" r="1.6" fill="currentColor" stroke="none" />
+			<path d="M10 1.8v3M10 15.2v3M1.8 10h3M15.2 10h3" />
+		</Svg>
+	);
+}
+
 /** 닫기 */
 export function CloseIcon({ size = 16 }: { size?: number }) {
 	return (

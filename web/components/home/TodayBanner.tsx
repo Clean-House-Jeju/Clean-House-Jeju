@@ -8,16 +8,16 @@ import styles from "./TodayBanner.module.css";
 const ALWAYS_ITEMS: Item[] = ["general", "food", "can-metal", "glass", "styrofoam"];
 
 /**
- * 오늘 배출 품목 배너 — 클라이언트에서 재계산해 정적 페이지의 빌드 시점
+ * 오늘 배출 품목 플로팅 칩 — 클라이언트에서 재계산해 정적 페이지의 빌드 시점
  * 요일 박제를 방지한다 (레거시 CleanOverlay의 모듈 로드 시 1회 계산 버그 교훈).
  */
 export default function TodayBanner({ rules }: { rules: DisposalRule[] }) {
 	const { day, dateLabel } = todayInSeoul();
 
 	return (
-		<div className={styles.wrap}>
+		<>
 			<span className={styles.today} suppressHydrationWarning>
-				{dateLabel}
+				{dateLabel} 배출
 			</span>
 			{rules.map((rule) => {
 				const items = itemsForDay(rule, day);
@@ -31,17 +31,17 @@ export default function TodayBanner({ rules }: { rules: DisposalRule[] }) {
 						<span className={styles.district}>{DISTRICT_LABELS[rule.district]}</span>
 						{items.length > 0 ? (
 							items.map((i) => (
-								<span key={i} className="cj-chip">
+								<span key={i} className={`cj-chip ${styles.chip}`}>
 									<ItemIcon item={i} /> {ITEM_LABELS[i]}
 								</span>
 							))
 						) : (
-							<span className="cj-chip cj-chip--muted">요일제 품목 없음</span>
+							<span className={`cj-chip cj-chip--muted ${styles.chip}`}>요일제 품목 없음</span>
 						)}
 					</span>
 				);
 			})}
-			<span className={`cj-chip cj-chip--muted ${styles.always}`}>
+			<span className={`cj-chip cj-chip--muted ${styles.chip} ${styles.always}`}>
 				{ALWAYS_ITEMS.map((i) => (
 					<span key={i} className={styles.alwaysItem}>
 						<ItemIcon item={i} size={13} />
@@ -50,6 +50,6 @@ export default function TodayBanner({ rules }: { rules: DisposalRule[] }) {
 				))}
 				<span>은 매일</span>
 			</span>
-		</div>
+		</>
 	);
 }
