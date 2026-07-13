@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CheckIcon } from "@/components/icons";
 import SiteHeader from "@/components/SiteHeader";
 import { getDataAsOf, getSiteById, getSites } from "@/lib/data";
 import { DISTRICT_LABELS } from "@/lib/rules";
@@ -88,7 +89,9 @@ export default async function RecycleCenterDetail({ params }: { params: Promise<
 						<h2>제공 서비스</h2>
 						<ul className={styles.notes}>
 							{services.map((s) => (
-								<li key={s}>✅ {s}</li>
+								<li key={s} className={styles.item}>
+									<CheckIcon /> {s}
+								</li>
 							))}
 						</ul>
 					</section>

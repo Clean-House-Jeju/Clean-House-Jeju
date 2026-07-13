@@ -13,19 +13,6 @@ export const ITEM_LABELS: Record<Item, string> = {
 	styrofoam: "스티로폼",
 };
 
-export const ITEM_EMOJI: Record<Item, string> = {
-	general: "🗑️",
-	food: "🥕",
-	plastic: "🥡",
-	"pet-clear": "🧴",
-	paper: "📦",
-	vinyl: "🛍️",
-	nonflammable: "🧱",
-	"can-metal": "🥫",
-	glass: "🍾",
-	styrofoam: "📦",
-};
-
 export const DAY_LABELS: Record<Day, string> = {
 	mon: "월",
 	tue: "화",

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_CENTER, distanceKm, formatDistance } from "@/lib/geo";
 import { formatHours, isOpen, withRuleHours } from "@/lib/status";
 import type { DisposalRule, MapSite, SiteType } from "@/lib/types";
+import { CloseIcon, MoonIcon } from "@/components/icons";
 import { type KakaoNS, loadKakaoMaps } from "./kakao-loader";
 import { useGeolocation } from "./useGeolocation";
 import styles from "./MapView.module.css";
@@ -295,10 +296,20 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 					<header className={styles.cardHead}>
 						<span className={styles.cardType}>{TYPE_LABEL[selected.type]}</span>
 						<span className={styles.cardStatus} data-open={selectedOpen ?? "unknown"}>
-							{selectedOpen === undefined ? "운영정보 없음" : selectedOpen ? "운영중 ✅" : "운영마감 💤"}
+							{selectedOpen === undefined ? (
+								"운영정보 없음"
+							) : selectedOpen ? (
+								<>
+									<span className={styles.statusPulse} /> 운영중
+								</>
+							) : (
+								<>
+									<MoonIcon /> 운영마감
+								</>
+							)}
 						</span>
 						<button type="button" className={styles.cardClose} onClick={() => setSelected(null)} aria-label="닫기">
-							×
+							<CloseIcon />
 						</button>
 					</header>
 					<div className={styles.cardBody}>

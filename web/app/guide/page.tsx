@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import { ItemIcon } from "@/components/icons";
 import { getDataAsOf, getRules } from "@/lib/data";
-import { DAY_LABELS, DISTRICT_LABELS, ITEM_EMOJI, ITEM_LABELS } from "@/lib/rules";
+import { DAY_LABELS, DISTRICT_LABELS, ITEM_LABELS } from "@/lib/rules";
 import type { Day } from "@/lib/types";
 import styles from "./page.module.css";
 
@@ -49,8 +50,17 @@ export default function GuidePage() {
 									<tr key={day}>
 										<th scope="row">{DAY_LABELS[day]}</th>
 										<td>
-											{rule.schedule[day].map((i) => `${ITEM_EMOJI[i]} ${ITEM_LABELS[i]}`).join(", ") ||
-												"요일제 품목 없음"}
+											{rule.schedule[day].length > 0 ? (
+												<span className={styles.items}>
+													{rule.schedule[day].map((i) => (
+														<span key={i} className={styles.item}>
+															<ItemIcon item={i} /> {ITEM_LABELS[i]}
+														</span>
+													))}
+												</span>
+											) : (
+												"요일제 품목 없음"
+											)}
 										</td>
 									</tr>
 								))}

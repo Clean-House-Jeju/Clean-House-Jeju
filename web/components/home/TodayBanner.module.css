@@ -27,8 +27,17 @@
 	color: var(--cj-ink-2);
 }
 
-.districtRow:nth-of-type(2) .cj-chip,
 .districtRow[data-district="seogwipo"] .cj-chip {
 	background: var(--cj-recycle-soft);
 	color: var(--cj-recycle-deep);
+}
+
+.always {
+	gap: 8px;
+}
+
+.alwaysItem {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
 }

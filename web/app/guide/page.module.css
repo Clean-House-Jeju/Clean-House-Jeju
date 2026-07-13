@@ -52,6 +52,20 @@
 	background: rgba(0, 0, 0, 0.04);
 }
 
+.items {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.item {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: 600;
+	color: var(--cj-clean-deep);
+}
+
 .notes {
 	padding-left: 20px;
 	display: flex;
