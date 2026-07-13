@@ -11,7 +11,7 @@
 		"submit:ios": "eas submit --platform ios"
 	},
 	"dependencies": {
-		"@react-native-community/netinfo": "^12.0.1",
+		"@react-native-community/netinfo": "^11.4.1",
 		"expo": "~54.0.33",
 		"expo-constants": "~18.0.13",
 		"expo-linking": "~8.0.11",
