@@ -16,6 +16,9 @@ pnpm install && pnpm --filter web build
 ```
 NEXT_PUBLIC_SITE_URL=https://<서브도메인>
 NEXT_PUBLIC_KAKAO_JS_KEY=<JS 키>          # 빌드 시점에도 필요 (public)
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=<VAPID 공개키>   # 푸시 알림 (빌드 시점 필요)
+VAPID_PRIVATE_KEY=<VAPID 비밀키>
+VAPID_SUBJECT=mailto:dndb3599@gmail.com
 REVALIDATE_TOKEN=<랜덤 토큰>
 RESEND_API_KEY=<...>
 REPORT_TO_EMAIL=dndb3599@gmail.com
@@ -38,9 +41,11 @@ REPORT_TO_EMAIL=dndb3599@gmail.com
 ```bash
 sudo cp ~/Clean-House-Jeju/deploy/clean-jeju.service \
         ~/Clean-House-Jeju/deploy/clean-jeju-pipeline.service \
-        ~/Clean-House-Jeju/deploy/clean-jeju-pipeline.timer /etc/systemd/system/
+        ~/Clean-House-Jeju/deploy/clean-jeju-pipeline.timer \
+        ~/Clean-House-Jeju/deploy/clean-jeju-notify.service \
+        ~/Clean-House-Jeju/deploy/clean-jeju-notify.timer /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now clean-jeju.service clean-jeju-pipeline.timer
+sudo systemctl enable --now clean-jeju.service clean-jeju-pipeline.timer clean-jeju-notify.timer
 systemctl status clean-jeju --no-pager   # 확인
 curl -s localhost:3005/api/map-sites | head -c 200
 ```

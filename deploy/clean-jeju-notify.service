@@ -1,0 +1,10 @@
+[Unit]
+Description=Clean Jeju daily push notification (15:00 KST)
+Wants=network-online.target
+After=network-online.target clean-jeju.service
+
+[Service]
+Type=oneshot
+User=swyang
+EnvironmentFile=/home/swyang/Clean-House-Jeju/web/.env.production
+ExecStart=/usr/bin/curl -sf -X POST http://127.0.0.1:3005/api/push/send -H "x-revalidate-token: ${REVALIDATE_TOKEN}"

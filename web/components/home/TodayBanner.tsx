@@ -1,6 +1,7 @@
 "use client";
 
 import { ItemIcon } from "@/components/icons";
+import NotifyBell from "./NotifyBell";
 import { DISTRICT_LABELS, ITEM_LABELS, itemsForDay, todayInSeoul } from "@/lib/rules";
 import type { DisposalRule, Item } from "@/lib/types";
 import styles from "./TodayBanner.module.css";
@@ -20,7 +21,10 @@ export default function TodayBanner({ rules, asOf }: { rules: DisposalRule[]; as
 				<span className={styles.today} suppressHydrationWarning>
 					{dateLabel} 배출
 				</span>
-				{asOf && <span className={styles.asOf}>데이터 기준일 {asOf}</span>}
+				<span className={styles.headRight}>
+					<NotifyBell />
+					{asOf && <span className={styles.asOf}>기준일 {asOf}</span>}
+				</span>
 			</header>
 			<div className={styles.rows} suppressHydrationWarning>
 				{rules.map((rule) => {

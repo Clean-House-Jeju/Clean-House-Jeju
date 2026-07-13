@@ -45,7 +45,7 @@ test.describe("PWA (FR-022)", () => {
 	test("서비스 워커·오프라인 페이지 서빙", async ({ request }) => {
 		const sw = await request.get("/sw.js");
 		expect(sw.ok()).toBeTruthy();
-		expect(await sw.text()).toContain("cj-v1");
+		expect(await sw.text()).toMatch(/cj-v\d+/);
 		const offline = await request.get("/offline");
 		expect(offline.ok()).toBeTruthy();
 		expect(await offline.text()).toContain("오프라인");

@@ -1,0 +1,10 @@
+[Unit]
+Description=Clean Jeju daily push at disposal start time
+
+[Timer]
+# 홈서버 TZ=Etc/UTC — 06:00 UTC = 15:00 KST (클린하우스 배출 시작 시각)
+OnCalendar=*-*-* 06:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
