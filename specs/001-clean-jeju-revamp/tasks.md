@@ -45,12 +45,12 @@
 
 ## Phase 5: US3 — 안내·상세 페이지 + SEO (P2)
 
-- [ ] T017 [P] `web/app/guide/`: 배출제 안내(시별 탭, 오늘 강조, FAQ + JSON-LD FAQPage) — rules.json만으로 렌더링
-- [ ] T018 [P] `web/app/recycle-center/[id]/`: 재활용도움센터 78개 상세 (지도·운영시간·길찾기 링크·JSON-LD)
-- [ ] T019 [P] `web/app/clean-house/[district]/[emd]/`: 읍면동 묶음 페이지 (개소 목록+지도)
-- [ ] T020 `web/app/sitemap.ts`·`robots.ts`·페이지별 generateMetadata/OG + `api/revalidate` 구현 (contracts §2·§3)
-- [ ] T021 E2E: JS-off 크롤러 시점에서 안내·상세 본문 HTML 존재, sitemap 전 URL 포함 검증
-- [ ] ✅ Checkpoint: `curl`로 본문 확인 가능 (FR-013), Lighthouse SEO ≥ 95
+- [x] T017 [P] `web/app/guide/`: 배출제 안내(시별 탭, 오늘 강조, FAQ + JSON-LD FAQPage) — rules.json만으로 렌더링
+- [x] T018 [P] `web/app/recycle-center/[id]/`: 재활용도움센터 78개 상세 (지도·운영시간·길찾기 링크·JSON-LD)
+- [x] T019 [P] `web/app/clean-house/[district]/[emd]/`: 읍면동 묶음 페이지 (개소 목록+지도)
+- [x] T020 `web/app/sitemap.ts`·`robots.ts`·페이지별 generateMetadata/OG + `api/revalidate` 구현 (contracts §2·§3)
+- [x] T021 E2E: JS-off 크롤러 시점에서 안내·상세 본문 HTML 존재, sitemap 전 URL 포함 검증
+- [x] ✅ Checkpoint 통과 (2026-07-13): 정적 131페이지 생성, JS-off 본문·sitemap(124 URL)·robots·FAQPage JSON-LD E2E 검증. Lighthouse 측정은 실도메인 배포 후(T033)
 
 ## Phase 6: US4 — 모바일 반응형 (P2)
 

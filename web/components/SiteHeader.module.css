@@ -1,31 +1,24 @@
-.page {
-	display: flex;
-	flex-direction: column;
-	height: 100dvh;
-}
-
 .header {
-	padding: 12px 16px 4px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.titleRow {
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	justify-content: space-between;
-	gap: 12px;
+	gap: 16px;
+	padding: 14px 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	flex-wrap: wrap;
 }
 
-.title {
-	font-size: 20px;
+.logo {
+	font-size: 18px;
 	font-weight: 700;
+	text-decoration: none;
+	color: inherit;
 }
 
 .nav {
 	display: flex;
-	gap: 14px;
+	gap: 16px;
 	font-size: 14px;
-	flex: 1;
 }
 
 .nav a {
@@ -38,4 +31,3 @@
 	opacity: 1;
 	text-decoration: underline;
 }
-

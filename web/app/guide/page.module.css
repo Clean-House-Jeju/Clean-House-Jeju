@@ -1,0 +1,68 @@
+.main {
+	max-width: 760px;
+	margin: 0 auto;
+	padding: 24px 20px 64px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.main h1 {
+	font-size: 26px;
+	font-weight: 700;
+}
+
+.lead {
+	line-height: 1.6;
+}
+
+.district {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 16px;
+}
+
+.district h2 {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 15px;
+}
+
+.table caption {
+	text-align: left;
+	font-size: 13px;
+	opacity: 0.7;
+	margin-bottom: 6px;
+}
+
+.table th,
+.table td {
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	padding: 8px 12px;
+	text-align: left;
+}
+
+.table thead th {
+	background: rgba(0, 0, 0, 0.04);
+}
+
+.notes {
+	padding-left: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 14px;
+	opacity: 0.9;
+}
+
+.source,
+.meta {
+	font-size: 13px;
+	opacity: 0.7;
+}

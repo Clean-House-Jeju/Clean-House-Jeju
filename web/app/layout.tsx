@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:8080"),
 	title: {
 		default: "클린 제주 — 제주 클린하우스·재활용도움센터 안내",
 		template: "%s | 클린 제주",
