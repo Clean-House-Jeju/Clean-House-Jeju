@@ -218,31 +218,41 @@ export function CloseIcon({ size = 16 }: { size?: number }) {
 	);
 }
 
-/* ---- 하단 내비게이션용 ---- */
+/* ---- 하단 내비게이션용 (20 그리드, stroke 1.7, round) ---- */
 
 export function MapNavIcon({ size = 22 }: { size?: number }) {
 	return (
 		<Svg size={size}>
-			<path d="M10 17.5s5.5-5.6 5.5-9.3A5.5 5.5 0 0 0 4.5 8.2c0 3.7 5.5 9.3 5.5 9.3Z" />
-			<circle cx="10" cy="8.2" r="2" />
+			<path d="M10 17.8C10 17.8 16 12.2 16 8.1a6 6 0 1 0-12 0c0 4.1 6 9.7 6 9.7Z" />
+			<circle cx="10" cy="8.1" r="2.1" />
 		</Svg>
 	);
 }
 
+/** 배출 안내 = 요일 캘린더 + 체크 */
 export function GuideNavIcon({ size = 22 }: { size?: number }) {
 	return (
 		<Svg size={size}>
-			<path d="M4.5 4.5A1.5 1.5 0 0 1 6 3h9.5v13.5H6A1.5 1.5 0 0 0 4.5 18Z" />
-			<path d="M4.5 16.5V4.5M8 7h4.5M8 10h4.5" />
+			<rect x="3.4" y="4.6" width="13.2" height="12.6" rx="2.2" />
+			<path d="M3.4 8.4h13.2M6.9 2.6v3M13.1 2.6v3" />
+			<path d="M7.3 12.6l1.8 1.8 3.6-3.7" />
 		</Svg>
 	);
 }
 
+/** 재활용 삼각 화살표 (chasing arrows) — 1개 화살을 120°씩 회전 복제 */
 export function RecycleNavIcon({ size = 22 }: { size?: number }) {
+	const arrow = (
+		<>
+			<path d="M11.16 6.28 14.06 11.48" />
+			<path d="M15.1 13.35 15.66 10.4 12.5 12.2 Z" fill="currentColor" stroke="none" />
+		</>
+	);
 	return (
-		<Svg size={size}>
-			<path d="M4.6 13.4a5.9 5.9 0 0 1 2.1-8.2M15.4 6.6a5.9 5.9 0 0 1-1 9.2M8.6 17.2a5.9 5.9 0 0 1-4-3.8" transform="translate(0.5 -1.5)" />
-			<path d="M7.4 3.2 7 6l-2.8-.6M16.6 7.4l-2.4-1 1.4-2.6M8.2 18.4l-1-2.5 2.8-.4" transform="translate(0.5 -1.5)" />
+		<Svg size={size} strokeWidth={1.8}>
+			{arrow}
+			<g transform="rotate(120 10 11.1)">{arrow}</g>
+			<g transform="rotate(240 10 11.1)">{arrow}</g>
 		</Svg>
 	);
 }
@@ -250,8 +260,9 @@ export function RecycleNavIcon({ size = 22 }: { size?: number }) {
 export function HouseNavIcon({ size = 22 }: { size?: number }) {
 	return (
 		<Svg size={size}>
-			<path d="M3.5 9.5 10 3.5l6.5 6M5 8.5V17h10V8.5" />
-			<path d="M8.2 17v-4.5h3.6V17" />
+			<path d="M3.8 9.8 10 4.2l6.2 5.6" />
+			<path d="M5.5 8.8v6.4a1.7 1.7 0 0 0 1.7 1.7h5.6a1.7 1.7 0 0 0 1.7-1.7V8.8" />
+			<path d="M8.6 16.9v-3.2a1.4 1.4 0 0 1 2.8 0v3.2" />
 		</Svg>
 	);
 }

@@ -697,21 +697,21 @@
 	}
 
 	.locate {
-		bottom: calc(76px + env(safe-area-inset-bottom));
+		bottom: calc(90px + env(safe-area-inset-bottom));
 	}
 
 	.todayBar {
 		left: 10px;
 		right: 74px; /* FAB 자리 확보 */
 		width: auto;
-		bottom: calc(70px + env(safe-area-inset-bottom));
+		bottom: calc(86px + env(safe-area-inset-bottom));
 	}
 
 	.card {
 		left: 10px;
 		right: 10px;
 		width: auto;
-		bottom: calc(70px + env(safe-area-inset-bottom));
+		bottom: calc(86px + env(safe-area-inset-bottom));
 	}
 
 	.cardPrimary,
@@ -720,6 +720,6 @@
 	}
 
 	.notice {
-		bottom: calc(70px + env(safe-area-inset-bottom));
+		bottom: calc(86px + env(safe-area-inset-bottom));
 	}
 }
