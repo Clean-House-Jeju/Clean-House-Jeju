@@ -128,3 +128,41 @@ export function CloseIcon({ size = 16 }: { size?: number }) {
 		</Svg>
 	);
 }
+
+/* ---- 하단 내비게이션용 ---- */
+
+export function MapNavIcon({ size = 22 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<path d="M10 17.5s5.5-5.6 5.5-9.3A5.5 5.5 0 0 0 4.5 8.2c0 3.7 5.5 9.3 5.5 9.3Z" />
+			<circle cx="10" cy="8.2" r="2" />
+		</Svg>
+	);
+}
+
+export function GuideNavIcon({ size = 22 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<path d="M4.5 4.5A1.5 1.5 0 0 1 6 3h9.5v13.5H6A1.5 1.5 0 0 0 4.5 18Z" />
+			<path d="M4.5 16.5V4.5M8 7h4.5M8 10h4.5" />
+		</Svg>
+	);
+}
+
+export function RecycleNavIcon({ size = 22 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<path d="M4.6 13.4a5.9 5.9 0 0 1 2.1-8.2M15.4 6.6a5.9 5.9 0 0 1-1 9.2M8.6 17.2a5.9 5.9 0 0 1-4-3.8" transform="translate(0.5 -1.5)" />
+			<path d="M7.4 3.2 7 6l-2.8-.6M16.6 7.4l-2.4-1 1.4-2.6M8.2 18.4l-1-2.5 2.8-.4" transform="translate(0.5 -1.5)" />
+		</Svg>
+	);
+}
+
+export function HouseNavIcon({ size = 22 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<path d="M3.5 9.5 10 3.5l6.5 6M5 8.5V17h10V8.5" />
+			<path d="M8.2 17v-4.5h3.6V17" />
+		</Svg>
+	);
+}

@@ -48,8 +48,22 @@
 	font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
 	.asOf {
 		display: none;
+	}
+
+	/* 상단 내비 → 하단 탭 바로 대체 */
+	.nav {
+		display: none;
+	}
+
+	.page {
+		/* 하단 탭 바에 지도가 가리지 않게 */
+		padding-bottom: calc(58px + env(safe-area-inset-bottom));
+	}
+
+	.header {
+		padding: 10px 14px 0;
 	}
 }

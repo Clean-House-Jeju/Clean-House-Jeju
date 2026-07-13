@@ -320,15 +320,79 @@
 	filter: brightness(1.05);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
+	/* 선택 카드 → 바텀시트 (하단 탭 바 위로 슬라이드업) */
 	.card {
-		left: 8px;
-		right: 8px;
-		width: auto;
-		bottom: 8px;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: calc(58px + env(safe-area-inset-bottom));
+		width: 100%;
+		border-radius: 20px 20px 0 0;
+		box-shadow: 0 -12px 36px rgba(13, 60, 48, 0.22);
+		animation: sheetIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.05);
+		z-index: 45;
+	}
+
+	/* 드래그 핸들 어포던스 */
+	.cardHead {
+		padding-top: 16px;
+		position: relative;
+	}
+
+	.cardHead::before {
+		content: "";
+		position: absolute;
+		top: 6px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 40px;
+		height: 4px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.45);
+	}
+
+	.cardActions {
+		padding-bottom: 16px;
+	}
+
+	.cardPrimary,
+	.cardSecondary {
+		padding: 13px 12px; /* 터치 타겟 ≥ 44px */
 	}
 
 	.legend {
 		display: none;
+	}
+
+	.controls {
+		padding: 8px 14px 10px;
+		gap: 8px;
+	}
+
+	.results {
+		top: 106px;
+		left: 8px;
+		right: 8px;
+		max-height: 52vh;
+	}
+
+	.resultItem {
+		padding: 13px 14px; /* 터치 타겟 */
+	}
+
+	.notice {
+		bottom: calc(70px + env(safe-area-inset-bottom));
+	}
+}
+
+@keyframes sheetIn {
+	from {
+		transform: translateY(40%);
+		opacity: 0.6;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
 	}
 }

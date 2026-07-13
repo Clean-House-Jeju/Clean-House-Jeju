@@ -7,6 +7,13 @@
 	gap: 16px;
 }
 
+@media (max-width: 767px) {
+	.main {
+		/* 하단 탭 바 여백 */
+		padding-bottom: calc(80px + env(safe-area-inset-bottom));
+	}
+}
+
 .main h1 {
 	font-size: 26px;
 	font-weight: 700;

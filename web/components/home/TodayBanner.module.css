@@ -41,3 +41,28 @@
 	align-items: center;
 	gap: 3px;
 }
+
+@media (max-width: 767px) {
+	/* 칩을 한 줄 가로 스크롤로 — 모바일 헤더 높이 절약 */
+	.wrap {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+		margin: 0 -14px;
+		padding-left: 14px;
+		padding-right: 14px;
+	}
+
+	.wrap::-webkit-scrollbar {
+		display: none;
+	}
+
+	.wrap > * {
+		flex: none;
+	}
+
+	.districtRow {
+		flex-wrap: nowrap;
+	}
+}

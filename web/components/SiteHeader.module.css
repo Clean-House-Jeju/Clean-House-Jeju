@@ -31,3 +31,10 @@
 	opacity: 1;
 	text-decoration: underline;
 }
+
+@media (max-width: 767px) {
+	/* 하단 탭 바가 내비 역할 */
+	.nav {
+		display: none;
+	}
+}
