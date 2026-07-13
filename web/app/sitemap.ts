@@ -6,7 +6,7 @@ import { getWasteGuide } from "@/lib/waste";
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:8080";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const statics: MetadataRoute.Sitemap = ["/", "/guide", "/guide/faq", "/recycle-center", "/clean-house", "/waste"].map(
+	const statics: MetadataRoute.Sitemap = ["/", "/guide", "/guide/faq", "/recycle-center", "/clean-house", "/waste", "/privacy"].map(
 		(p) => ({ url: `${BASE}${p}`, changeFrequency: "weekly", priority: p === "/" ? 1 : 0.8 }),
 	);
 
