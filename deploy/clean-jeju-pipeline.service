@@ -1,0 +1,15 @@
+[Unit]
+Description=Clean Jeju data pipeline (collect + revalidate)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=swyang
+WorkingDirectory=/home/swyang/Clean-House-Jeju/pipeline
+# nvm 비대화형 로드 패턴 (홈서버 knowledge base 참조)
+ExecStart=/bin/bash -c 'export NVM_DIR=/home/swyang/.nvm; . $NVM_DIR/nvm.sh; pnpm collect'
+EnvironmentFile=/home/swyang/Clean-House-Jeju/pipeline/.env.production
+# KAKAO_REST_KEY, RESEND_API_KEY, REPORT_TO_EMAIL,
+# REVALIDATE_URL=http://127.0.0.1:3005/api/revalidate, REVALIDATE_TOKEN
+TimeoutStartSec=600

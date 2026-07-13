@@ -71,8 +71,8 @@
 
 ## Phase 9: 커트오버·배포
 
-- [ ] T030 레거시 제거: `src/`·`public/`(CRA 잔재)·CRA deps·`REAMD.md`·`.idea/`·`.swp`, README 갱신(새 구조·출처 고지 유지), 기존 기능 회귀 체크리스트 대조
-- [ ] T031 `deploy/`: systemd 유닛 3종 + `.env` 주입(SOPS 체계), 타이머는 UTC 기준 작성
+- [x] T030 레거시 제거: `src/`·`public/`(CRA 잔재)·CRA deps·`REAMD.md`·`.idea/`·`.swp`, README 갱신(새 구조·출처 고지 유지), 기존 기능 회귀 체크리스트 대조
+- [x] T031 `deploy/`: systemd 유닛 3종 + `.env` 주입(SOPS 체계), 타이머는 UTC 기준 작성
 - [ ] 🧑 T032 홈서버 배포: pull+build 후 sudo로 유닛 설치·기동, cloudflared 라우트 추가(Cloudflare API), 서브도메인 연결
 - [ ] T033 실도메인 검증: E2E 전 시나리오 + Lighthouse(SC-004) + 파이프라인 타이머 1주기 관찰(SC-002)
 - [ ] 🧑 T034 Google Search Console 등록 + sitemap 제출 → 4주 색인 추적(SC-001)

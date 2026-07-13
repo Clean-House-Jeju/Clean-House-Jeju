@@ -1,0 +1,11 @@
+[Unit]
+Description=Clean Jeju pipeline weekly run
+
+[Timer]
+# 홈서버 TZ=Etc/UTC — 월 20:00 UTC = 화 05:00 KST (새벽 저부하 시간)
+OnCalendar=Mon *-*-* 20:00:00
+Persistent=true
+RandomizedDelaySec=600
+
+[Install]
+WantedBy=timers.target

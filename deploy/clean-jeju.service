@@ -1,0 +1,20 @@
+[Unit]
+Description=Clean Jeju web (Next.js)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=swyang
+WorkingDirectory=/home/swyang/Clean-House-Jeju/web
+# Node 경로는 홈서버 nvm 고정 버전 (v22.22.0)
+ExecStart=/home/swyang/.nvm/versions/node/v22.22.0/bin/node node_modules/next/dist/bin/next start -p 3005
+Environment=NODE_ENV=production
+Environment=DATA_DIR=/home/swyang/Clean-House-Jeju/data
+# REVALIDATE_TOKEN, RESEND_API_KEY, REPORT_TO_EMAIL, NEXT_PUBLIC_SITE_URL 등
+EnvironmentFile=/home/swyang/Clean-House-Jeju/web/.env.production
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
