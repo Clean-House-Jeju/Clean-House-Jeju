@@ -1,0 +1,33 @@
+{
+	"collectedAt": "2026-07-13T07:55:54.268Z",
+	"sources": [
+		{
+			"id": "data.go.kr/15110514",
+			"url": "https://www.data.go.kr/data/15110514/fileData.do",
+			"fetchedRows": 1359,
+			"acceptedRows": 1310,
+			"rejectedRows": 49,
+			"status": "ok",
+			"dataDate": "2024-11-06"
+		},
+		{
+			"id": "data.go.kr/15056472",
+			"url": "https://www.data.go.kr/data/15056472/fileData.do",
+			"fetchedRows": 388,
+			"acceptedRows": 172,
+			"rejectedRows": 216,
+			"status": "ok",
+			"dataDate": "2024-08-23"
+		},
+		{
+			"id": "data.go.kr/15045364",
+			"url": "https://www.data.go.kr/data/15045364/fileData.do",
+			"fetchedRows": 182,
+			"acceptedRows": 78,
+			"rejectedRows": 104,
+			"status": "ok",
+			"dataDate": "2025-09-05"
+		}
+	],
+	"totalSites": 1560
+}

@@ -1,0 +1,48 @@
+{
+	"$comment": "요일별 배출제 규칙 — 조례 개정 시 이 파일만 갱신 (constitution 원칙 I). 품목 코드는 web/lib/rules.ts 라벨 매핑과 계약.",
+	"verifiedAt": "2026-07-13",
+	"rules": [
+		{
+			"district": "jeju",
+			"effectiveFrom": "2025-06-06",
+			"source": "https://www.jejusi.go.kr/field/eco/weekwaste.do",
+			"cleanHouseHours": { "start": "15:00", "end": "04:00" },
+			"alwaysAllowed": ["general", "food", "can-metal", "glass", "styrofoam"],
+			"schedule": {
+				"mon": ["plastic", "pet-clear"],
+				"tue": ["paper", "nonflammable"],
+				"wed": ["plastic", "pet-clear"],
+				"thu": ["paper", "vinyl"],
+				"fri": ["plastic", "pet-clear"],
+				"sat": ["paper", "nonflammable"],
+				"sun": ["plastic", "pet-clear", "vinyl"]
+			},
+			"notes": [
+				"배출 시간 15:00~익일 04:00 (음식물류는 24시간)",
+				"투명페트병은 전용수거함에 별도 배출",
+				"과일 씨·껍질, 동물 뼈, 패각류, 티백은 음식물이 아닌 종량제봉투로 배출",
+				"재활용도움센터는 요일 구분 없이 배출 가능"
+			]
+		},
+		{
+			"district": "seogwipo",
+			"effectiveFrom": "2025-06-06",
+			"source": "https://www.seogwipo.go.kr/recycle/index.htm",
+			"cleanHouseHours": null,
+			"alwaysAllowed": ["general", "food", "can-metal", "glass", "styrofoam"],
+			"schedule": {
+				"mon": ["plastic"],
+				"tue": ["paper", "nonflammable"],
+				"wed": ["plastic"],
+				"thu": ["paper", "vinyl"],
+				"fri": ["plastic"],
+				"sat": ["paper", "nonflammable"],
+				"sun": ["plastic", "vinyl"]
+			},
+			"notes": [
+				"재활용도움센터는 06:00~22:00 요일 구분 없이 배출 가능 (음식물은 24시간)",
+				"클린하우스 배출 시간은 개소별 데이터 기준"
+			]
+		}
+	]
+}

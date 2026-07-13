@@ -15,25 +15,25 @@
 
 ## Phase 1: Setup + 게이트
 
-- [ ] T001 pnpm 워크스페이스 구성 (루트 `package.json`+`pnpm-workspace.yaml`, `web/`·`pipeline/` 스캐폴드, Biome 설정 — 레거시 `src/`는 아직 유지)
-- [ ] T002 `web/`: Next.js(App Router, TS, standalone output) 생성 + Astryx 설치(`@astryxdesign/core`, `@astryxdesign/theme-neutral`, CLI) + theme CSS 전역 import
-- [ ] T003 **[게이트]** Astryx 스모크: 버튼·카드·다크모드 포함 샘플 페이지가 `pnpm --filter web build`로 SSR 빌드되는지 확인. 실패 시 중단하고 사용자와 대체 DS 재협의
-- [ ] 🧑 T004 [P] 공공데이터포털 활용신청(제주시 클린하우스 15110514 등) → `DATA_GO_KR_KEY` 발급
-- [ ] 🧑 T005 [P] 카카오 개발자 콘솔에 `localhost:3000` + 배포 서브도메인 등록, 서브도메인 명 확정
+- [x] T001 pnpm 워크스페이스 구성 (루트 `package.json`+`pnpm-workspace.yaml`, `web/`·`pipeline/` 스캐폴드, Biome 설정 — 레거시 `src/`는 아직 유지)
+- [x] T002 `web/`: Next.js(App Router, TS, standalone output) 생성 + Astryx 설치(`@astryxdesign/core`, `@astryxdesign/theme-neutral`, CLI) + theme CSS 전역 import
+- [x] T003 **[게이트]** Astryx 스모크: 버튼·카드·다크모드 포함 샘플 페이지가 `pnpm --filter web build`로 SSR 빌드되는지 확인. 실패 시 중단하고 사용자와 대체 DS 재협의
+- [x] ~~T004 공공데이터포털 활용신청~~ → **불필요 판명**: fileDownload.do 직접 다운로드가 키 없이 동작 (파이프라인이 atchFileId를 매 실행 파싱). 대신 지오코딩용 `KAKAO_REST_KEY`가 필요 (T005에 통합)
+- [ ] 🧑 T005 [P] 카카오 개발자 콘솔: `localhost:3000` + 배포 서브도메인 등록, 서브도메인 명 확정, **REST API 키 발급**(지오코딩 미해석 320건 해소용)
 
 ## Phase 2: Foundational
 
-- [ ] T006 `pipeline/schemas/`: Site·DisposalRule·Snapshot JSON Schema 작성 (data-model.md 기준)
+- [x] T006 `pipeline/schemas/`: Site·DisposalRule·Snapshot JSON Schema 작성 (data-model.md 기준)
 - [ ] T007 [P] `web/lib/data.ts`: `data/*.json` 로더(메모리 캐시+revalidate 무효화), 운영상태·오늘품목 계산(Asia/Seoul 명시, 자정 넘김 처리), 거리·제주 bbox 유틸 이관 (research R5)
-- [ ] T008 [P] `data/rules.json` 초안: 2025-06-06 개편 기준 제주시·서귀포시 규칙을 고시 원문 대조로 작성 (출처 URL·시행일 포함) — SC-007의 근거
+- [x] T008 [P] `data/rules.json` 초안: 2025-06-06 개편 기준 제주시·서귀포시 규칙을 고시 원문 대조로 작성 (출처 URL·시행일 포함) — SC-007의 근거
 
 ## Phase 3: US2 — 항상 최신인 데이터 (P1)
 
-- [ ] T009 `pipeline/src/sources/`: 소스 어댑터 3종 (제주시 클린하우스 API, 서귀포시 클린하우스 — 폐기 시 제주데이터허브 대체 확인, 재활용도움센터)
-- [ ] T010 `pipeline/src/normalize.ts`: 단일 스키마 정규화 + zod 검증 + 좌표 bbox 검증 + 30m 중복 제거 + 안정 id 생성
-- [ ] T011 `pipeline/src/report.ts` + `index.ts`: snapshot·rejects 산출, 원자적 파일 교체, 실패 시 기존 데이터 보존 + Resend 이메일 리포트, 성공 시 `POST /api/revalidate`
-- [ ] T012 파이프라인 통합 테스트: 실 API 대상 건수 하한(클린 ≥ 1,300·재활용 ≥ 70)·스키마·좌표 검증, 실행 결과로 `data/sites.json` 커밋
-- [ ] ✅ Checkpoint: `pnpm --filter pipeline run collect` 1회 실행으로 실데이터 `data/*.json` 생성 확인
+- [x] T009 `pipeline/src/sources/`: 소스 어댑터 3종 (제주시 클린하우스 API, 서귀포시 클린하우스 — 폐기 시 제주데이터허브 대체 확인, 재활용도움센터)
+- [x] T010 `pipeline/src/normalize.ts`: 단일 스키마 정규화 + zod 검증 + 좌표 bbox 검증 + 30m 중복 제거 + 안정 id 생성
+- [x] T011 `pipeline/src/report.ts` + `index.ts`: snapshot·rejects 산출, 원자적 파일 교체, 실패 시 기존 데이터 보존 + Resend 이메일 리포트, 성공 시 `POST /api/revalidate`
+- [x] T012 파이프라인 통합 테스트: 실 API 대상 건수 하한(클린 ≥ 1,300·재활용 ≥ 70)·스키마·좌표 검증, 실행 결과로 `data/sites.json` 커밋
+- [x] ✅ Checkpoint 통과 (2026-07-13): 1,560개소 반영 (제주시 1,310 + 서귀포 172 + 재활용센터 78). 좌표 미해석 320건은 KAKAO_REST_KEY 대기. 추자면 bbox 누락(레거시 버그)·좌표 스왑 보정 반영
 
 ## Phase 4: US1 — 내 주변 배출 장소 찾기 (P1) 🎯 MVP
 
