@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import TodayBanner from "@/components/home/TodayBanner";
-import { CloseIcon, MoonIcon, SearchIcon, TargetIcon } from "@/components/icons";
+import { BoltIcon, CloseIcon, MoonIcon, SearchIcon, StarIcon, TargetIcon } from "@/components/icons";
 import Logo from "@/components/Logo";
+import { useFavorites } from "@/lib/favorites";
 import { DEFAULT_CENTER, distanceKm, formatDistance, isInJeju } from "@/lib/geo";
 import { formatHours, isOpen, withRuleHours } from "@/lib/status";
 import type { DisposalRule, MapSite, SiteType } from "@/lib/types";
@@ -75,7 +76,14 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 	const [query, setQuery] = useState("");
 	const [selected, setSelected] = useState<MapSite | null>(null);
 	const [chipEl, setChipEl] = useState<HTMLDivElement | null>(null);
+	const [toast, setToast] = useState<string | null>(null);
 	const geo = useGeolocation();
+	const favorites = useFavorites();
+
+	const showToast = useCallback((msg: string) => {
+		setToast(msg);
+		setTimeout(() => setToast(null), 2600);
+	}, []);
 
 	const openState = useCallback(
 		(site: MapSite): boolean | undefined => isOpen(withRuleHours(site, rules)),
@@ -260,6 +268,35 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 		setQuery("");
 	};
 
+	// 지금 열려있는 가장 가까운 곳 — 기준점: 위치 허용 시 현위치, 아니면 지도 중심 (공식 API만 사용)
+	const goNearestOpen = () => {
+		const map = mapRef.current;
+		let from = origin;
+		if (geo.status !== "granted" && map) {
+			const c = map.getCenter();
+			from = { lat: c.getLat(), lng: c.getLng() };
+		}
+		const candidates = sites
+			.filter((s) => filter === "all" || s.type === filter)
+			.filter((s) => openState(s) === true)
+			.map((s) => ({ s, d: distanceKm(from.lat, from.lng, s.lat, s.lng) }))
+			.sort((a, b) => a.d - b.d);
+		if (candidates.length === 0) {
+			showToast("지금 운영 중인 곳이 없어요");
+			return;
+		}
+		focusSite(candidates[0].s);
+	};
+
+	const favSites = useMemo(
+		() =>
+			favorites.ids
+				.map((id) => sites.find((s) => s.id === id))
+				.filter((s): s is MapSite => !!s)
+				.map((s) => ({ site: s, open: openState(s) })),
+		[favorites.ids, sites, openState],
+	);
+
 	const selectedOpen = selected ? openState(selected) : undefined;
 	const selectedHours = selected ? withRuleHours(selected, rules) : null;
 
@@ -323,7 +360,21 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 							</button>
 						))}
 					</div>
+					<button type="button" className={styles.openNow} onClick={goNearestOpen}>
+						<BoltIcon /> 지금 열린 곳
+					</button>
 				</div>
+
+				{favSites.length > 0 && (
+					<div className={styles.favRow} aria-label="즐겨찾기">
+						{favSites.map(({ site, open }) => (
+							<button key={site.id} type="button" className={styles.favPill} onClick={() => focusSite(site)}>
+								<span className={`cj-dot ${open ? "cj-dot--open" : ""}`} />
+								{site.name}
+							</button>
+						))}
+					</div>
+				)}
 
 				{query.trim() !== "" && (
 					<div className={styles.results}>
@@ -367,6 +418,12 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 				</div>
 			)}
 
+			{toast && (
+				<output className={styles.toast} aria-live="polite">
+					{toast}
+				</output>
+			)}
+
 			{geo.status === "granted" && !geo.inJeju && (
 				<div className={styles.notice}>
 					<Banner status="info" title="제주 외 지역에서 접속 중" description="지도는 제주 기본 화면으로 표시됩니다." />
@@ -386,6 +443,19 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 			{/* 다크 정보 카드 */}
 			{selected && selectedHours && (
 				<article className={styles.card} data-type={selected.type}>
+					<button
+						type="button"
+						className={styles.cardFav}
+						data-fav={favorites.has(selected.id)}
+						onClick={() => {
+							favorites.toggle(selected.id);
+							if (!favorites.has(selected.id)) showToast("즐겨찾기에 추가했어요");
+						}}
+						aria-label={favorites.has(selected.id) ? "즐겨찾기 해제" : "즐겨찾기 추가"}
+						aria-pressed={favorites.has(selected.id)}
+					>
+						<StarIcon filled={favorites.has(selected.id)} />
+					</button>
 					<button type="button" className={styles.cardClose} onClick={() => setSelected(null)} aria-label="닫기">
 						<CloseIcon size={15} />
 					</button>

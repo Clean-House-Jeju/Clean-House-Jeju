@@ -160,6 +160,34 @@ export function MoonIcon({ size = 13 }: { size?: number }) {
 	);
 }
 
+/** 즐겨찾기 별 */
+export function StarIcon({ size = 16, filled = false }: { size?: number; filled?: boolean }) {
+	return (
+		<Svg size={size} fill={filled ? "currentColor" : "none"} strokeWidth={1.6}>
+			<path d="M10 2.8 12.2 7.3l5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L2.8 8l5-.7Z" />
+		</Svg>
+	);
+}
+
+/** 지금 열린 곳 (번개) */
+export function BoltIcon({ size = 14 }: { size?: number }) {
+	return (
+		<Svg size={size} fill="currentColor" strokeWidth={0.5}>
+			<path d="M11.2 2 4.5 11h4l-.9 7 6.9-9.2h-4Z" />
+		</Svg>
+	);
+}
+
+/** 알림 벨 */
+export function BellIcon({ size = 16 }: { size?: number }) {
+	return (
+		<Svg size={size}>
+			<path d="M10 3a4.6 4.6 0 0 0-4.6 4.6c0 4-1.6 5.4-1.6 5.4h12.4s-1.6-1.4-1.6-5.4A4.6 4.6 0 0 0 10 3Z" />
+			<path d="M8.4 16a1.7 1.7 0 0 0 3.2 0" />
+		</Svg>
+	);
+}
+
 /** 검색 (돋보기) */
 export function SearchIcon({ size = 17 }: { size?: number }) {
 	return (
