@@ -1,22 +1,28 @@
-import { Badge, Banner, Button, Card, Heading, Text } from "@astryxdesign/core";
+import { Text } from "@astryxdesign/core";
+import TodayBanner from "@/components/home/TodayBanner";
+import MapView from "@/components/map/MapView";
+import { getDataAsOf, getRules } from "@/lib/data";
+import styles from "./page.module.css";
 
-// T003 Astryx 스모크 페이지 — Phase 4에서 지도 홈으로 교체 예정
+// 데이터 파일은 revalidate API가 무효화하지만, 요일 경계 대비 시간 단위 재생성도 걸어둔다
+export const revalidate = 3600;
+
 export default function Home() {
+	const { rules } = getRules();
+	const asOf = getDataAsOf();
+
 	return (
-		<main style={{ maxWidth: 640, margin: "0 auto", padding: 24 }}>
-			<Heading level={1}>클린 제주</Heading>
-			<Text>Astryx SSR 빌드 스모크 테스트</Text>
-			<Banner
-				status="info"
-				title="오늘은 플라스틱 버리는 날"
-				description="제주시 기준 · 데이터 기준일 2026-07-13"
-			/>
-			<Card>
-				<Heading level={3}>한림2리 재활용도움센터</Heading>
-				<Badge label="운영중" />
-				<Text>제주시 한림읍 한림남길 12</Text>
-				<Button label="길찾기" />
-			</Card>
-		</main>
+		<div className={styles.page}>
+			<header className={styles.header}>
+				<div className={styles.titleRow}>
+					<h1 className={styles.title}>클린 제주</h1>
+					<Text size="sm" color="secondary">
+						데이터 기준일 {asOf}
+					</Text>
+				</div>
+				<TodayBanner rules={rules} />
+			</header>
+			<MapView />
+		</div>
 	);
 }

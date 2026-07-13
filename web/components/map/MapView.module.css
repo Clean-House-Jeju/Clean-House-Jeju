@@ -1,0 +1,101 @@
+.wrap {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+}
+
+.controls {
+	display: flex;
+	gap: 8px;
+	padding: 12px 16px;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.controls > :first-child {
+	flex: 1;
+	min-width: 200px;
+}
+
+.results {
+	position: absolute;
+	top: 64px;
+	left: 16px;
+	right: 16px;
+	max-height: 40vh;
+	overflow-y: auto;
+	z-index: 20;
+	border-radius: 12px;
+	background: var(--axr-background-primary, #fff);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.resultItem {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+	width: 100%;
+	padding: 10px 14px;
+	border: 0;
+	background: transparent;
+	text-align: left;
+	cursor: pointer;
+}
+
+.resultItem:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.map {
+	flex: 1;
+	min-height: 320px;
+}
+
+.mapFallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 24px;
+}
+
+.notice {
+	position: absolute;
+	bottom: 16px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	width: min(480px, calc(100% - 32px));
+}
+
+.detail {
+	position: absolute;
+	bottom: 16px;
+	left: 16px;
+	z-index: 15;
+	width: min(400px, calc(100% - 32px));
+}
+
+.badges {
+	display: flex;
+	gap: 6px;
+	margin: 6px 0;
+}
+
+.actions {
+	display: flex;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+	.detail {
+		left: 8px;
+		right: 8px;
+		width: auto;
+		bottom: 8px;
+	}
+}
