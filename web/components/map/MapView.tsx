@@ -323,9 +323,6 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 							</button>
 						))}
 					</div>
-					<span className={styles.chipDivider} aria-hidden />
-					<TodayBanner rules={rules} />
-					<span className={styles.asOf}>기준일 {asOf}</span>
 				</div>
 
 				{query.trim() !== "" && (
@@ -362,6 +359,13 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 			<button type="button" className={styles.locate} onClick={locateMe} aria-label="내 위치로 이동">
 				<TargetIcon />
 			</button>
+
+			{/* 오늘 배출 바 — 하단 상시 노출, 개소 선택 시 카드에 양보 */}
+			{!selected && (
+				<div className={styles.todayBar}>
+					<TodayBanner rules={rules} asOf={asOf} />
+				</div>
+			)}
 
 			{geo.status === "granted" && !geo.inJeju && (
 				<div className={styles.notice}>

@@ -22,6 +22,9 @@
 	--cj-line: rgba(28, 39, 51, 0.1);
 	--cj-shadow: 0 10px 30px rgba(13, 60, 48, 0.14), 0 2px 8px rgba(13, 60, 48, 0.08);
 	--cj-radius: 16px;
+	/* 강조 필(활성 필터·날짜 배지) — 다크모드에서 반전되지 않는 전용 변수 */
+	--cj-strong: #1c2733;
+	--cj-strong-ink: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +37,8 @@
 		--cj-ink-2: #9aa8b5;
 		--cj-line: rgba(232, 238, 242, 0.12);
 		--cj-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+		--cj-strong: #3a4a5a;
+		--cj-strong-ink: #ffffff;
 	}
 }
 

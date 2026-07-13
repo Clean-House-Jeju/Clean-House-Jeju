@@ -8,48 +8,50 @@ import styles from "./TodayBanner.module.css";
 const ALWAYS_ITEMS: Item[] = ["general", "food", "can-metal", "glass", "styrofoam"];
 
 /**
- * 오늘 배출 품목 플로팅 칩 — 클라이언트에서 재계산해 정적 페이지의 빌드 시점
- * 요일 박제를 방지한다 (레거시 CleanOverlay의 모듈 로드 시 1회 계산 버그 교훈).
+ * 오늘 배출 바 — 지도 하단에 상시 고정 (스크롤 칩에 묻히지 않게).
+ * 클라이언트에서 재계산해 정적 페이지의 빌드 시점 요일 박제를 방지한다.
  */
-export default function TodayBanner({ rules }: { rules: DisposalRule[] }) {
+export default function TodayBanner({ rules, asOf }: { rules: DisposalRule[]; asOf?: string }) {
 	const { day, dateLabel } = todayInSeoul();
 
 	return (
-		<>
-			<span className={styles.today} suppressHydrationWarning>
-				{dateLabel} 배출
-			</span>
-			{rules.map((rule) => {
-				const items = itemsForDay(rule, day);
-				return (
-					<span
-						key={rule.district}
-						className={styles.districtRow}
-						data-district={rule.district}
-						suppressHydrationWarning
-					>
-						<span className={styles.district}>{DISTRICT_LABELS[rule.district]}</span>
-						{items.length > 0 ? (
-							items.map((i) => (
-								<span key={i} className={`cj-chip ${styles.chip}`}>
-									<ItemIcon item={i} /> {ITEM_LABELS[i]}
-								</span>
-							))
-						) : (
-							<span className={`cj-chip cj-chip--muted ${styles.chip}`}>요일제 품목 없음</span>
-						)}
-					</span>
-				);
-			})}
-			<span className={`cj-chip cj-chip--muted ${styles.chip} ${styles.always}`}>
+		<section className={styles.bar} aria-label="오늘 배출 가능 품목">
+			<header className={styles.head}>
+				<span className={styles.today} suppressHydrationWarning>
+					{dateLabel} 배출
+				</span>
+				{asOf && <span className={styles.asOf}>데이터 기준일 {asOf}</span>}
+			</header>
+			<div className={styles.rows} suppressHydrationWarning>
+				{rules.map((rule) => {
+					const items = itemsForDay(rule, day);
+					return (
+						<div key={rule.district} className={styles.districtRow} data-district={rule.district}>
+							<span className={styles.district}>{DISTRICT_LABELS[rule.district]}</span>
+							<span className={styles.items}>
+								{items.length > 0 ? (
+									items.map((i) => (
+										<span key={i} className={`cj-chip ${styles.chip}`}>
+											<ItemIcon item={i} /> {ITEM_LABELS[i]}
+										</span>
+									))
+								) : (
+									<span className={`cj-chip cj-chip--muted ${styles.chip}`}>요일제 품목 없음</span>
+								)}
+							</span>
+						</div>
+					);
+				})}
+			</div>
+			<p className={styles.always}>
 				{ALWAYS_ITEMS.map((i) => (
 					<span key={i} className={styles.alwaysItem}>
-						<ItemIcon item={i} size={13} />
+						<ItemIcon item={i} size={12} />
 						{ITEM_LABELS[i].replace(/\(.+\)/, "")}
 					</span>
 				))}
-				<span>은 매일</span>
-			</span>
-		</>
+				<span>은 매일 배출 가능</span>
+			</p>
+		</section>
 	);
 }

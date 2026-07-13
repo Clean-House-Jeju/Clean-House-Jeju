@@ -1,53 +1,92 @@
-/* 지도 위 플로팅 칩 — MapView .chips 행 안에서 흐른다 */
+/* 하단 고정 오늘 배출 바 — 테마 서피스를 따르는 플로팅 카드 */
+
+.bar {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	padding: 12px 14px;
+	border-radius: 18px;
+	background: color-mix(in srgb, var(--cj-surface) 94%, transparent);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid var(--cj-line);
+	box-shadow: var(--cj-shadow);
+	color: var(--cj-ink);
+}
+
+.head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
 
 .today {
 	display: inline-flex;
 	align-items: center;
-	padding: 7px 13px;
+	padding: 5px 11px;
 	border-radius: 999px;
-	background: var(--cj-ink);
-	color: #fff;
-	font-size: 12.5px;
+	background: var(--cj-strong);
+	color: var(--cj-strong-ink);
+	font-size: 12px;
 	font-weight: 800;
 	letter-spacing: -0.01em;
 	white-space: nowrap;
-	box-shadow: 0 6px 20px rgba(13, 60, 48, 0.18);
 }
 
-.districtRow {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-}
-
-.district {
-	font-size: 12px;
-	font-weight: 800;
-	color: var(--cj-ink);
-	padding: 6px 10px;
-	border-radius: 999px;
-	background: color-mix(in srgb, var(--cj-surface) 82%, transparent);
-	backdrop-filter: blur(6px);
+.asOf {
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--cj-ink-2);
 	white-space: nowrap;
 }
 
-/* 플로팅용 칩 보강 — 불투명 배경 + 그림자 */
+.rows {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.districtRow {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.district {
+	flex: none;
+	width: 52px;
+	font-size: 12.5px;
+	font-weight: 800;
+	color: var(--cj-ink);
+}
+
+.items {
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
 .chip {
-	box-shadow: 0 6px 18px rgba(13, 60, 48, 0.16);
-	background: var(--cj-surface);
-	color: var(--cj-clean-deep);
-	border: 1px solid rgba(18, 163, 122, 0.25);
+	border: 1px solid rgba(18, 163, 122, 0.22);
 }
 
 .districtRow[data-district="seogwipo"] .chip {
+	background: var(--cj-recycle-soft);
 	color: var(--cj-recycle-deep);
-	border-color: rgba(79, 86, 201, 0.25);
+	border-color: rgba(79, 86, 201, 0.22);
 }
 
 .always {
-	gap: 8px;
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	flex-wrap: wrap;
+	font-size: 11.5px;
+	font-weight: 600;
 	color: var(--cj-ink-2);
-	border: 1px solid var(--cj-line);
+	border-top: 1px dashed var(--cj-line);
+	padding-top: 7px;
 }
 
 .alwaysItem {

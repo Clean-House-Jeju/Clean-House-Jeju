@@ -171,25 +171,17 @@
 }
 
 .filterPill[data-active="true"] {
-	background: var(--cj-ink);
-	color: #fff;
+	background: var(--cj-strong);
+	color: var(--cj-strong-ink);
 }
 
-.chipDivider {
-	width: 1px;
-	height: 22px;
-	background: rgba(13, 60, 48, 0.14);
-	border-radius: 1px;
-}
-
-.asOf {
-	font-size: 11.5px;
-	font-weight: 600;
-	color: var(--cj-ink-2);
-	padding: 6px 12px;
-	border-radius: 999px;
-	background: color-mix(in srgb, var(--cj-surface) 80%, transparent);
-	backdrop-filter: blur(6px);
+/* 오늘 배출 바 — 하단 고정 */
+.todayBar {
+	position: absolute;
+	left: 14px;
+	bottom: 24px;
+	z-index: 17;
+	width: min(430px, calc(100% - 90px));
 }
 
 /* 검색 결과 플로팅 패널 */
@@ -345,10 +337,11 @@
 	z-index: 25;
 	width: min(380px, calc(100% - 28px));
 	border-radius: 22px;
-	background: rgba(22, 30, 38, 0.96);
+	background: color-mix(in srgb, var(--cj-surface) 96%, transparent);
 	backdrop-filter: blur(10px);
-	color: #fff;
-	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+	border: 1px solid var(--cj-line);
+	color: var(--cj-ink);
+	box-shadow: var(--cj-shadow);
 	padding: 16px;
 	animation: cardIn 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.12);
 }
@@ -370,15 +363,15 @@
 	right: 12px;
 	display: inline-flex;
 	border: 0;
-	background: rgba(255, 255, 255, 0.1);
+	background: color-mix(in srgb, var(--cj-ink) 8%, transparent);
 	border-radius: 50%;
 	padding: 6px;
-	color: rgba(255, 255, 255, 0.8);
+	color: var(--cj-ink-2);
 	cursor: pointer;
 }
 
 .cardClose:hover {
-	background: rgba(255, 255, 255, 0.18);
+	background: color-mix(in srgb, var(--cj-ink) 15%, transparent);
 }
 
 .cardBody {
@@ -413,7 +406,7 @@
 .cardTags {
 	font-size: 11.5px;
 	font-weight: 600;
-	color: rgba(255, 255, 255, 0.55);
+	color: var(--cj-ink-2);
 	letter-spacing: -0.01em;
 }
 
@@ -441,13 +434,13 @@
 	font-weight: 700;
 	padding: 3px 9px;
 	border-radius: 999px;
-	background: rgba(46, 189, 147, 0.18);
-	color: #6fe3c0;
+	background: var(--cj-clean-soft);
+	color: var(--cj-clean-deep);
 }
 
 .cardStatus[data-open="false"] {
-	background: rgba(255, 255, 255, 0.1);
-	color: rgba(255, 255, 255, 0.65);
+	background: color-mix(in srgb, var(--cj-ink) 8%, transparent);
+	color: var(--cj-ink-2);
 }
 
 .statusPulse {
@@ -468,7 +461,7 @@
 .cardMeta {
 	font-size: 12px;
 	font-weight: 600;
-	color: rgba(255, 255, 255, 0.7);
+	color: var(--cj-ink-2);
 	font-variant-numeric: tabular-nums;
 }
 
@@ -501,8 +494,8 @@
 }
 
 .cardSecondary {
-	background: rgba(255, 255, 255, 0.12);
-	color: #fff;
+	background: color-mix(in srgb, var(--cj-ink) 8%, transparent);
+	color: var(--cj-ink);
 }
 
 .cardPrimary:hover,
@@ -541,6 +534,13 @@
 
 	.locate {
 		bottom: calc(76px + env(safe-area-inset-bottom));
+	}
+
+	.todayBar {
+		left: 10px;
+		right: 74px; /* FAB 자리 확보 */
+		width: auto;
+		bottom: calc(70px + env(safe-area-inset-bottom));
 	}
 
 	.card {
