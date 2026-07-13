@@ -24,7 +24,7 @@
 ## Phase 2: Foundational
 
 - [x] T006 `pipeline/schemas/`: Site·DisposalRule·Snapshot JSON Schema 작성 (data-model.md 기준)
-- [ ] T007 [P] `web/lib/data.ts`: `data/*.json` 로더(메모리 캐시+revalidate 무효화), 운영상태·오늘품목 계산(Asia/Seoul 명시, 자정 넘김 처리), 거리·제주 bbox 유틸 이관 (research R5)
+- [x] T007 [P] `web/lib/data.ts`: `data/*.json` 로더(메모리 캐시+revalidate 무효화), 운영상태·오늘품목 계산(Asia/Seoul 명시, 자정 넘김 처리), 거리·제주 bbox 유틸 이관 (research R5)
 - [x] T008 [P] `data/rules.json` 초안: 2025-06-06 개편 기준 제주시·서귀포시 규칙을 고시 원문 대조로 작성 (출처 URL·시행일 포함) — SC-007의 근거
 
 ## Phase 3: US2 — 항상 최신인 데이터 (P1)
@@ -37,11 +37,11 @@
 
 ## Phase 4: US1 — 내 주변 배출 장소 찾기 (P1) 🎯 MVP
 
-- [ ] T013 `web/app/api/map-sites/route.ts`: 경량 투영 응답 (contracts §2, < 250KB gzip)
-- [ ] T014 `web/components/map/`: 카카오맵 클라이언트 위젯 — 마커+클러스터러(1회 생성, 공식 API만), 유형 필터, 현위치(허용/거부/제주外 3경로 — 거부 시 5초 내 기본 뷰, 무한 로딩 금지)
-- [ ] T015 `web/app/(map)/page.tsx`: 지도 홈 — 오늘 배출 품목 배너(rules 기반), 데이터 기준일 표시, 검색(명칭+주소, 거리순) + 결과 리스트
-- [ ] T016 E2E(Playwright): 권한 3경로, 검색, 자정 넘김 운영상태(02:00 mock), 빈 결과 UI
-- [ ] ✅ Checkpoint: 로컬 실데이터로 US1 시나리오 5종 통과 — 여기까지가 MVP
+- [x] T013 `web/app/api/map-sites/route.ts`: 경량 투영 응답 (contracts §2, < 250KB gzip)
+- [x] T014 `web/components/map/`: 카카오맵 클라이언트 위젯 — 마커+클러스터러(1회 생성, 공식 API만), 유형 필터, 현위치(허용/거부/제주外 3경로 — 거부 시 5초 내 기본 뷰, 무한 로딩 금지)
+- [x] T015 `web/app/(map)/page.tsx`: 지도 홈 — 오늘 배출 품목 배너(rules 기반), 데이터 기준일 표시, 검색(명칭+주소, 거리순) + 결과 리스트
+- [x] T016 E2E(Playwright): 권한 3경로, 검색, 자정 넘김 운영상태(02:00 mock), 빈 결과 UI
+- [x] ✅ Checkpoint 통과 (2026-07-13): E2E 12/12 (권한 3경로·검색·빈결과·배너, 데스크톱+모바일) + 단위 13개(자정넘김·TZ). 브라우저 실동작 확인 — MVP 완성
 
 ## Phase 5: US3 — 안내·상세 페이지 + SEO (P2)
 
