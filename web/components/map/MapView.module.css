@@ -144,7 +144,78 @@
 	width: min(480px, calc(100% - 32px));
 }
 
-/* ---- 선택 카드 공통 (레거시 CustomOverlay의 타이틀바 구조 계승) ---- */
+/* ---- 선택 마커 식별 칩 (간소화 오버레이 — 카드 ↔ 마커 연결) ---- */
+
+.markerChip {
+	position: relative;
+	max-width: 220px;
+	margin-bottom: 52px; /* 핀(44px) 위 */
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: var(--cj-clean-deep);
+	color: #fff;
+	font-size: 12.5px;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	box-shadow: 0 4px 12px rgba(13, 60, 48, 0.35);
+	animation: chipIn 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+	pointer-events: none;
+}
+
+.markerChip[data-type="recycle"] {
+	background: var(--cj-recycle-deep);
+}
+
+.markerChip::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -4px;
+	transform: translateX(-50%) rotate(45deg);
+	width: 9px;
+	height: 9px;
+	background: inherit;
+}
+
+@keyframes chipIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px) scale(0.9);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* ---- 선택 카드: 데스크톱 = 좌하단 플로팅, 모바일 = 바텀시트 ---- */
+
+.card {
+	position: absolute;
+	bottom: 20px;
+	left: 16px;
+	z-index: 15;
+	width: min(400px, calc(100% - 32px));
+	border-radius: var(--cj-radius);
+	background: var(--cj-surface);
+	box-shadow: var(--cj-shadow);
+	overflow: hidden;
+	animation: cardIn 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.15);
+}
+
+@keyframes cardIn {
+	from {
+		opacity: 0;
+		transform: translateY(14px) scale(0.97);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
 
 .cardHead {
 	display: flex;
@@ -155,7 +226,7 @@
 	background: linear-gradient(115deg, var(--cj-clean), var(--cj-clean-deep));
 }
 
-[data-type="recycle"] .cardHead {
+.card[data-type="recycle"] .cardHead {
 	background: linear-gradient(115deg, var(--cj-recycle), var(--cj-recycle-deep));
 }
 
@@ -216,14 +287,12 @@
 	display: flex;
 	gap: 14px;
 	padding: 14px;
-	align-items: center;
+	align-items: flex-start;
 }
 
-/* 레거시 일러스트 (Clean_house.svg / recycle_center.svg 원본) */
-.cardIllust {
+.cardIcon {
 	flex: none;
-	width: 92px;
-	height: auto;
+	filter: drop-shadow(0 3px 6px rgba(13, 60, 48, 0.25));
 }
 
 .cardInfo {
@@ -234,13 +303,13 @@
 }
 
 .cardName {
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: 800;
 	letter-spacing: -0.02em;
 }
 
 .cardAddr {
-	font-size: 13px;
+	font-size: 13.5px;
 	color: var(--cj-ink-2);
 	line-height: 1.45;
 }
@@ -252,7 +321,7 @@
 	font-variant-numeric: tabular-nums;
 }
 
-[data-type="recycle"] .cardMeta {
+.card[data-type="recycle"] .cardMeta {
 	color: var(--cj-recycle-deep);
 }
 
@@ -280,7 +349,7 @@
 	color: #fff;
 }
 
-[data-type="recycle"] .cardPrimary {
+.card[data-type="recycle"] .cardPrimary {
 	background: var(--cj-recycle);
 }
 
@@ -289,7 +358,7 @@
 	color: var(--cj-clean-deep);
 }
 
-[data-type="recycle"] .cardSecondary {
+.card[data-type="recycle"] .cardSecondary {
 	background: var(--cj-recycle-soft);
 	color: var(--cj-recycle-deep);
 }
@@ -300,97 +369,46 @@
 	filter: brightness(1.05);
 }
 
-/* ---- 데스크톱: 마커 위 말풍선 (레거시 CustomOverlay 계승) ---- */
-
-.bubble {
-	position: relative;
-	width: 336px;
-	margin-bottom: 56px; /* 핀(44px) 위로 띄우기 */
-	border-radius: var(--cj-radius);
-	background: var(--cj-surface);
-	box-shadow: var(--cj-shadow);
-	overflow: hidden;
-	animation: bubbleIn 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.15);
-}
-
-/* 말풍선 꼬리 */
-.bubble::after {
-	content: "";
-	position: absolute;
-	left: 50%;
-	bottom: -9px;
-	transform: translateX(-50%) rotate(45deg);
-	width: 18px;
-	height: 18px;
-	background: var(--cj-surface);
-	box-shadow: 3px 3px 6px rgba(13, 60, 48, 0.08);
-}
-
-@keyframes bubbleIn {
-	from {
-		opacity: 0;
-		transform: translateY(8px) scale(0.96);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0) scale(1);
-	}
-}
-
-/* ---- 모바일: 바텀시트 ---- */
-
-.sheet {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: calc(58px + env(safe-area-inset-bottom));
-	width: 100%;
-	border-radius: 20px 20px 0 0;
-	background: var(--cj-surface);
-	box-shadow: 0 -12px 36px rgba(13, 60, 48, 0.22);
-	overflow: hidden;
-	animation: sheetIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.05);
-	z-index: 45;
-}
-
-.sheet .cardHead {
-	padding-top: 16px;
-	position: relative;
-}
-
-.sheet .cardHead::before {
-	content: "";
-	position: absolute;
-	top: 6px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 40px;
-	height: 4px;
-	border-radius: 999px;
-	background: rgba(255, 255, 255, 0.45);
-}
-
-.sheet .cardActions {
-	padding-bottom: 16px;
-}
-
-.sheet .cardPrimary,
-.sheet .cardSecondary {
-	padding: 13px 12px; /* 터치 타겟 ≥ 44px */
-}
-
-@keyframes sheetIn {
-	from {
-		transform: translateY(40%);
-		opacity: 0.6;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-
 @media (max-width: 767px) {
+	/* 카드 → 바텀시트 */
+	.card {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: calc(58px + env(safe-area-inset-bottom));
+		width: 100%;
+		border-radius: 20px 20px 0 0;
+		box-shadow: 0 -12px 36px rgba(13, 60, 48, 0.22);
+		animation: sheetIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.05);
+		z-index: 45;
+	}
+
+	.card .cardHead {
+		padding-top: 16px;
+		position: relative;
+	}
+
+	.card .cardHead::before {
+		content: "";
+		position: absolute;
+		top: 6px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 40px;
+		height: 4px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.45);
+	}
+
+	.card .cardActions {
+		padding-bottom: 16px;
+	}
+
+	.card .cardPrimary,
+	.card .cardSecondary {
+		padding: 13px 12px; /* 터치 타겟 ≥ 44px */
+	}
+
 	.legend {
 		display: none;
 	}
@@ -413,5 +431,16 @@
 
 	.notice {
 		bottom: calc(70px + env(safe-area-inset-bottom));
+	}
+}
+
+@keyframes sheetIn {
+	from {
+		transform: translateY(40%);
+		opacity: 0.6;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
 	}
 }

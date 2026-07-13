@@ -7,7 +7,7 @@ test.describe("위치 권한 3경로 (FR-007)", () => {
 		await context.clearPermissions(); // 권한 프롬프트 → 자동 거부됨(headless)
 		await page.goto("/");
 		await expect(page.getByRole("application", { name: /지도/ })).toBeVisible({ timeout: 5000 });
-		await expect(page.getByText("클린 제주")).toBeVisible();
+		await expect(page.getByText(/클린\s*제주/).first()).toBeVisible();
 	});
 
 	test("허용 + 제주 좌표 → 지도 정상 + 외지 배너 없음", async ({ page, context }) => {

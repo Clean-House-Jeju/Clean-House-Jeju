@@ -1,17 +1,22 @@
 .lockup {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
+	gap: 9px;
 }
 
 .word {
-	font-size: 19px;
+	font-size: 20px;
 	font-weight: 900;
-	letter-spacing: -0.045em;
+	letter-spacing: -0.05em;
 	color: var(--cj-ink);
+	line-height: 1;
 }
 
 .word em {
 	font-style: normal;
-	color: var(--cj-clean-deep);
+	margin-left: 4px;
+	background: linear-gradient(115deg, var(--cj-clean), var(--cj-clean-deep));
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
