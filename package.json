@@ -1,52 +1,23 @@
 {
-  "name": "clean-house",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "react": "^17.0.2",
-    "react-accessible-accordion": "^3.3.4",
-    "react-bootstrap": "^1.6.0",
-    "react-dom": "^17.0.2",
-    "react-error-overlay": "^6.0.10",
-    "react-icons": "^4.2.0",
-    "react-infinite-scroll-component": "^6.1.0",
-    "react-redux": "^7.2.4",
-    "react-scripts": "4.0.3",
-    "redux": "^4.1.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "styled-components": "^5.3.0",
-    "styled-reset": "^4.3.4",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "export PORT=8080 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "clean-jeju",
+	"version": "2.0.0",
+	"private": true,
+	"description": "제주 클린하우스·재활용도움센터 안내 서비스 (v2 모노리포: web + pipeline)",
+	"scripts": {
+		"dev": "pnpm --filter web dev",
+		"build": "pnpm --filter web build",
+		"start": "pnpm --filter web start",
+		"collect": "pnpm --filter pipeline collect",
+		"test": "pnpm -r test",
+		"e2e": "pnpm --filter web e2e",
+		"lint": "biome check .",
+		"format": "biome format --write ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"packageManager": "pnpm@10.5.2"
 }

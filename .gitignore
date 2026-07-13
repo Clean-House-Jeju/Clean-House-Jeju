@@ -1,23 +1,33 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 
+# next.js
+web/.next/
+web/out/
+web/next-env.d.ts
+
 # testing
-/coverage
+coverage/
+web/playwright-report/
+web/test-results/
 
 # production
 /build
+pipeline/dist/
+
+# env & secrets
+.env
+.env.local
+.env.*.local
+app-android/*.keystore
+app-android/signing/
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
+*.swp
+.idea/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
