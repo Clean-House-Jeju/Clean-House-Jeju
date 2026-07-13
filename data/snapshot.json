@@ -1,5 +1,5 @@
 {
-	"collectedAt": "2026-07-13T07:55:54.268Z",
+	"collectedAt": "2026-07-13T09:56:28.041Z",
 	"sources": [
 		{
 			"id": "data.go.kr/15110514",
@@ -14,8 +14,8 @@
 			"id": "data.go.kr/15056472",
 			"url": "https://www.data.go.kr/data/15056472/fileData.do",
 			"fetchedRows": 388,
-			"acceptedRows": 172,
-			"rejectedRows": 216,
+			"acceptedRows": 362,
+			"rejectedRows": 26,
 			"status": "ok",
 			"dataDate": "2024-08-23"
 		},
@@ -23,11 +23,11 @@
 			"id": "data.go.kr/15045364",
 			"url": "https://www.data.go.kr/data/15045364/fileData.do",
 			"fetchedRows": 182,
-			"acceptedRows": 78,
-			"rejectedRows": 104,
+			"acceptedRows": 179,
+			"rejectedRows": 3,
 			"status": "ok",
 			"dataDate": "2025-09-05"
 		}
 	],
-	"totalSites": 1560
+	"totalSites": 1851
 }
