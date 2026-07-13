@@ -1,0 +1,131 @@
+.search {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0 14px;
+	height: 46px;
+	border-radius: 999px;
+	background: var(--cj-surface);
+	border: 1px solid var(--cj-line);
+	box-shadow: 0 4px 14px rgba(13, 60, 48, 0.08);
+	color: var(--cj-ink-2);
+}
+
+.search input {
+	flex: 1;
+	min-width: 0;
+	border: 0;
+	background: transparent;
+	font: inherit;
+	font-size: 14.5px;
+	color: var(--cj-ink);
+	outline: none;
+}
+
+.search input::-webkit-search-cancel-button {
+	display: none;
+}
+
+.empty {
+	color: var(--cj-ink-2);
+	padding: 16px 4px;
+}
+
+.grid {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 10px;
+	padding: 0;
+}
+
+.cell {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 7px;
+	padding: 14px;
+	border-radius: 16px;
+	background: var(--cj-surface);
+	border: 1px solid var(--cj-line);
+	text-decoration: none;
+	color: var(--cj-ink);
+	transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cell:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 22px rgba(13, 60, 48, 0.12);
+}
+
+.cellIcon {
+	color: var(--cj-clean-deep);
+}
+
+.cellName {
+	font-weight: 800;
+	font-size: 14.5px;
+	letter-spacing: -0.02em;
+}
+
+.cellWhere {
+	font-size: 11px;
+	font-weight: 700;
+	padding: 3px 8px;
+	border-radius: 999px;
+	background: var(--cj-clean-soft);
+	color: var(--cj-clean-deep);
+}
+
+.cellWhere[data-where="help-center"] {
+	background: var(--cj-recycle-soft);
+	color: var(--cj-recycle-deep);
+}
+
+.cellWhere[data-where="special"] {
+	background: color-mix(in srgb, var(--cj-accent) 16%, transparent);
+	color: #b05f0a;
+}
+
+.detailHead {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+.detailHead h1 {
+	font-size: 26px;
+	font-weight: 800;
+}
+
+.whereBadge {
+	margin-top: 4px;
+	font-size: 13.5px;
+	font-weight: 700;
+	color: var(--cj-clean-deep);
+}
+
+.whereBadge[data-where="help-center"] {
+	color: var(--cj-recycle-deep);
+}
+
+.steps {
+	padding-left: 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	line-height: 1.55;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	list-style: none;
+	margin-left: -20px;
+	color: var(--cj-clean-deep);
+}
+
+.item a {
+	color: inherit;
+}

@@ -29,7 +29,8 @@ export default function GuidePage() {
 				<h1>재활용품 요일별 배출제</h1>
 				<p className={styles.lead}>
 					제주에서는 재활용품을 요일별로 나눠 배출합니다. 클린하우스는 요일제가 적용되고,{" "}
-					<Link href="/recycle-center">재활용도움센터</Link>는 요일 구분 없이 배출할 수 있습니다.
+					<Link href="/recycle-center">재활용도움센터</Link>는 요일 구분 없이 배출할 수 있습니다. 품목별 상세
+					방법은 <Link href="/waste">분리배출 품목 사전</Link>에서 검색하세요.
 				</p>
 
 				{rules.map((rule) => (

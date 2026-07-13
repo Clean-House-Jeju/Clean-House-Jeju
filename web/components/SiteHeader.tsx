@@ -12,6 +12,7 @@ export default function SiteHeader() {
 			<nav className={styles.nav} aria-label="주 메뉴">
 				<Link href="/">지도</Link>
 				<Link href="/guide">배출 안내</Link>
+				<Link href="/waste">품목 사전</Link>
 				<Link href="/recycle-center">재활용도움센터</Link>
 				<Link href="/clean-house">클린하우스</Link>
 			</nav>

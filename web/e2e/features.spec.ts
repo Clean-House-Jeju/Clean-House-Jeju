@@ -13,6 +13,28 @@ test.describe("지금 열린 곳", () => {
 	});
 });
 
+test.describe("분리배출 품목 사전", () => {
+	test("검색 → 상세 이동, 요일 연동 표시", async ({ page }) => {
+		await page.goto("/waste");
+		await page.getByPlaceholder(/품목 검색/).fill("건전지");
+		await page.getByRole("link", { name: /폐건전지/ }).click();
+		await expect(page.getByRole("heading", { name: "폐건전지" })).toBeVisible();
+		await expect(page.getByText("이렇게 버리세요")).toBeVisible();
+	});
+
+	test("JS-off에서도 전체 품목 노출 + HowTo JSON-LD", async ({ browser }) => {
+		const ctx = await browser.newContext({ javaScriptEnabled: false });
+		const page = await ctx.newPage();
+		await page.goto("/waste");
+		await expect(page.getByRole("link", { name: /대형폐기물/ })).toBeVisible();
+		await page.goto("/waste/plastic");
+		await expect(page.getByText("배출 요일")).toBeVisible();
+		const jsonLd = await page.locator('script[type="application/ld+json"]').first().textContent();
+		expect(JSON.parse(jsonLd as string)["@type"]).toBe("HowTo");
+		await ctx.close();
+	});
+});
+
 test.describe("즐겨찾기", () => {
 	test("별 토글 → 즐겨찾기 행 노출 → 재방문 시 유지", async ({ page }) => {
 		await page.goto("/");
