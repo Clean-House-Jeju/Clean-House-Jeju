@@ -76,6 +76,8 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 	const [query, setQuery] = useState("");
 	const [selected, setSelected] = useState<MapSite | null>(null);
 	const [chipEl, setChipEl] = useState<HTMLDivElement | null>(null);
+	const [nearbyOpen, setNearbyOpen] = useState(false);
+	const [nearbyOrigin, setNearbyOrigin] = useState<{ lat: number; lng: number } | null>(null);
 	const [toast, setToast] = useState<string | null>(null);
 	const geo = useGeolocation();
 	const favorites = useFavorites();
@@ -243,6 +245,15 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 
 	const results = useMemo(() => {
 		const q = query.trim().toLowerCase();
+		// 내 주변 모드: 검색어 없이 거리순 전체
+		if (!q && nearbyOpen) {
+			const from = nearbyOrigin ?? origin;
+			return sites
+				.filter((s) => filter === "all" || s.type === filter)
+				.map((s) => ({ site: s, dist: distanceKm(from.lat, from.lng, s.lat, s.lng) }))
+				.sort((a, b) => a.dist - b.dist)
+				.slice(0, 30);
+		}
 		if (!q) return [];
 		return sites
 			.filter((s) => filter === "all" || s.type === filter)
@@ -255,7 +266,7 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 			.map((s) => ({ site: s, dist: distanceKm(origin.lat, origin.lng, s.lat, s.lng) }))
 			.sort((a, b) => a.dist - b.dist)
 			.slice(0, 30);
-	}, [query, sites, filter, origin.lat, origin.lng]);
+	}, [query, sites, filter, origin.lat, origin.lng, nearbyOpen, nearbyOrigin]);
 
 	const focusSite = (site: MapSite) => {
 		const kakao = kakaoRef.current;
@@ -266,6 +277,21 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 		}
 		setSelected(site);
 		setQuery("");
+		setNearbyOpen(false);
+	};
+
+	// 내 주변 리스트 — 기준점: 위치 허용 시 현위치, 아니면 지금 보고 있는 지도 중심
+	const openNearby = () => {
+		const map = mapRef.current;
+		let from = geo.status === "granted" ? { lat: geo.lat, lng: geo.lng } : null;
+		if (!from && map) {
+			const c = map.getCenter();
+			from = { lat: c.getLat(), lng: c.getLng() };
+		}
+		setNearbyOrigin(from ?? DEFAULT_CENTER);
+		setQuery("");
+		setSelected(null);
+		setNearbyOpen(true);
 	};
 
 	// 지금 열려있는 가장 가까운 곳 — 기준점: 위치 허용 시 현위치, 아니면 지도 중심 (공식 API만 사용)
@@ -338,8 +364,18 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 							)}
 						</label>
 
-						{query.trim() !== "" && (
+						{(query.trim() !== "" || nearbyOpen) && (
 							<div className={styles.results}>
+								{nearbyOpen && query.trim() === "" && (
+									<div className={styles.resultsHead}>
+										<span>
+											내 주변 가까운 순{geo.status !== "granted" && " (지도 중심 기준)"}
+										</span>
+										<button type="button" onClick={() => setNearbyOpen(false)} aria-label="주변 목록 닫기">
+											<CloseIcon size={13} />
+										</button>
+									</div>
+								)}
 								{results.length === 0 ? (
 									<EmptyState title="검색 결과가 없습니다" description="다른 검색어로 시도해 보세요." />
 								) : (
@@ -396,6 +432,9 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 							</button>
 						))}
 					</div>
+					<button type="button" className={styles.nearby} onClick={openNearby}>
+						<TargetIcon size={14} /> 내 주변
+					</button>
 					<button type="button" className={styles.openNow} onClick={goNearestOpen}>
 						<BoltIcon /> 지금 열린 곳
 					</button>

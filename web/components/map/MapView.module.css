@@ -180,6 +180,55 @@
 	color: var(--cj-strong-ink);
 }
 
+/* 내 주변 리스트 */
+.nearby {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 10px 15px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--cj-surface);
+	color: var(--cj-ink);
+	font: inherit;
+	font-size: 13px;
+	font-weight: 800;
+	cursor: pointer;
+	white-space: nowrap;
+	box-shadow: 0 6px 20px rgba(13, 60, 48, 0.14);
+	transition: transform 0.12s ease;
+}
+
+.nearby:hover {
+	transform: translateY(-1px);
+	color: var(--cj-clean-deep);
+}
+
+.resultsHead {
+	position: sticky;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 11px 16px;
+	background: var(--cj-surface);
+	border-bottom: 1px solid var(--cj-line);
+	font-size: 12.5px;
+	font-weight: 800;
+	color: var(--cj-ink-2);
+	z-index: 1;
+}
+
+.resultsHead button {
+	display: inline-flex;
+	border: 0;
+	background: transparent;
+	color: var(--cj-ink-2);
+	cursor: pointer;
+	padding: 3px;
+}
+
 /* 지금 열린 곳 원탭 */
 .openNow {
 	display: inline-flex;

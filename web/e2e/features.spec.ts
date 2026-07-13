@@ -35,6 +35,19 @@ test.describe("분리배출 품목 사전", () => {
 	});
 });
 
+test.describe("내 주변", () => {
+	test("원탭으로 거리순 리스트가 열리고 선택 가능", async ({ page }) => {
+		await page.goto("/");
+		await page.getByRole("button", { name: "내 주변" }).click();
+		await expect(page.getByText(/내 주변 가까운 순/)).toBeVisible();
+		const first = page.locator("button[class*='resultItem']").first();
+		await expect(first).toBeVisible();
+		await first.click();
+		await expect(page.getByRole("link", { name: "카카오맵 길찾기" })).toBeVisible();
+		await expect(page.getByText(/내 주변 가까운 순/)).toBeHidden();
+	});
+});
+
 test.describe("즐겨찾기", () => {
 	test("별 토글 → 즐겨찾기 행 노출 → 재방문 시 유지", async ({ page }) => {
 		await page.goto("/");
