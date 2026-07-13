@@ -77,7 +77,13 @@
 - [ ] T033 실도메인 검증: E2E 전 시나리오 + Lighthouse(SC-004) + 파이프라인 타이머 1주기 관찰(SC-002)
 - [ ] 🧑 T034 Google Search Console 등록 + sitemap 제출 → 4주 색인 추적(SC-001)
 
-## Phase 10: US6 — Android TWA (실도메인 확보 후)
+## Phase 10-iOS: iOS 앱 (Expo 웹뷰 래퍼) — 2026-07-13 방향 변경: Play 계정 부재로 iOS 우선
+
+- [x] T038 `app-ios/`: Expo SDK 54 래퍼 스캐폴딩 (maeil-app 툴체인) — WebView+오프라인 화면+외부링크 위임+스플래시/아이콘, typecheck 통과. `pnpm install --ignore-workspace` 필수
+- [ ] 🧑 T039 실도메인 배포 후: `eas init` → `pnpm build:ios` → TestFlight → 심사 제출 (심사 노트: 위치 권한 사유·오프라인 동작)
+- [ ] T040 (리젝 대비) expo-notifications 네이티브 푸시 — 서버 `/api/push/expo-token` + APNs 발송 통합
+
+## Phase 10: US6 — Android TWA (보류 — Play 계정 확보 후)
 
 - [ ] 🧑 T035 Google Play 개발자 계정 확보 ($25 1회, 미보유 시)
 - [ ] T036 `app-android/`: Bubblewrap TWA 프로젝트 생성 + `web/public/.well-known/assetlinks.json` 서빙 (서명 키 SHA-256 연동, 키는 미커밋·SOPS 보관)

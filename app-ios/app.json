@@ -1,0 +1,33 @@
+{
+	"expo": {
+		"name": "클린 제주",
+		"slug": "clean-jeju",
+		"version": "2.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "automatic",
+		"newArchEnabled": true,
+		"splash": {
+			"image": "./assets/splash-icon.png",
+			"imageWidth": 200,
+			"resizeMode": "contain",
+			"backgroundColor": "#fafcfb"
+		},
+		"ios": {
+			"supportsTablet": false,
+			"bundleIdentifier": "dev.swyang.cleanjeju",
+			"infoPlist": {
+				"ITSAppUsesNonExemptEncryption": false,
+				"NSLocationWhenInUseUsageDescription": "내 주변 클린하우스와 재활용도움센터를 찾기 위해 위치를 사용합니다."
+			}
+		},
+		"android": {
+			"package": "dev.swyang.cleanjeju",
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#0d7d5e"
+			}
+		},
+		"owner": "ighost-p"
+	}
+}
