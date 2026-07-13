@@ -97,7 +97,8 @@ export default async function RecycleCenterDetail({ params }: { params: Promise<
 					</section>
 				)}
 				<p className={styles.meta}>
-					데이터 기준일 {getDataAsOf()} · <Link href="/recycle-center">← 전체 목록</Link>
+					데이터 기준일 {getDataAsOf()} · <Link href="/recycle-center">← 전체 목록</Link> ·{" "}
+					<Link href={`/report?site=${site.id}`}>정보가 다른가요? 제보하기</Link>
 				</p>
 			</main>
 		</>

@@ -1,0 +1,48 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 520px;
+}
+
+.target {
+	font-size: 14px;
+	color: var(--cj-ink-2);
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.label {
+	font-size: 13.5px;
+	font-weight: 700;
+}
+
+.textarea {
+	font: inherit;
+	padding: 12px 14px;
+	border-radius: 12px;
+	border: 1px solid var(--cj-line);
+	background: var(--cj-surface);
+	color: var(--cj-ink);
+	resize: vertical;
+	min-height: 120px;
+}
+
+.textarea:focus {
+	outline: 2px solid var(--cj-clean);
+	outline-offset: 1px;
+	border-color: transparent;
+}
+
+/* honeypot — 시각적으로 완전 은닉 */
+.hp {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}

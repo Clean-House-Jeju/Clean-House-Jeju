@@ -67,7 +67,7 @@
 ## R7. 앱 배포 전략 (2차 추가 스코프)
 
 **Decision**: **PWA 기본 + Android TWA(Trusted Web Activity)**.
-- PWA: Next.js에 manifest + 서비스 워커(Serwist 채택 — next-pwa 후속, App Router 대응) + 설치 유도 UI. 오프라인은 앱 셸 + 마지막 `rules`/`snapshot` 캐시 폴백
+- PWA: Next.js manifest.ts + **자체 경량 서비스 워커**(public/sw.js — Serwist는 Next 16 호환 미검증 + 의존 최소화 원칙으로 대체) + 재방문 설치 유도 UI. 오프라인은 앱 셸 + map-sites 마지막 응답 캐시 폴백
 - Android: Bubblewrap CLI로 TWA 패키징 → Play Store 내부 테스트 트랙부터. `/.well-known/assetlinks.json`(Digital Asset Links)을 웹에서 서빙 — 홈서버 배포에 포함
 - iOS: PWA 홈 화면 추가로 제공. **App Store 제출은 범위 외** — 순수 WebView 래퍼는 심사 가이드라인 4.2(최소 기능성) 반려 리스크가 높음. 푸시 알림 등 네이티브 요구가 생기면 Capacitor로 재검토
 

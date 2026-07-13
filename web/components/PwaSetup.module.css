@@ -1,0 +1,67 @@
+.banner {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: calc(70px + env(safe-area-inset-bottom));
+	z-index: 60;
+	width: min(420px, calc(100% - 24px));
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 14px;
+	border-radius: 14px;
+	background: var(--cj-surface);
+	border: 1px solid var(--cj-line);
+	box-shadow: var(--cj-shadow);
+	animation: rise 0.3s ease;
+}
+
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateX(-50%) translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+}
+
+.text {
+	flex: 1;
+	font-size: 13.5px;
+	line-height: 1.45;
+}
+
+.actions {
+	display: flex;
+	gap: 6px;
+	flex: none;
+}
+
+.install,
+.later {
+	border: 0;
+	border-radius: 9px;
+	padding: 8px 13px;
+	font-size: 13px;
+	font-weight: 700;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+.install {
+	background: var(--cj-clean);
+	color: #fff;
+}
+
+.later {
+	background: transparent;
+	color: var(--cj-ink-2);
+}
+
+@media (min-width: 768px) {
+	.banner {
+		bottom: 24px;
+	}
+}

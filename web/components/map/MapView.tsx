@@ -338,9 +338,13 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 						>
 							카카오맵 길찾기
 						</a>
-						{selected.type === "recycle" && (
+						{selected.type === "recycle" ? (
 							<a className={styles.cardSecondary} href={`/recycle-center/${selected.id}`}>
 								상세 정보
+							</a>
+						) : (
+							<a className={styles.cardSecondary} href={`/report?site=${selected.id}`}>
+								정보 제보
 							</a>
 						)}
 					</footer>

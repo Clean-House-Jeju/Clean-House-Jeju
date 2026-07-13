@@ -14,7 +14,9 @@
 		"format": "biome format --write ."
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4"
+		"@biomejs/biome": "^1.9.4",
+		"sharp": "^0.35.3",
+		"tsx": "^4.19.0"
 	},
 	"engines": {
 		"node": ">=22"

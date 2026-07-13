@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- 클린 제주 마스터 로고 — 레거시 Clean_house.svg 모티프 (오렌지 지붕 + 민트 하우스) -->
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2ebd93"/>
+      <stop offset="1" stop-color="#0d7d5e"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb254"/>
+      <stop offset="1" stop-color="#f28c1e"/>
+    </linearGradient>
+  </defs>
+  <path d="M256 58 480 250H32Z" fill="url(#roof)"/>
+  <rect x="96" y="250" width="320" height="204" rx="34" fill="url(#body)"/>
+  <rect x="206" y="312" width="100" height="142" rx="18" fill="#ffffff"/>
+  <circle cx="366" cy="336" r="30" fill="#fff033"/>
+</svg>

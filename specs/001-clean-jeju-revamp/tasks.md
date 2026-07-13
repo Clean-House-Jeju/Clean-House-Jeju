@@ -59,15 +59,15 @@
 
 ## Phase 7: US5 — 디자인시스템 정리 (P3)
 
-- [ ] T024 전 화면 Astryx 토큰·컴포넌트 일원화 + 다크모드 검증, 커스텀 스타일 잔재 정리
-- [ ] T025 제보 폼(`/api/report`): honeypot+rate limit+Resend 발송 (FR-019, contracts §2)
+- [x] T024 전 화면 Astryx 토큰·컴포넌트 일원화 + 다크모드 검증, 커스텀 스타일 잔재 정리
+- [x] T025 제보 폼(`/api/report`): honeypot+rate limit+Resend 발송 (FR-019, contracts §2)
 
 ## Phase 8: US6 — 브랜드 자산 + PWA (P3)
 
-- [ ] T026 `brand/logo.svg`: 기존 로고(Clean_house.svg 등) 모티프 + Astryx 팔레트로 마스터 로고 리디자인 (MCP 커넥터 — Figma/Pencil 활용)
-- [ ] T027 `brand/generate.ts`(sharp): 마스터 SVG → maskable/any 아이콘(192/512)·파비콘·Apple touch·스플래시·OG(1200×630) 전 규격 자동 생성 → `web/public/`
-- [ ] T028 [P] `brand/animations/`: 로딩·빈상태 마이크로 애니메이션 — CSS/SVG로 충분한지 먼저 판단, 필요 시 Rive(rivemcp) 제작 + `@rive-app/react-canvas` 적용
-- [ ] T029 PWA: `web/app/manifest.ts` + Serwist 서비스 워커(앱 셸 + rules/snapshot 캐시 폴백) + 재방문 설치 유도 UI, Lighthouse PWA 설치 가능 판정 통과(SC-008)
+- [x] T026 `brand/logo.svg`: 기존 로고(Clean_house.svg 등) 모티프 + Astryx 팔레트로 마스터 로고 리디자인 (MCP 커넥터 — Figma/Pencil 활용)
+- [x] T027 `brand/generate.ts`(sharp): 마스터 SVG → maskable/any 아이콘(192/512)·파비콘·Apple touch·스플래시·OG(1200×630) 전 규격 자동 생성 → `web/public/`
+- [x] T028 판단 완료: 현 마이크로 인터랙션(시트 슬라이드업·카드 등장·운영중 펄스·탭 스케일)은 CSS로 충분 — Rive 런타임(+40KB) 도입 보류 (constitution V). 향후 온보딩/빈상태 일러스트 애니메이션 필요 시 재검토
+- [x] T029 PWA: `web/app/manifest.ts` + Serwist 서비스 워커(앱 셸 + rules/snapshot 캐시 폴백) + 재방문 설치 유도 UI, Lighthouse PWA 설치 가능 판정 통과(SC-008)
 
 ## Phase 9: 커트오버·배포
 
