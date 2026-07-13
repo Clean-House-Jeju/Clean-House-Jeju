@@ -321,21 +321,57 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 					<span className={styles.brand}>
 						<Logo size={24} />
 					</span>
-					<label className={styles.search}>
-						<SearchIcon />
-						<input
-							type="search"
-							placeholder="명칭·주소·읍면동 검색"
-							aria-label="클린하우스·재활용도움센터 검색"
-							value={query}
-							onChange={(e) => setQuery(e.target.value)}
-						/>
-						{query !== "" && (
-							<button type="button" aria-label="검색어 지우기" onClick={() => setQuery("")}>
-								<CloseIcon size={14} />
-							</button>
+					<div className={styles.searchWrap}>
+						<label className={styles.search}>
+							<SearchIcon />
+							<input
+								type="search"
+								placeholder="명칭·주소·읍면동 검색"
+								aria-label="클린하우스·재활용도움센터 검색"
+								value={query}
+								onChange={(e) => setQuery(e.target.value)}
+							/>
+							{query !== "" && (
+								<button type="button" aria-label="검색어 지우기" onClick={() => setQuery("")}>
+									<CloseIcon size={14} />
+								</button>
+							)}
+						</label>
+
+						{query.trim() !== "" && (
+							<div className={styles.results}>
+								{results.length === 0 ? (
+									<EmptyState title="검색 결과가 없습니다" description="다른 검색어로 시도해 보세요." />
+								) : (
+									results.map(({ site, dist }) => {
+										const open = openState(site);
+										return (
+											<button
+												key={site.id}
+												type="button"
+												className={styles.resultItem}
+												onClick={() => focusSite(site)}
+											>
+												<img
+													src={`/markers/${site.type}-${open === false ? "closed" : "open"}.svg`}
+													alt=""
+													width={22}
+													height={28}
+												/>
+												<span className={styles.resultBody}>
+													<span className={styles.resultName}>{site.name}</span>
+													<span className={styles.resultMeta}>
+														{TYPE_LABEL[site.type]} · {site.emd} · {site.address}
+													</span>
+												</span>
+												<span className={styles.resultDist}>{formatDistance(dist)}</span>
+											</button>
+										);
+									})
+								)}
+							</div>
 						)}
-					</label>
+					</div>
 					<nav className={styles.deskNav} aria-label="주 메뉴">
 						<Link href="/guide">배출 안내</Link>
 						<Link href="/recycle-center">도움센터</Link>
@@ -376,34 +412,6 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 					</div>
 				)}
 
-				{query.trim() !== "" && (
-					<div className={styles.results}>
-						{results.length === 0 ? (
-							<EmptyState title="검색 결과가 없습니다" description="다른 검색어로 시도해 보세요." />
-						) : (
-							results.map(({ site, dist }) => {
-								const open = openState(site);
-								return (
-									<button key={site.id} type="button" className={styles.resultItem} onClick={() => focusSite(site)}>
-										<img
-											src={`/markers/${site.type}-${open === false ? "closed" : "open"}.svg`}
-											alt=""
-											width={22}
-											height={28}
-										/>
-										<span className={styles.resultBody}>
-											<span className={styles.resultName}>{site.name}</span>
-											<span className={styles.resultMeta}>
-												{TYPE_LABEL[site.type]} · {site.emd} · {site.address}
-											</span>
-										</span>
-										<span className={styles.resultDist}>{formatDistance(dist)}</span>
-									</button>
-								);
-							})
-						)}
-					</div>
-				)}
 			</div>
 
 			{/* 현위치 FAB */}

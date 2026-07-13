@@ -56,12 +56,17 @@
 	box-shadow: 0 6px 20px rgba(13, 60, 48, 0.14);
 }
 
+.searchWrap {
+	position: relative;
+	flex: 1;
+	max-width: 460px;
+}
+
 .search {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	flex: 1;
-	max-width: 460px;
+	width: 100%;
 	padding: 0 14px;
 	height: 44px;
 	border-radius: 999px;
@@ -269,15 +274,20 @@
 	width: min(430px, calc(100% - 90px));
 }
 
-/* 검색 결과 플로팅 패널 */
+/* 검색 결과 — 검색바 바로 아래 앵커, 칩 행 위로 뜬다 */
 
 .results {
-	max-height: 48vh;
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 0;
+	right: 0;
+	z-index: 60;
+	max-height: 52vh;
 	overflow-y: auto;
 	border-radius: 20px;
 	background: var(--cj-surface);
-	box-shadow: 0 16px 44px rgba(13, 60, 48, 0.22);
-	max-width: 560px;
+	border: 1px solid var(--cj-line);
+	box-shadow: 0 16px 44px rgba(13, 60, 48, 0.24);
 }
 
 .resultItem {
