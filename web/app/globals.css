@@ -1,8 +1,17 @@
 @import "@astryxdesign/core/reset.css";
 @import "@astryxdesign/core/astryx.css";
 @import "@astryxdesign/theme-neutral/theme.css";
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+@import "./theme.css";
 
 html,
 body {
 	height: 100%;
+}
+
+body {
+	font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+	background: var(--cj-bg);
+	color: var(--cj-ink);
+	-webkit-font-smoothing: antialiased;
 }

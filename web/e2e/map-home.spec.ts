@@ -44,11 +44,12 @@ test.describe("검색 (FR-008)", () => {
 });
 
 test.describe("오늘 배출 품목 배너", () => {
-	test("두 행정시 규칙이 표시된다", async ({ page }) => {
+	test("두 행정시 규칙이 칩으로 표시된다", async ({ page }) => {
 		await page.goto("/");
-		await expect(page.getByText("제주시", { exact: false }).first()).toBeVisible();
-		await expect(page.getByText("서귀포시", { exact: false }).first()).toBeVisible();
-		await expect(page.getByText(/배출 가능/).first()).toBeVisible();
-		await expect(page.getByText(/데이터 기준일/)).toBeVisible();
+		await expect(page.getByText("제주시", { exact: true })).toBeVisible();
+		await expect(page.getByText("서귀포시", { exact: true })).toBeVisible();
+		// 요일제 품목 칩 (요일제 품목이 없는 요일이면 대체 문구)
+		await expect(page.locator(".cj-chip").first()).toBeVisible();
+		await expect(page.getByText(/스티로폼은 매일/)).toBeVisible();
 	});
 });

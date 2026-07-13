@@ -1,5 +1,5 @@
-import { Text } from "@astryxdesign/core";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import TodayBanner from "@/components/home/TodayBanner";
 import MapView from "@/components/map/MapView";
 import { getDataAsOf, getRules } from "@/lib/data";
@@ -16,19 +16,19 @@ export default function Home() {
 		<div className={styles.page}>
 			<header className={styles.header}>
 				<div className={styles.titleRow}>
-					<h1 className={styles.title}>클린 제주</h1>
+					<h1 className={styles.title}>
+						<Logo />
+					</h1>
 					<nav className={styles.nav} aria-label="주 메뉴">
 						<Link href="/guide">배출 안내</Link>
 						<Link href="/recycle-center">재활용도움센터</Link>
 						<Link href="/clean-house">클린하우스</Link>
 					</nav>
-					<Text size="sm" color="secondary">
-						데이터 기준일 {asOf}
-					</Text>
+					<span className={styles.asOf}>데이터 기준일 {asOf}</span>
 				</div>
 				<TodayBanner rules={rules} />
 			</header>
-			<MapView />
+			<MapView rules={rules} />
 		</div>
 	);
 }

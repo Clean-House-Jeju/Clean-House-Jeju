@@ -18,6 +18,21 @@ export function nowMinutesInSeoul(now: Date = new Date()): number {
 	return (h % 24) * 60 + m;
 }
 
+/**
+ * 개소별 운영시간이 없으면 관할 시 규칙(cleanHouseHours)으로 보강.
+ * 레거시는 15:00~04:00을 전역 하드코딩했지만, 여기선 rules 데이터로 주입한다.
+ */
+export function withRuleHours<
+	T extends { openTime?: string; closeTime?: string; open24h?: boolean; type?: string; district?: string },
+>(site: T, rules?: { district: string; cleanHouseHours: { start: string; end: string } | null }[]): T {
+	if (site.open24h || (site.openTime && site.closeTime)) return site;
+	if (site.type === "clean") {
+		const hours = rules?.find((r) => r.district === site.district)?.cleanHouseHours;
+		if (hours) return { ...site, openTime: hours.start, closeTime: hours.end };
+	}
+	return site;
+}
+
 export function isOpen(
 	site: { openTime?: string; closeTime?: string; open24h?: boolean },
 	now: Date = new Date(),

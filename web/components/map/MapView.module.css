@@ -8,10 +8,12 @@
 
 .controls {
 	display: flex;
-	gap: 8px;
-	padding: 12px 16px;
+	gap: 10px;
+	padding: 10px 16px 12px;
 	flex-wrap: wrap;
 	align-items: center;
+	background: var(--cj-surface);
+	border-bottom: 1px solid var(--cj-line);
 }
 
 .controls > :first-child {
@@ -21,32 +23,72 @@
 
 .results {
 	position: absolute;
-	top: 64px;
+	top: 68px;
 	left: 16px;
 	right: 16px;
-	max-height: 40vh;
+	max-height: 46vh;
 	overflow-y: auto;
 	z-index: 20;
-	border-radius: 12px;
-	background: var(--axr-background-primary, #fff);
-	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+	border-radius: var(--cj-radius);
+	background: var(--cj-surface);
+	box-shadow: var(--cj-shadow);
+	border: 1px solid var(--cj-line);
 }
 
 .resultItem {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 2px;
+	align-items: center;
+	gap: 12px;
 	width: 100%;
-	padding: 10px 14px;
+	padding: 11px 14px;
 	border: 0;
+	border-bottom: 1px solid var(--cj-line);
 	background: transparent;
 	text-align: left;
 	cursor: pointer;
+	color: inherit;
+	font: inherit;
+}
+
+.resultItem:last-child {
+	border-bottom: 0;
 }
 
 .resultItem:hover {
-	background: rgba(0, 0, 0, 0.05);
+	background: var(--cj-clean-soft);
+}
+
+.resultIcon {
+	flex: none;
+}
+
+.resultBody {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+	flex: 1;
+}
+
+.resultName {
+	font-weight: 700;
+	font-size: 15px;
+}
+
+.resultMeta {
+	font-size: 12.5px;
+	color: var(--cj-ink-2);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.resultDist {
+	flex: none;
+	font-size: 13px;
+	font-weight: 700;
+	color: var(--cj-clean-deep);
+	font-variant-numeric: tabular-nums;
 }
 
 .map {
@@ -62,6 +104,37 @@
 	padding: 24px;
 }
 
+/* 지도 위 범례 — 레거시 마커 시스템의 상태 언어를 상시 노출 */
+.legend {
+	position: absolute;
+	top: 76px;
+	right: 16px;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 10px 12px;
+	border-radius: 12px;
+	background: color-mix(in srgb, var(--cj-surface) 88%, transparent);
+	backdrop-filter: blur(8px);
+	border: 1px solid var(--cj-line);
+	box-shadow: 0 4px 14px rgba(13, 60, 48, 0.1);
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--cj-ink-2);
+}
+
+.legend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.legendDot {
+	width: 10px;
+	height: 10px;
+}
+
 .notice {
 	position: absolute;
 	bottom: 16px;
@@ -71,31 +144,172 @@
 	width: min(480px, calc(100% - 32px));
 }
 
-.detail {
+/* 선택 카드 — 레거시 CustomOverlay(흰 카드 + #20c997 타이틀바)의 현대화 */
+.card {
 	position: absolute;
-	bottom: 16px;
+	bottom: 20px;
 	left: 16px;
 	z-index: 15;
 	width: min(400px, calc(100% - 32px));
+	border-radius: var(--cj-radius);
+	background: var(--cj-surface);
+	box-shadow: var(--cj-shadow);
+	overflow: hidden;
+	animation: cardIn 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.15);
 }
 
-.badges {
+@keyframes cardIn {
+	from {
+		opacity: 0;
+		transform: translateY(14px) scale(0.97);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.cardHead {
 	display: flex;
-	gap: 6px;
-	margin: 6px 0;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 14px;
+	color: #fff;
+	background: linear-gradient(115deg, var(--cj-clean), var(--cj-clean-deep));
 }
 
-.actions {
+.card[data-type="recycle"] .cardHead {
+	background: linear-gradient(115deg, var(--cj-recycle), var(--cj-recycle-deep));
+}
+
+.cardType {
+	font-weight: 800;
+	font-size: 14px;
+	letter-spacing: -0.01em;
+}
+
+.cardStatus {
+	font-size: 12px;
+	font-weight: 700;
+	padding: 3px 9px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.22);
+}
+
+.cardStatus[data-open="false"] {
+	background: rgba(0, 0, 0, 0.28);
+}
+
+.cardClose {
+	margin-left: auto;
+	border: 0;
+	background: transparent;
+	color: #fff;
+	font-size: 22px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0 2px;
+	opacity: 0.85;
+}
+
+.cardClose:hover {
+	opacity: 1;
+}
+
+.cardBody {
+	display: flex;
+	gap: 14px;
+	padding: 14px;
+	align-items: flex-start;
+}
+
+.cardIcon {
+	flex: none;
+	filter: drop-shadow(0 3px 6px rgba(13, 60, 48, 0.25));
+}
+
+.cardInfo {
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.cardName {
+	font-size: 17px;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+
+.cardAddr {
+	font-size: 13.5px;
+	color: var(--cj-ink-2);
+	line-height: 1.45;
+}
+
+.cardMeta {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--cj-clean-deep);
+	font-variant-numeric: tabular-nums;
+}
+
+.card[data-type="recycle"] .cardMeta {
+	color: var(--cj-recycle-deep);
+}
+
+.cardActions {
 	display: flex;
 	gap: 8px;
-	margin-top: 10px;
+	padding: 0 14px 14px;
+}
+
+.cardPrimary,
+.cardSecondary {
+	flex: 1;
+	text-align: center;
+	padding: 10px 12px;
+	border-radius: 11px;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.cardPrimary {
+	background: var(--cj-clean);
+	color: #fff;
+}
+
+.card[data-type="recycle"] .cardPrimary {
+	background: var(--cj-recycle);
+}
+
+.cardSecondary {
+	background: var(--cj-clean-soft);
+	color: var(--cj-clean-deep);
+}
+
+.card[data-type="recycle"] .cardSecondary {
+	background: var(--cj-recycle-soft);
+	color: var(--cj-recycle-deep);
+}
+
+.cardPrimary:hover,
+.cardSecondary:hover {
+	transform: translateY(-1px);
+	filter: brightness(1.05);
 }
 
 @media (max-width: 640px) {
-	.detail {
+	.card {
 		left: 8px;
 		right: 8px;
 		width: auto;
 		bottom: 8px;
+	}
+
+	.legend {
+		display: none;
 	}
 }

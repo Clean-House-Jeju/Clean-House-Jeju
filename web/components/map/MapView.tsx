@@ -1,22 +1,10 @@
 "use client";
 
-import {
-	Badge,
-	Banner,
-	Button,
-	Card,
-	EmptyState,
-	Heading,
-	SegmentedControl,
-	SegmentedControlItem,
-	Spinner,
-	Text,
-	TextInput,
-} from "@astryxdesign/core";
+import { Banner, EmptyState, SegmentedControl, SegmentedControlItem, Spinner, TextInput } from "@astryxdesign/core";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_CENTER, distanceKm, formatDistance } from "@/lib/geo";
-import { formatHours, isOpen } from "@/lib/status";
-import type { MapSite, SiteType } from "@/lib/types";
+import { formatHours, isOpen, withRuleHours } from "@/lib/status";
+import type { DisposalRule, MapSite, SiteType } from "@/lib/types";
 import { type KakaoNS, loadKakaoMaps } from "./kakao-loader";
 import { useGeolocation } from "./useGeolocation";
 import styles from "./MapView.module.css";
@@ -24,19 +12,45 @@ import styles from "./MapView.module.css";
 type Filter = "all" | SiteType;
 
 const TYPE_LABEL: Record<SiteType, string> = { clean: "클린하우스", recycle: "재활용도움센터" };
-const MARKER_IMG: Record<SiteType, string> = { clean: "/markers/clean.svg", recycle: "/markers/recycle.svg" };
 // 레거시 클러스터 파라미터 계승 (research R5)
 const CLUSTER_PARAMS: Record<SiteType, { gridSize: number }> = {
 	clean: { gridSize: 100 },
 	recycle: { gridSize: 150 },
 };
 
+// 타입별 클러스터 배지 — 레거시 SVG 배지의 투톤 아이덴티티를 CSS로 재해석
+const CLUSTER_STYLE_BASE = {
+	color: "#ffffff",
+	fontWeight: "700",
+	textAlign: "center",
+	borderRadius: "50%",
+	border: "2.5px solid rgba(255,255,255,0.92)",
+} as const;
+
+function clusterStyles(type: SiteType) {
+	const bg =
+		type === "clean"
+			? "radial-gradient(circle at 32% 28%, #2ebd93, #0d7d5e)"
+			: "radial-gradient(circle at 32% 28%, #6a71e3, #3b41a3)";
+	const shadow =
+		type === "clean" ? "0 4px 14px rgba(13,125,94,0.45)" : "0 4px 14px rgba(59,65,163,0.45)";
+	return [40, 50, 62].map((size, i) => ({
+		...CLUSTER_STYLE_BASE,
+		width: `${size}px`,
+		height: `${size}px`,
+		lineHeight: `${size - 5}px`,
+		fontSize: `${13 + i * 2}px`,
+		background: bg,
+		boxShadow: shadow,
+	}));
+}
+
 interface MarkerEntry {
 	site: MapSite;
 	marker: KakaoNS;
 }
 
-export default function MapView() {
+export default function MapView({ rules }: { rules: DisposalRule[] }) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const mapRef = useRef<KakaoNS>(null);
 	const kakaoRef = useRef<KakaoNS>(null);
@@ -51,7 +65,11 @@ export default function MapView() {
 	const [selected, setSelected] = useState<MapSite | null>(null);
 	const geo = useGeolocation();
 
-	// 데이터 로드
+	const openState = useCallback(
+		(site: MapSite): boolean | undefined => isOpen(withRuleHours(site, rules)),
+		[rules],
+	);
+
 	useEffect(() => {
 		fetch("/api/map-sites")
 			.then((r) => r.json())
@@ -78,6 +96,8 @@ export default function MapView() {
 						averageCenter: true,
 						minLevel: 5,
 						gridSize: CLUSTER_PARAMS[type].gridSize,
+						calculator: [10, 100],
+						styles: clusterStyles(type),
 					});
 				}
 				kakao.maps.event.addListener(map, "click", () => setSelected(null));
@@ -89,22 +109,28 @@ export default function MapView() {
 		};
 	}, []);
 
-	// 마커 구성 (사이트 로드 후 1회)
+	// 마커 구성 — 운영 상태별 이미지 (레거시 active/비활성 마커 시스템 계승)
 	useEffect(() => {
 		const kakao = kakaoRef.current;
 		const map = mapRef.current;
 		if (!mapReady || !kakao || !map || sites.length === 0) return;
 
+		const imageSize = new kakao.maps.Size(34, 44);
+		const imageCache = new Map<string, KakaoNS>();
+		const imageFor = (type: SiteType, open: boolean | undefined) => {
+			const src = `/markers/${type}-${open === false ? "closed" : "open"}.svg`;
+			if (!imageCache.has(src)) imageCache.set(src, new kakao.maps.MarkerImage(src, imageSize));
+			return imageCache.get(src);
+		};
+
 		for (const type of ["clean", "recycle"] as const) {
-			const imageSize = new kakao.maps.Size(24, 35);
-			const image = new kakao.maps.MarkerImage(MARKER_IMG[type], imageSize);
 			const entries: MarkerEntry[] = sites
 				.filter((s) => s.type === type)
 				.map((site) => {
 					const marker = new kakao.maps.Marker({
 						position: new kakao.maps.LatLng(site.lat, site.lng),
 						title: site.name,
-						image,
+						image: imageFor(type, openState(site)),
 					});
 					kakao.maps.event.addListener(marker, "click", () => {
 						setSelected(site);
@@ -115,7 +141,6 @@ export default function MapView() {
 			markersRef.current[type] = entries;
 		}
 		applyFilter(filter);
-		// eslint 대응: applyFilter는 ref 기반이라 안정적
 		// biome-ignore lint/correctness/useExhaustiveDependencies: 마커는 sites 확정 후 1회만 구성
 	}, [mapReady, sites]);
 
@@ -146,7 +171,7 @@ export default function MapView() {
 			new kakao.maps.Marker({
 				map,
 				position: pos,
-				image: new kakao.maps.MarkerImage("/markers/me.svg", new kakao.maps.Size(34, 46)),
+				image: new kakao.maps.MarkerImage("/markers/me.svg", new kakao.maps.Size(36, 36)),
 				zIndex: 9,
 			});
 			map.setCenter(pos);
@@ -156,7 +181,6 @@ export default function MapView() {
 
 	const origin = geo.status === "granted" ? { lat: geo.lat, lng: geo.lng } : DEFAULT_CENTER;
 
-	// 검색 결과 (명칭+주소+읍면동, 거리순 — FR-008)
 	const results = useMemo(() => {
 		const q = query.trim().toLowerCase();
 		if (!q) return [];
@@ -181,10 +205,11 @@ export default function MapView() {
 			map.panTo(new kakao.maps.LatLng(site.lat, site.lng));
 		}
 		setSelected(site);
-		setQuery(""); // 결과 리스트를 닫아 상세 카드가 가려지지 않게
+		setQuery("");
 	};
 
-	const selectedOpen = selected ? isOpen(selected) : undefined;
+	const selectedOpen = selected ? openState(selected) : undefined;
+	const selectedHours = selected ? withRuleHours(selected, rules) : null;
 
 	return (
 		<div className={styles.wrap}>
@@ -209,14 +234,27 @@ export default function MapView() {
 					{results.length === 0 ? (
 						<EmptyState title="검색 결과가 없습니다" description="다른 검색어로 시도해 보세요." />
 					) : (
-						results.map(({ site, dist }) => (
-							<button key={site.id} type="button" className={styles.resultItem} onClick={() => focusSite(site)}>
-								<Text weight="medium">{site.name}</Text>
-								<Text size="sm" color="secondary">
-									{TYPE_LABEL[site.type]} · {formatDistance(dist)} · {site.address}
-								</Text>
-							</button>
-						))
+						results.map(({ site, dist }) => {
+							const open = openState(site);
+							return (
+								<button key={site.id} type="button" className={styles.resultItem} onClick={() => focusSite(site)}>
+									<img
+										className={styles.resultIcon}
+										src={`/markers/${site.type}-${open === false ? "closed" : "open"}.svg`}
+										alt=""
+										width={22}
+										height={28}
+									/>
+									<span className={styles.resultBody}>
+										<span className={styles.resultName}>{site.name}</span>
+										<span className={styles.resultMeta}>
+											{TYPE_LABEL[site.type]} · {site.emd} · {site.address}
+										</span>
+									</span>
+									<span className={styles.resultDist}>{formatDistance(dist)}</span>
+								</button>
+							);
+						})
 					)}
 				</div>
 			)}
@@ -234,37 +272,68 @@ export default function MapView() {
 				)}
 			</div>
 
+			<div className={styles.legend} aria-hidden>
+				<span>
+					<img src="/markers/clean-open.svg" alt="" width={15} height={19} /> 클린하우스
+				</span>
+				<span>
+					<img src="/markers/recycle-open.svg" alt="" width={15} height={19} /> 도움센터
+				</span>
+				<span>
+					<span className={`cj-dot ${styles.legendDot}`} /> 운영마감
+				</span>
+			</div>
+
 			{geo.status === "granted" && !geo.inJeju && (
 				<div className={styles.notice}>
 					<Banner status="info" title="제주 외 지역에서 접속 중" description="지도는 제주 기본 화면으로 표시됩니다." />
 				</div>
 			)}
 
-			{selected && (
-				<div className={styles.detail}>
-					<Card>
-						<Heading level={3}>{selected.name}</Heading>
-						<div className={styles.badges}>
-							<Badge label={TYPE_LABEL[selected.type]} />
-							{selectedOpen !== undefined && (
-								<Badge label={selectedOpen ? "운영중" : "운영시간 아님"} variant={selectedOpen ? "success" : "neutral"} />
-							)}
+			{selected && selectedHours && (
+				<article className={styles.card} data-type={selected.type}>
+					<header className={styles.cardHead}>
+						<span className={styles.cardType}>{TYPE_LABEL[selected.type]}</span>
+						<span className={styles.cardStatus} data-open={selectedOpen ?? "unknown"}>
+							{selectedOpen === undefined ? "운영정보 없음" : selectedOpen ? "운영중 ✅" : "운영마감 💤"}
+						</span>
+						<button type="button" className={styles.cardClose} onClick={() => setSelected(null)} aria-label="닫기">
+							×
+						</button>
+					</header>
+					<div className={styles.cardBody}>
+						<img
+							className={styles.cardIcon}
+							src={`/markers/${selected.type}-open.svg`}
+							alt=""
+							width={34}
+							height={44}
+						/>
+						<div className={styles.cardInfo}>
+							<h3 className={styles.cardName}>{selected.name}</h3>
+							<p className={styles.cardAddr}>{selected.address}</p>
+							<p className={styles.cardMeta}>
+								{formatHours(selectedHours)} ·{" "}
+								{formatDistance(distanceKm(origin.lat, origin.lng, selected.lat, selected.lng))}
+							</p>
 						</div>
-						<Text>{selected.address}</Text>
-						<Text size="sm" color="secondary">
-							{formatHours(selected)} · {formatDistance(distanceKm(origin.lat, origin.lng, selected.lat, selected.lng))}
-						</Text>
-						<div className={styles.actions}>
-							<Button
-								label="카카오맵 길찾기"
-								href={`https://map.kakao.com/link/to/${encodeURIComponent(selected.name)},${selected.lat},${selected.lng}`}
-								target="_blank"
-								rel="noreferrer"
-							/>
-							<Button label="닫기" variant="secondary" clickAction={() => setSelected(null)} />
-						</div>
-					</Card>
-				</div>
+					</div>
+					<footer className={styles.cardActions}>
+						<a
+							className={styles.cardPrimary}
+							href={`https://map.kakao.com/link/to/${encodeURIComponent(selected.name)},${selected.lat},${selected.lng}`}
+							target="_blank"
+							rel="noreferrer"
+						>
+							카카오맵 길찾기
+						</a>
+						{selected.type === "recycle" && (
+							<a className={styles.cardSecondary} href={`/recycle-center/${selected.id}`}>
+								상세 정보
+							</a>
+						)}
+					</footer>
+				</article>
 			)}
 		</div>
 	);

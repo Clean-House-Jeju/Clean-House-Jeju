@@ -1,0 +1,75 @@
+/* 클린 제주 디자인 토큰 — 레거시 팔레트(#20c997/#48cca6/#128766, #5459c6, #f56c61) 계승·정제 */
+:root {
+	/* 클린하우스 = 에메랄드 (레거시 민트 계열) */
+	--cj-clean: #12a37a;
+	--cj-clean-deep: #0d7d5e;
+	--cj-clean-soft: #e2f7f0;
+	/* 재활용도움센터 = 인디고 (레거시 recycle_center 인디고 계승) */
+	--cj-recycle: #4f56c9;
+	--cj-recycle-deep: #3b41a3;
+	--cj-recycle-soft: #eceefb;
+	/* 포인트 = 지붕 오렌지 / 현재위치 코랄 */
+	--cj-accent: #ff9c31;
+	--cj-me: #f56c61;
+	/* 상태 */
+	--cj-open: #12a37a;
+	--cj-closed: #8b939c;
+	/* 서피스 */
+	--cj-bg: #fafcfb;
+	--cj-surface: #ffffff;
+	--cj-ink: #1c2733;
+	--cj-ink-2: #5c6b7a;
+	--cj-line: rgba(28, 39, 51, 0.1);
+	--cj-shadow: 0 10px 30px rgba(13, 60, 48, 0.14), 0 2px 8px rgba(13, 60, 48, 0.08);
+	--cj-radius: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--cj-clean-soft: rgba(18, 163, 122, 0.16);
+		--cj-recycle-soft: rgba(79, 86, 201, 0.2);
+		--cj-bg: #10171d;
+		--cj-surface: #1a232b;
+		--cj-ink: #e8eef2;
+		--cj-ink-2: #9aa8b5;
+		--cj-line: rgba(232, 238, 242, 0.12);
+		--cj-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+	}
+}
+
+/* 배출 품목 칩 */
+.cj-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 4px 11px;
+	border-radius: 999px;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4;
+	background: var(--cj-clean-soft);
+	color: var(--cj-clean-deep);
+	white-space: nowrap;
+}
+
+.cj-chip--muted {
+	background: transparent;
+	border: 1px dashed var(--cj-line);
+	color: var(--cj-ink-2);
+	font-weight: 500;
+}
+
+/* 상태 도트 */
+.cj-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--cj-closed);
+	flex: none;
+}
+
+.cj-dot--open {
+	background: var(--cj-open);
+	box-shadow: 0 0 0 3px rgba(18, 163, 122, 0.18);
+}
