@@ -18,7 +18,12 @@ export default function PwaSetup() {
 
 	useEffect(() => {
 		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker.register("/sw.js").catch(() => {});
+			if (process.env.NODE_ENV === "production") {
+				navigator.serviceWorker.register("/sw.js").catch(() => {});
+			} else {
+				// dev: SW가 번들을 캐시하면 Fast Refresh가 무력화됨 — 등록 해제
+				navigator.serviceWorker.getRegistrations().then((rs) => rs.forEach((r) => r.unregister()));
+			}
 		}
 		const visits = Number(localStorage.getItem(VISIT_KEY) ?? 0) + 1;
 		localStorage.setItem(VISIT_KEY, String(visits));

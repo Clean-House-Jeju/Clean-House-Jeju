@@ -43,7 +43,8 @@ export async function POST(req: NextRequest) {
 	if (body.message.length > 2000) {
 		return NextResponse.json({ error: "message가 너무 깁니다" }, { status: 400 });
 	}
-	if (rateLimited(ip)) {
+	// dev/E2E 반복 실행이 카운트를 소진하지 않도록 프로덕션에서만 제한 (실배포 검증은 T033)
+	if (process.env.NODE_ENV === "production" && rateLimited(ip)) {
 		return NextResponse.json({ error: "잠시 후 다시 시도해 주세요" }, { status: 429 });
 	}
 

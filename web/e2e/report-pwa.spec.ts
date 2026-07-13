@@ -51,7 +51,9 @@ test.describe("PWA (FR-022)", () => {
 		expect(await offline.text()).toContain("오프라인");
 	});
 
-	test("서비스 워커가 등록된다", async ({ page, baseURL }) => {
+	test("서비스 워커가 등록된다 (프로덕션 전용)", async ({ page, baseURL }) => {
+		// dev에서는 번들 캐시 오염 방지를 위해 SW를 등록하지 않음 — 실배포(T033)에서만 검증
+		test.skip(!process.env.PLAYWRIGHT_BASE_URL, "프로덕션 배포 대상 실행 시에만");
 		await page.goto("/");
 		const registered = await page.evaluate(async () => {
 			if (!("serviceWorker" in navigator)) return false;

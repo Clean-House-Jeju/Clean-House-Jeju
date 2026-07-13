@@ -2,10 +2,11 @@
 
 import { Banner, EmptyState, SegmentedControl, SegmentedControlItem, Spinner, TextInput } from "@astryxdesign/core";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { CloseIcon, MoonIcon } from "@/components/icons";
 import { DEFAULT_CENTER, distanceKm, formatDistance } from "@/lib/geo";
 import { formatHours, isOpen, withRuleHours } from "@/lib/status";
 import type { DisposalRule, MapSite, SiteType } from "@/lib/types";
-import { CloseIcon, MoonIcon } from "@/components/icons";
 import { type KakaoNS, loadKakaoMaps } from "./kakao-loader";
 import { useGeolocation } from "./useGeolocation";
 import styles from "./MapView.module.css";
@@ -13,13 +14,17 @@ import styles from "./MapView.module.css";
 type Filter = "all" | SiteType;
 
 const TYPE_LABEL: Record<SiteType, string> = { clean: "클린하우스", recycle: "재활용도움센터" };
+// 레거시 오버레이 카드의 본문 일러스트 (2021 원본 자산 계승)
+const TYPE_ILLUST: Record<SiteType, string> = {
+	clean: "/illust/clean-house.svg",
+	recycle: "/illust/recycle-center.svg",
+};
 // 레거시 클러스터 파라미터 계승 (research R5)
 const CLUSTER_PARAMS: Record<SiteType, { gridSize: number }> = {
 	clean: { gridSize: 100 },
 	recycle: { gridSize: 150 },
 };
 
-// 타입별 클러스터 배지 — 레거시 SVG 배지의 투톤 아이덴티티를 CSS로 재해석
 const CLUSTER_STYLE_BASE = {
 	color: "#ffffff",
 	fontWeight: "700",
@@ -51,12 +56,83 @@ interface MarkerEntry {
 	marker: KakaoNS;
 }
 
+/** 선택 개소 정보 카드 — 데스크톱은 마커 위 말풍선(레거시 CustomOverlay 계승), 모바일은 바텀시트 */
+function SiteCard({
+	site,
+	open,
+	hours,
+	distText,
+	variant,
+	onClose,
+}: {
+	site: MapSite;
+	open: boolean | undefined;
+	hours: { openTime?: string; closeTime?: string; open24h?: boolean };
+	distText: string;
+	variant: "bubble" | "sheet";
+	onClose: () => void;
+}) {
+	return (
+		<article className={variant === "bubble" ? styles.bubble : styles.sheet} data-type={site.type}>
+			<header className={styles.cardHead}>
+				<span className={styles.cardType}>{TYPE_LABEL[site.type]}</span>
+				<span className={styles.cardStatus} data-open={open ?? "unknown"}>
+					{open === undefined ? (
+						"운영정보 없음"
+					) : open ? (
+						<>
+							<span className={styles.statusPulse} /> 운영중
+						</>
+					) : (
+						<>
+							<MoonIcon /> 운영마감
+						</>
+					)}
+				</span>
+				<button type="button" className={styles.cardClose} onClick={onClose} aria-label="닫기">
+					<CloseIcon />
+				</button>
+			</header>
+			<div className={styles.cardBody}>
+				<img className={styles.cardIllust} src={TYPE_ILLUST[site.type]} alt="" width={92} height={54} />
+				<div className={styles.cardInfo}>
+					<h3 className={styles.cardName}>{site.name}</h3>
+					<p className={styles.cardAddr}>{site.address}</p>
+					<p className={styles.cardMeta}>
+						{formatHours(hours)} · {distText}
+					</p>
+				</div>
+			</div>
+			<footer className={styles.cardActions}>
+				<a
+					className={styles.cardPrimary}
+					href={`https://map.kakao.com/link/to/${encodeURIComponent(site.name)},${site.lat},${site.lng}`}
+					target="_blank"
+					rel="noreferrer"
+				>
+					카카오맵 길찾기
+				</a>
+				{site.type === "recycle" ? (
+					<a className={styles.cardSecondary} href={`/recycle-center/${site.id}`}>
+						상세 정보
+					</a>
+				) : (
+					<a className={styles.cardSecondary} href={`/report?site=${site.id}`}>
+						정보 제보
+					</a>
+				)}
+			</footer>
+		</article>
+	);
+}
+
 export default function MapView({ rules }: { rules: DisposalRule[] }) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const mapRef = useRef<KakaoNS>(null);
 	const kakaoRef = useRef<KakaoNS>(null);
 	const markersRef = useRef<Record<SiteType, MarkerEntry[]>>({ clean: [], recycle: [] });
 	const clusterersRef = useRef<Record<SiteType, KakaoNS>>({ clean: null, recycle: null });
+	const overlayRef = useRef<KakaoNS>(null);
 
 	const [sites, setSites] = useState<MapSite[]>([]);
 	const [mapError, setMapError] = useState<string | null>(null);
@@ -64,12 +140,23 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 	const [filter, setFilter] = useState<Filter>("all");
 	const [query, setQuery] = useState("");
 	const [selected, setSelected] = useState<MapSite | null>(null);
+	const [overlayEl, setOverlayEl] = useState<HTMLDivElement | null>(null);
+	const [isDesktop, setIsDesktop] = useState(true);
 	const geo = useGeolocation();
 
 	const openState = useCallback(
 		(site: MapSite): boolean | undefined => isOpen(withRuleHours(site, rules)),
 		[rules],
 	);
+
+	// 데스크톱(말풍선) / 모바일(바텀시트) 분기
+	useEffect(() => {
+		const mq = matchMedia("(min-width: 768px)");
+		const sync = () => setIsDesktop(mq.matches);
+		sync();
+		mq.addEventListener("change", sync);
+		return () => mq.removeEventListener("change", sync);
+	}, []);
 
 	useEffect(() => {
 		fetch("/api/map-sites")
@@ -101,6 +188,15 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 						styles: clusterStyles(type),
 					});
 				}
+				// 데스크톱 말풍선용 CustomOverlay — 레거시처럼 마커 위치에 앵커
+				const el = document.createElement("div");
+				overlayRef.current = new kakao.maps.CustomOverlay({
+					content: el,
+					yAnchor: 1,
+					zIndex: 30,
+					clickable: true,
+				});
+				setOverlayEl(el);
 				kakao.maps.event.addListener(map, "click", () => setSelected(null));
 				setMapReady(true);
 			})
@@ -109,6 +205,20 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 			cancelled = true;
 		};
 	}, []);
+
+	// 말풍선 표시/숨김 (레거시 overlaylive 패턴의 선언적 재구현)
+	useEffect(() => {
+		const overlay = overlayRef.current;
+		const kakao = kakaoRef.current;
+		const map = mapRef.current;
+		if (!overlay || !kakao || !map) return;
+		if (selected && isDesktop) {
+			overlay.setPosition(new kakao.maps.LatLng(selected.lat, selected.lng));
+			overlay.setMap(map);
+		} else {
+			overlay.setMap(null);
+		}
+	}, [selected, isDesktop]);
 
 	// 마커 구성 — 운영 상태별 이미지 (레거시 active/비활성 마커 시스템 계승)
 	useEffect(() => {
@@ -209,8 +319,16 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 		setQuery("");
 	};
 
-	const selectedOpen = selected ? openState(selected) : undefined;
-	const selectedHours = selected ? withRuleHours(selected, rules) : null;
+	const card = selected && (
+		<SiteCard
+			site={selected}
+			open={openState(selected)}
+			hours={withRuleHours(selected, rules)}
+			distText={formatDistance(distanceKm(origin.lat, origin.lng, selected.lat, selected.lng))}
+			variant={isDesktop ? "bubble" : "sheet"}
+			onClose={() => setSelected(null)}
+		/>
+	);
 
 	return (
 		<div className={styles.wrap}>
@@ -291,65 +409,8 @@ export default function MapView({ rules }: { rules: DisposalRule[] }) {
 				</div>
 			)}
 
-			{selected && selectedHours && (
-				<article className={styles.card} data-type={selected.type}>
-					<header className={styles.cardHead}>
-						<span className={styles.cardType}>{TYPE_LABEL[selected.type]}</span>
-						<span className={styles.cardStatus} data-open={selectedOpen ?? "unknown"}>
-							{selectedOpen === undefined ? (
-								"운영정보 없음"
-							) : selectedOpen ? (
-								<>
-									<span className={styles.statusPulse} /> 운영중
-								</>
-							) : (
-								<>
-									<MoonIcon /> 운영마감
-								</>
-							)}
-						</span>
-						<button type="button" className={styles.cardClose} onClick={() => setSelected(null)} aria-label="닫기">
-							<CloseIcon />
-						</button>
-					</header>
-					<div className={styles.cardBody}>
-						<img
-							className={styles.cardIcon}
-							src={`/markers/${selected.type}-open.svg`}
-							alt=""
-							width={34}
-							height={44}
-						/>
-						<div className={styles.cardInfo}>
-							<h3 className={styles.cardName}>{selected.name}</h3>
-							<p className={styles.cardAddr}>{selected.address}</p>
-							<p className={styles.cardMeta}>
-								{formatHours(selectedHours)} ·{" "}
-								{formatDistance(distanceKm(origin.lat, origin.lng, selected.lat, selected.lng))}
-							</p>
-						</div>
-					</div>
-					<footer className={styles.cardActions}>
-						<a
-							className={styles.cardPrimary}
-							href={`https://map.kakao.com/link/to/${encodeURIComponent(selected.name)},${selected.lat},${selected.lng}`}
-							target="_blank"
-							rel="noreferrer"
-						>
-							카카오맵 길찾기
-						</a>
-						{selected.type === "recycle" ? (
-							<a className={styles.cardSecondary} href={`/recycle-center/${selected.id}`}>
-								상세 정보
-							</a>
-						) : (
-							<a className={styles.cardSecondary} href={`/report?site=${selected.id}`}>
-								정보 제보
-							</a>
-						)}
-					</footer>
-				</article>
-			)}
+			{/* 데스크톱: 마커 위 말풍선 (CustomOverlay 포털) / 모바일: 바텀시트 */}
+			{isDesktop && overlayEl ? createPortal(card, overlayEl) : card}
 		</div>
 	);
 }
