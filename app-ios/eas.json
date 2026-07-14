@@ -13,13 +13,11 @@
 		},
 		"preview": {
 			"distribution": "internal",
-			"channel": "preview",
 			"env": {
 				"EXPO_PUBLIC_WEB_URL": "https://jejucleanhouse.com"
 			}
 		},
 		"production": {
-			"channel": "production",
 			"autoIncrement": true,
 			"env": {
 				"EXPO_PUBLIC_WEB_URL": "https://jejucleanhouse.com"
