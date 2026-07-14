@@ -712,7 +712,7 @@
 	}
 
 	.top {
-		padding: 10px 12px 0;
+		padding: calc(10px + var(--cj-safe-top)) 12px 0;
 	}
 
 	.chips {

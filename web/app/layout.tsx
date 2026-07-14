@@ -37,11 +37,14 @@ export default function RootLayout({
 	return (
 		<html lang="ko" data-astryx-theme="neutral" suppressHydrationWarning>
 			<head>
-				{/* Astryx 다크모드를 시스템 설정과 동기화 (FOUC 방지 위해 렌더 전 실행) */}
+				{/* 부트스트랩: ① Astryx 다크모드 동기화 ② 구버전 iOS 앱 safe-area 폴백
+				    (WKWebView는 env()가 0 — 새 빌드는 네이티브가 --cj-safe-*를 주입하고,
+				     주입이 없는 구빌드는 기기 높이 휴리스틱으로 보정) */}
 				<script
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: 테마 동기화 부트스트랩
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: 렌더 전 부트스트랩
 					dangerouslySetInnerHTML={{
-						__html: `(function(){var m=matchMedia('(prefers-color-scheme: dark)');var s=function(){document.documentElement.dataset.astryxMedia=m.matches?'dark':'light'};s();m.addEventListener('change',s)})()`,
+						__html: `(function(){var m=matchMedia('(prefers-color-scheme: dark)');var s=function(){document.documentElement.dataset.astryxMedia=m.matches?'dark':'light'};s();m.addEventListener('change',s)})();
+(function(){if(navigator.userAgent.indexOf('CleanJejuApp')===-1)return;var st=document.documentElement.style;if(st.getPropertyValue('--cj-safe-top'))return;var h=Math.max(screen.height,screen.width);var t=h>=852?59:(h>=812?47:20);var b=h>=812?34:0;st.setProperty('--cj-safe-top',t+'px');st.setProperty('--cj-safe-bottom',b+'px')})();`,
 					}}
 				/>
 			</head>
