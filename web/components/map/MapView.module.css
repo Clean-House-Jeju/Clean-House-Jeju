@@ -295,13 +295,13 @@
 	background: var(--cj-clean-soft);
 }
 
-/* 토스트 */
+/* 토스트 — 하단 스택(네비바 z50·검색결과/PWA배너 z60) 전부 위, safe-area 위로 뜬다 */
 .toast {
 	position: absolute;
 	left: 50%;
-	bottom: 96px;
+	bottom: calc(96px + var(--cj-safe-bottom));
 	transform: translateX(-50%);
-	z-index: 40;
+	z-index: 70;
 	padding: 10px 18px;
 	border-radius: 999px;
 	background: var(--cj-strong);
@@ -311,6 +311,12 @@
 	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
 	animation: chipIn 0.2s ease;
 	white-space: nowrap;
+	pointer-events: none; /* 아래 버튼 탭을 막지 않는다 */
+}
+
+/* 정보 카드가 열려 있으면 카드 위로 피한다 (즐겨찾기 토스트가 카드 버튼을 덮지 않게) */
+.wrap:has(.card) .toast {
+	bottom: 230px;
 }
 
 /* 오늘 배출 바 — 하단 고정 */
@@ -735,6 +741,10 @@
 		right: var(--cj-inset);
 		width: auto;
 		bottom: calc(86px + var(--cj-safe-bottom));
+	}
+
+	.wrap:has(.card) .toast {
+		bottom: calc(290px + var(--cj-safe-bottom));
 	}
 
 	.cardPrimary,
