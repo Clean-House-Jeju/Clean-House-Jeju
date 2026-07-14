@@ -746,8 +746,4 @@
 	.cardSecondary {
 		padding: 13px 12px; /* 터치 타겟 ≥ 44px */
 	}
-
-	.notice {
-		bottom: calc(86px + env(safe-area-inset-bottom));
-	}
 }
