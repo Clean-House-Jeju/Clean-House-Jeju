@@ -33,7 +33,7 @@
 	flex-direction: column;
 	gap: 10px;
 	/* iOS 노치/다이내믹 아일랜드 대응 — 지도는 엣지투엣지, UI만 내려앉는다 */
-	padding: calc(12px + env(safe-area-inset-top)) 14px 0;
+	padding: calc(12px + var(--cj-safe-top)) 14px 0;
 	pointer-events: none;
 }
 
@@ -419,7 +419,7 @@
 /* 제주 외 접속 안내 — 상단 고대비 필 (다른 UI에 가리지 않게 top + z-30) */
 .notice {
 	position: absolute;
-	top: calc(120px + env(safe-area-inset-top));
+	top: calc(120px + var(--cj-safe-top));
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 30;
@@ -725,21 +725,21 @@
 	}
 
 	.locate {
-		bottom: calc(90px + env(safe-area-inset-bottom));
+		bottom: calc(90px + var(--cj-safe-bottom));
 	}
 
 	.todayBar {
 		left: 10px;
 		right: 74px; /* FAB 자리 확보 */
 		width: auto;
-		bottom: calc(86px + env(safe-area-inset-bottom));
+		bottom: calc(86px + var(--cj-safe-bottom));
 	}
 
 	.card {
 		left: 10px;
 		right: 10px;
 		width: auto;
-		bottom: calc(86px + env(safe-area-inset-bottom));
+		bottom: calc(86px + var(--cj-safe-bottom));
 	}
 
 	.cardPrimary,

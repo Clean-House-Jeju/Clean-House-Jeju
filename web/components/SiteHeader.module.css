@@ -3,7 +3,7 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
-	padding: calc(14px + env(safe-area-inset-top)) 20px 14px;
+	padding: calc(14px + var(--cj-safe-top)) 20px 14px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 	flex-wrap: wrap;
 }

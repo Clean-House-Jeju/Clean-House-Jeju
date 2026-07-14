@@ -4,7 +4,7 @@
 	position: fixed;
 	left: 12px;
 	right: 12px;
-	bottom: calc(10px + env(safe-area-inset-bottom));
+	bottom: calc(10px + var(--cj-safe-bottom));
 	z-index: 50;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);

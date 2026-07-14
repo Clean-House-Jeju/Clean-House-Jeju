@@ -10,7 +10,7 @@
 @media (max-width: 767px) {
 	.main {
 		/* 하단 탭 바 여백 */
-		padding-bottom: calc(96px + env(safe-area-inset-bottom));
+		padding-bottom: calc(96px + var(--cj-safe-bottom));
 	}
 }
 

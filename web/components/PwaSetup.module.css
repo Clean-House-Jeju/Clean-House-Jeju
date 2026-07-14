@@ -2,7 +2,7 @@
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
-	bottom: calc(86px + env(safe-area-inset-bottom));
+	bottom: calc(86px + var(--cj-safe-bottom));
 	z-index: 60;
 	width: min(420px, calc(100% - 24px));
 	display: flex;
