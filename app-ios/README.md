@@ -19,7 +19,7 @@ maeil-app과 동일한 툴체인(Expo SDK 54, EAS, owner `ighost-p`)의 iOS 배�
 
 ```bash
 cd app-ios
-pnpm install --ignore-workspace   # ⚠️ 루트 pnpm 워크스페이스와 분리 필수
+npm install   # ⚠️ pnpm 금지 — 루트 워크스페이스와 충돌 (EAS 빌드도 npm 사용)
 EXPO_PUBLIC_WEB_URL=http://<맥IP>:8080 pnpm start   # Expo Go로 실기기 테스트
 ```
 

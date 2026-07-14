@@ -79,7 +79,7 @@
 
 ## Phase 10-iOS: iOS 앱 (Expo 웹뷰 래퍼) — 2026-07-13 방향 변경: Play 계정 부재로 iOS 우선
 
-- [x] T038 `app-ios/`: Expo SDK 54 래퍼 스캐폴딩 (maeil-app 툴체인) — WebView+오프라인 화면+외부링크 위임+스플래시/아이콘, typecheck 통과. `pnpm install --ignore-workspace` 필수
+- [x] T038 `app-ios/`: Expo SDK 54 래퍼 스캐폴딩 (maeil-app 툴체인) — WebView+오프라인 화면+외부링크 위임+스플래시/아이콘, typecheck 통과. `npm install` (pnpm은 루트 워크스페이스와 충돌 — EAS 빌드 실패 원인이라 npm 전환)
 - [ ] 🧑 T039 실도메인 배포 후: `eas init` → `pnpm build:ios` → TestFlight → 심사 제출 (심사 노트: 위치 권한 사유·오프라인 동작)
 - [ ] T040 (리젝 대비) expo-notifications 네이티브 푸시 — 서버 `/api/push/expo-token` + APNs 발송 통합
 
