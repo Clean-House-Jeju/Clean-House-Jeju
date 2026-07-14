@@ -9,6 +9,7 @@
 - **연령 등급**: 4+
 - **개인정보처리방침 URL**: https://jejucleanhouse.com/privacy
 - **지원 URL**: https://jejucleanhouse.com/guide/faq
+- **마케팅 URL**: https://jejucleanhouse.com
 - **저작권**: © Clean-House-Jeju
 
 ## 프로모션 텍스트 (170자)
