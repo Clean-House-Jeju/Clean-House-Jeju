@@ -73,8 +73,8 @@
 
 - [x] T030 레거시 제거: `src/`·`public/`(CRA 잔재)·CRA deps·`REAMD.md`·`.idea/`·`.swp`, README 갱신(새 구조·출처 고지 유지), 기존 기능 회귀 체크리스트 대조
 - [x] T031 `deploy/`: systemd 유닛 3종 + `.env` 주입(SOPS 체계), 타이머는 UTC 기준 작성
-- [ ] 🧑 T032 홈서버 배포: pull+build 후 sudo로 유닛 설치·기동, cloudflared 라우트 추가(Cloudflare API), 서브도메인 연결
-- [ ] T033 실도메인 검증: E2E 전 시나리오 + Lighthouse(SC-004) + 파이프라인 타이머 1주기 관찰(SC-002)
+- [x] 🧑 T032 완료 (2026-07-14): systemd 3유닛 기동, 터널 ingress, jejucleanhouse.com NS 이전(PM→도메인 transfer까지)·존 활성화 — https://jejucleanhouse.com 라이브
+- [x] T033 실도메인 검증 (2026-07-14): E2E 브라우저 47/47 통과(SW 등록 프로덕션 포함), sitemap 245 URL·manifest maskable·honeypot 검증. Lighthouse는 로컬 DNS 캐시 만료 후 자동 실행 중, 파이프라인 타이머 1주기는 관찰 대기
 - [ ] 🧑 T034 Google Search Console 등록 + sitemap 제출 → 4주 색인 추적(SC-001)
 
 ## Phase 10-iOS: iOS 앱 (Expo 웹뷰 래퍼) — 2026-07-13 방향 변경: Play 계정 부재로 iOS 우선
