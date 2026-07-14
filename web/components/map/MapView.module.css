@@ -507,7 +507,7 @@
 	bottom: 24px;
 	z-index: 25;
 	width: min(380px, calc(100% - 2 * var(--cj-inset)));
-	border-radius: 22px;
+	border-radius: var(--cj-radius-float);
 	background: color-mix(in srgb, var(--cj-surface) 96%, transparent);
 	backdrop-filter: blur(10px);
 	border: 1px solid var(--cj-line);

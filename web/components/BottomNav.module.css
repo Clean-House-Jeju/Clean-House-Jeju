@@ -10,7 +10,7 @@
 	grid-template-columns: repeat(4, 1fr);
 	gap: 2px;
 	padding: 6px;
-	border-radius: 26px;
+	border-radius: var(--cj-radius-float);
 	background: color-mix(in srgb, var(--cj-surface) 90%, transparent);
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);

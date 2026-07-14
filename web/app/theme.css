@@ -24,6 +24,8 @@
 	--cj-radius: 16px;
 	/* 플로팅 UI 좌우 인셋 — 네비바·검색바·카드·FAB 전부 이 값으로 정렬 */
 	--cj-inset: 14px;
+	/* 하단 스택(네비바·정보 카드·오늘 배출 바·PWA 배너) 공통 라운드 — 붙어 쌓이므로 곡률 통일 */
+	--cj-radius-float: 26px;
 	/* safe-area — 브라우저/PWA는 env(), 네이티브 앱(WKWebView는 env가 0)은 JS 주입으로 오버라이드 */
 	--cj-safe-top: env(safe-area-inset-top, 0px);
 	--cj-safe-bottom: env(safe-area-inset-bottom, 0px);

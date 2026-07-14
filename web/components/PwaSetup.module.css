@@ -9,7 +9,7 @@
 	align-items: center;
 	gap: 12px;
 	padding: 12px 14px;
-	border-radius: 14px;
+	border-radius: var(--cj-radius-float);
 	background: var(--cj-surface);
 	border: 1px solid var(--cj-line);
 	box-shadow: var(--cj-shadow);
