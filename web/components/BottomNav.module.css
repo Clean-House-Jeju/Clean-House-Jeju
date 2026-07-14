@@ -2,8 +2,8 @@
 
 .nav {
 	position: fixed;
-	left: 12px;
-	right: 12px;
+	left: var(--cj-inset);
+	right: var(--cj-inset);
 	bottom: calc(10px + var(--cj-safe-bottom));
 	z-index: 50;
 	display: grid;

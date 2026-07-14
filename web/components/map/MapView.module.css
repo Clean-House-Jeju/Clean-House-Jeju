@@ -33,7 +33,7 @@
 	flex-direction: column;
 	gap: 10px;
 	/* iOS 노치/다이내믹 아일랜드 대응 — 지도는 엣지투엣지, UI만 내려앉는다 */
-	padding: calc(12px + var(--cj-safe-top)) 14px 0;
+	padding: calc(12px + var(--cj-safe-top)) var(--cj-inset) 0;
 	pointer-events: none;
 }
 
@@ -138,8 +138,8 @@
 	overflow-x: auto;
 	scrollbar-width: none;
 	-webkit-overflow-scrolling: touch;
-	margin: 0 -14px;
-	padding: 4px 14px 8px;
+	margin: 0 calc(-1 * var(--cj-inset));
+	padding: 4px var(--cj-inset) 8px;
 }
 
 .chips::-webkit-scrollbar {
@@ -263,8 +263,8 @@
 	gap: 6px;
 	overflow-x: auto;
 	scrollbar-width: none;
-	margin: 0 -14px;
-	padding: 0 14px 6px;
+	margin: 0 calc(-1 * var(--cj-inset));
+	padding: 0 var(--cj-inset) 6px;
 }
 
 .favRow::-webkit-scrollbar {
@@ -316,7 +316,7 @@
 /* 오늘 배출 바 — 하단 고정 */
 .todayBar {
 	position: absolute;
-	left: 14px;
+	left: var(--cj-inset);
 	bottom: 24px;
 	z-index: 17;
 	width: min(430px, calc(100% - 90px));
@@ -394,7 +394,7 @@
 
 .locate {
 	position: absolute;
-	right: 14px;
+	right: var(--cj-inset);
 	bottom: 24px;
 	z-index: 18;
 	width: 46px;
@@ -426,7 +426,7 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	max-width: calc(100% - 28px);
+	max-width: calc(100% - 2 * var(--cj-inset));
 	padding: 11px 10px 11px 16px;
 	border-radius: 999px;
 	background: var(--cj-strong);
@@ -503,10 +503,10 @@
 
 .card {
 	position: absolute;
-	left: 14px;
+	left: var(--cj-inset);
 	bottom: 24px;
 	z-index: 25;
-	width: min(380px, calc(100% - 28px));
+	width: min(380px, calc(100% - 2 * var(--cj-inset)));
 	border-radius: 22px;
 	background: color-mix(in srgb, var(--cj-surface) 96%, transparent);
 	backdrop-filter: blur(10px);
@@ -712,12 +712,7 @@
 	}
 
 	.top {
-		padding: calc(10px + var(--cj-safe-top)) 12px 0;
-	}
-
-	.chips {
-		margin: 0 -12px;
-		padding: 4px 12px 8px;
+		padding: calc(10px + var(--cj-safe-top)) var(--cj-inset) 0;
 	}
 
 	.results {
@@ -729,15 +724,15 @@
 	}
 
 	.todayBar {
-		left: 10px;
-		right: 74px; /* FAB 자리 확보 */
+		left: var(--cj-inset);
+		right: calc(var(--cj-inset) + 58px); /* FAB(46px) + 간격 자리 확보 */
 		width: auto;
 		bottom: calc(86px + var(--cj-safe-bottom));
 	}
 
 	.card {
-		left: 10px;
-		right: 10px;
+		left: var(--cj-inset);
+		right: var(--cj-inset);
 		width: auto;
 		bottom: calc(86px + var(--cj-safe-bottom));
 	}

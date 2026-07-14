@@ -22,12 +22,20 @@
 	--cj-line: rgba(28, 39, 51, 0.1);
 	--cj-shadow: 0 10px 30px rgba(13, 60, 48, 0.14), 0 2px 8px rgba(13, 60, 48, 0.08);
 	--cj-radius: 16px;
+	/* 플로팅 UI 좌우 인셋 — 네비바·검색바·카드·FAB 전부 이 값으로 정렬 */
+	--cj-inset: 14px;
 	/* safe-area — 브라우저/PWA는 env(), 네이티브 앱(WKWebView는 env가 0)은 JS 주입으로 오버라이드 */
 	--cj-safe-top: env(safe-area-inset-top, 0px);
 	--cj-safe-bottom: env(safe-area-inset-bottom, 0px);
 	/* 강조 필(활성 필터·날짜 배지) — 다크모드에서 반전되지 않는 전용 변수 */
 	--cj-strong: #1c2733;
 	--cj-strong-ink: #ffffff;
+}
+
+@media (max-width: 767px) {
+	:root {
+		--cj-inset: 12px;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
