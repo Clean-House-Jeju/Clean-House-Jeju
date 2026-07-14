@@ -15,3 +15,10 @@ body {
 	color: var(--cj-ink);
 	-webkit-font-smoothing: antialiased;
 }
+
+/* iOS 포커스 자동 확대 방지 — 입력 필드 글꼴이 16px 미만이면 iOS가 화면을 확대함 */
+input,
+select,
+textarea {
+	font-size: 16px;
+}

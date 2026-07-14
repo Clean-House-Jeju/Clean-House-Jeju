@@ -46,3 +46,9 @@
 	height: 1px;
 	opacity: 0;
 }
+
+/* iOS 포커스 확대 방지 — Astryx 내부 입력 포함 */
+.form input,
+.form textarea {
+	font-size: 16px !important;
+}
