@@ -11,9 +11,12 @@ maeil-app과 동일한 툴체인(Expo SDK 54, EAS, owner `ighost-p`)의 iOS 배�
 - 외부 링크(카카오맵·tel·mailto)는 시스템 앱으로 위임
 - 뒤로가기 스와이프 제스처, pull-to-refresh, safe-area
 - WKWebView geolocation (NSLocationWhenInUseUsageDescription)
+- **배출일 로컬 알림 (T040)** — expo-notifications 주간 예약 알림. 배출제는 고정
+  주간 로테이션이라 서버 푸시 불필요: 웹 벨 버튼 → 브리지(`cj-push-toggle`) →
+  권한 요청 후 `/api/notify-schedule`을 받아 요일별 알림 7개(15:00 KST) 예약.
+  앱 실행 시마다 재동기화(규칙 개편 자동 반영), 켜짐 여부 = 예약 존재 여부.
 
-**로드맵(심사 통과율 ↑)**: expo-notifications 네이티브 푸시(APNs)로 배출일 알림 전환
-→ 서버에 `/api/push/expo-token` 추가, 홈 위젯(WidgetKit) 검토.
+**로드맵**: 홈 위젯(WidgetKit) 검토.
 
 ## 개발
 
