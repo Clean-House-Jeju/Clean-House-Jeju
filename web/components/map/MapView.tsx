@@ -78,6 +78,7 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 	const [chipEl, setChipEl] = useState<HTMLDivElement | null>(null);
 	const [nearbyOpen, setNearbyOpen] = useState(false);
 	const [nearbyOrigin, setNearbyOrigin] = useState<{ lat: number; lng: number } | null>(null);
+	const [noticeDismissed, setNoticeDismissed] = useState(false);
 	const [toast, setToast] = useState<string | null>(null);
 	const geo = useGeolocation();
 	const favorites = useFavorites();
@@ -471,9 +472,14 @@ export default function MapView({ rules, asOf }: { rules: DisposalRule[]; asOf: 
 				</output>
 			)}
 
-			{geo.status === "granted" && !geo.inJeju && (
-				<div className={styles.notice}>
-					<Banner status="info" title="제주 외 지역에서 접속 중" description="지도는 제주 기본 화면으로 표시됩니다." />
+			{geo.status === "granted" && !geo.inJeju && !noticeDismissed && (
+				<div className={styles.notice} role="status">
+					<span>
+						<strong>제주 외 지역에서 접속 중</strong> — 제주 지도를 표시합니다
+					</span>
+					<button type="button" onClick={() => setNoticeDismissed(true)} aria-label="안내 닫기">
+						<CloseIcon size={13} />
+					</button>
 				</div>
 			)}
 

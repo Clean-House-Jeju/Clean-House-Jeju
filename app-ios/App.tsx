@@ -69,7 +69,7 @@ export default function App() {
 
 	return (
 		<SafeAreaProvider>
-			<SafeAreaView style={styles.root} edges={["top"]}>
+			<SafeAreaView style={styles.root} edges={[]}>
 				<StatusBar style="dark" />
 				{!online || failed ? (
 					<View style={styles.offline}>

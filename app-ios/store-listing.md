@@ -63,3 +63,42 @@
 3. 내 주변 리스트 ("가까운 순으로 한눈에")
 4. 품목 사전 ("폐건전지는 어디에? 검색하면 끝")
 5. 배출제 안내 페이지 ("제주시·서귀포시 요일표")
+
+---
+
+## English Localization (영어 탭용)
+
+- **Name**: Clean Jeju
+- **Subtitle (30)**: Jeju recycling map & schedule
+
+### Promotional Text (170)
+
+Know what you can throw away in Jeju today — in 3 seconds. 1,800+ clean houses & recycling centers with live open status, all on one map.
+
+### Description
+
+Confused by Jeju's day-of-week recycling schedule? Clean Jeju keeps it simple.
+
+KEY FEATURES
+• Today's recyclables at a glance (Jeju-si / Seogwipo-si)
+• 1,800+ clean houses & recycling help centers on the map with open/closed status
+• "Open now" — one tap to the nearest place that's open
+• Waste dictionary — search where batteries, medicine, furniture and more should go
+• Favorites — save your neighborhood spot and check its status instantly
+• Daily push at 3 PM (disposal start time) with today's items
+• KakaoMap directions, center details (rewards, e-waste drop-off and more)
+
+Data: official Jeju public datasets (data.go.kr), auto-updated weekly with the reference date shown in app.
+
+### Keywords (100)
+
+jeju,recycling,waste,trash,clean house,recycle center,schedule,garbage,sorting,korea
+
+### Review Notes (English)
+
+- No login required; all features available immediately (no demo account needed).
+- Location permission is used only to sort nearby disposal places by distance;
+  coordinates never leave the device. The app is fully functional if denied.
+- Native offline screen with retry is provided when the network is unavailable.
+- This is a public-interest service built on official Jeju municipal open data,
+  combining web content with native location, notification and offline handling.
