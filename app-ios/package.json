@@ -8,7 +8,9 @@
     "ios": "expo run:ios",
     "typecheck": "tsc --noEmit",
     "build:ios": "eas build --platform ios --profile production",
-    "submit:ios": "eas submit --platform ios"
+    "build:android": "eas build --platform android --profile production",
+    "submit:ios": "eas submit --platform ios",
+    "submit:android": "eas submit --platform android"
   },
   "dependencies": {
     "@react-native-community/netinfo": "^11.4.1",
