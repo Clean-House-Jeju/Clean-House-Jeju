@@ -42,10 +42,9 @@ REPORT_TO_EMAIL=dndb3599@gmail.com
 sudo cp ~/Clean-House-Jeju/deploy/clean-jeju.service \
         ~/Clean-House-Jeju/deploy/clean-jeju-pipeline.service \
         ~/Clean-House-Jeju/deploy/clean-jeju-pipeline.timer \
-        ~/Clean-House-Jeju/deploy/clean-jeju-notify.service \
-        ~/Clean-House-Jeju/deploy/clean-jeju-notify.timer /etc/systemd/system/
+        /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now clean-jeju.service clean-jeju-pipeline.timer clean-jeju-notify.timer
+sudo systemctl enable --now clean-jeju.service clean-jeju-pipeline.timer
 systemctl status clean-jeju --no-pager   # 확인
 curl -s localhost:3005/api/map-sites | head -c 200
 ```
