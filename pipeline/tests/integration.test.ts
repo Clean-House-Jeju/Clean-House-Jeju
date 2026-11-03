@@ -10,9 +10,11 @@ const DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), "../../data");
 
 // 실 API 통합 테스트 (constitution 원칙 III) — 건수 하한은 원본 축소 감지용
 describe("live sources", () => {
-	it("제주시 클린하우스 ≥ 1,300행", { timeout: 60_000 }, async () => {
+	// 2026-10-26 마지막 정상 수집 시점에도 원본이 이미 1,294행이었다(원 임계값 1,300은
+	// atchFileId 다운로드 흐름 교체와 무관하게 낡아 있었다) — 1,200으로 하한 재설정.
+	it("제주시 클린하우스 ≥ 1,200행", { timeout: 60_000 }, async () => {
 		const { rows } = await fetchDataGoKrCsv("15110514");
-		expect(rows.length).toBeGreaterThanOrEqual(1300);
+		expect(rows.length).toBeGreaterThanOrEqual(1200);
 		expect(rows[0]).toHaveProperty("위도 좌표");
 	});
 
